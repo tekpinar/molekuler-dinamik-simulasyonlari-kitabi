@@ -1,0 +1,20 @@
+project:
+  type: book
+
+book:
+  title: "Biyomoleküllerin Moleküler Dinamik Simülasyonları: Gromacs ile Pratik Bir Yaklaşım"
+  author: "Doç. Dr. Mustafa TEKPINAR"
+  date: today
+  chapters:
+    - chapters/01-intro.qmd
+    - chapters/02-md-simulasyonlari.qmd
+    - chapters/03-kod-ornekleri.qmd
+    - chapters/references.qmd
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+output-dir: _site

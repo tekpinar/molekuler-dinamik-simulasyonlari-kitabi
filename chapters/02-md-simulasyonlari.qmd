@@ -1,0 +1,5 @@
+---
+title: "MD Simülasyonları"
+---
+
+Bu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.

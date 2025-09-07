@@ -1,0 +1,5 @@
+---
+title: "Kod Örnekleri"
+---
+
+Bu bölümde Python ve Bash kod örnekleri yer alacak.
