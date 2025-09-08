@@ -12,16 +12,16 @@
   {
     "objectID": "chapters/01-intro.html",
     "href": "chapters/01-intro.html",
-    "title": "2  Moleküler Dinamik Simülasyonlarına Giriş",
+    "title": "2  Teorik Temeller",
     "section": "",
-    "text": "2.1 Basit bir Python örneği\nBu kitapta moleküler dinamik (MD) simülasyonlarını Türkçe olarak anlatacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: -0.036858759498563244",
+    "text": "2.1 Basit bir Python örneği\nBu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.02298774132348611",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonlarına Giriş</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
     ]
   },
   {
-    "objectID": "chapters/02-md-simulasyonlari.html",
-    "href": "chapters/02-md-simulasyonlari.html",
+    "objectID": "chapters/02-md-preparations.html",
+    "href": "chapters/02-md-preparations.html",
     "title": "3  MD Simülasyonları",
     "section": "",
     "text": "Bu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.",
@@ -30,13 +30,13 @@
     ]
   },
   {
-    "objectID": "chapters/03-kod-ornekleri.html",
-    "href": "chapters/03-kod-ornekleri.html",
-    "title": "4  Kod Örnekleri",
+    "objectID": "chapters/03-md-analyses.html",
+    "href": "chapters/03-md-analyses.html",
+    "title": "4  MD Simülasyon Analizleri",
     "section": "",
     "text": "Bu bölümde Python ve Bash kod örnekleri yer alacak.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kod Örnekleri</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
   },
   {
