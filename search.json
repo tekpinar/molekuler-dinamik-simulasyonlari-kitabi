@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Biyomoleküllerin Moleküler Dinamik Simülasyonları: Gromacs ile Pratik Bir Yaklaşım",
     "section": "",
-    "text": "1 Hoşgeldiniz\nBu kitapta moleküler dinamik (MD) simülasyonlarını Türkçe olarak anlatacağız.\nBaşlamak için Giriş bölümüne göz atın.",
+    "text": "1 Hoşgeldiniz\nBu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını ele alacağız.\n📥 Kitabı PDF olarak indir: Moleküler Dinamik Simülasyonları (PDF)\nBaşlamak için Giriş bölümüne göz atın.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonları</span>"
     ]
@@ -14,7 +14,7 @@
     "href": "chapters/01-intro.html",
     "title": "2  Moleküler Dinamik Simülasyonlarına Giriş",
     "section": "",
-    "text": "2.1 Basit bir Python örneği\nBu kitapta moleküler dinamik (MD) simülasyonlarını Türkçe olarak anlatacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.02302890748757679",
+    "text": "2.1 Basit bir Python örneği\nBu kitapta moleküler dinamik (MD) simülasyonlarını Türkçe olarak anlatacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: -0.026627605248629557",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonlarına Giriş</span>"
     ]
