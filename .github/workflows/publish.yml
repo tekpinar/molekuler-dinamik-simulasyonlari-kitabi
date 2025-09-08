@@ -30,9 +30,6 @@ jobs:
       - name: Install TinyTeX (for PDF build)
         run: quarto install tinytex --no-prompt
 
-      - name: Install Latin Modern Roman fonts
-        run: tlmgr install lmodern
-
       - name: Render Quarto Project
         run: quarto render .
 

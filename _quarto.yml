@@ -16,6 +16,7 @@ format:
   html:
     theme: cosmo
   pdf:
+    pdf-engine: xelatex
     documentclass: scrreprt
 
 output-dir: _site
