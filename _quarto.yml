@@ -19,4 +19,4 @@ format:
     pdf-engine: xelatex
     documentclass: scrreprt
 
-output-dir: _site
+output-dir: _book
