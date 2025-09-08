@@ -1,8 +1,9 @@
 ---
-title: "Moleküler Dinamik Simülasyonlarına Giriş"
+title: "Teorik Temeller"
 ---
 
-Bu kitapta moleküler dinamik (MD) simülasyonlarını **Türkçe** olarak anlatacağız.  
+Bu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.
+  
 
 ## Basit bir Python örneği
 

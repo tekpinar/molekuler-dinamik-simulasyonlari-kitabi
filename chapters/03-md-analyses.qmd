@@ -1,5 +1,5 @@
 ---
-title: "Kod Örnekleri"
+title: "MD Simülasyon Analizleri"
 ---
 
 Bu bölümde Python ve Bash kod örnekleri yer alacak.

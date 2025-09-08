@@ -2,14 +2,14 @@ project:
   type: book
 
 book:
-  title: "Biyomoleküllerin Moleküler Dinamik Simülasyonları: Gromacs ile Pratik Bir Yaklaşım"
+  title: "Proteinlerin Moleküler Dinamik Simülasyonları"
   author: "Doç. Dr. Mustafa TEKPINAR"
   date: today
   chapters:
   - index.qmd
   - chapters/01-intro.qmd
-  - chapters/02-md-simulasyonlari.qmd
-  - chapters/03-kod-ornekleri.qmd
+  - chapters/02-md-preparations.qmd
+  - chapters/03-md-analyses.qmd
   - chapters/references.qmd
 
 format:
@@ -17,6 +17,6 @@ format:
     theme: cosmo
   pdf:
     pdf-engine: xelatex
-    documentclass: scrreprt
+    documentclass: scrbook
 
 output-dir: _book

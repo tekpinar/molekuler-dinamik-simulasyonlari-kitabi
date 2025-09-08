@@ -1,11 +1,11 @@
 ---
-title: "Moleküler Dinamik Simülasyonları"
+title: "Önsöz"
+numbered: false
 ---
 
-# Hoşgeldiniz
+Bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını ele alacağız. 
+Kitap kısa bir teorik bilgiler bölümü ile başlayacak. Kitapta ağırlıklı olarak MD simülasyonlarının açık kaynak kodlu Gromacs paketi ile yapılması hedefleniyor.Teorik temeller bölümünden sonra MS simülasyonlarına hazırlık aşamaları anlatılacaktır. Son olarak ise MD simülasyonu analiz teknikleri bir bölüm olarak sunulacaktır.  
 
-Bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını ele alacağız.  
-
-📥 **Kitabı PDF olarak indir:** [Moleküler Dinamik Simülasyonları (PDF)](_book/Biyomolek%C3%BCllerin-Molek%C3%BCler-Dinamik-Sim%C3%BClasyonlar%C4%B1--Gromacs-ile-Pratik-Bir-Yakla%C5%9F%C4%B1m.pdf_)
+📥 **Kitabı PDF olarak indir:** [Moleküler Dinamik Simülasyonları (PDF)](_book/Proteinlerin-Moleküler-Dinamik-Simülasyonları.pdf)
 
 Başlamak için [Giriş](chapters/01-intro.qmd) bölümüne göz atın.
