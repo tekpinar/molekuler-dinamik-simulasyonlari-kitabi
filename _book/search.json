@@ -1,0 +1,52 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Biyomoleküllerin Moleküler Dinamik Simülasyonları: Gromacs ile Pratik Bir Yaklaşım",
+    "section": "",
+    "text": "1 Hoşgeldiniz\nBu kitapta moleküler dinamik (MD) simülasyonlarını Türkçe olarak anlatacağız.\nBaşlamak için Giriş bölümüne göz atın.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonları</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-intro.html",
+    "href": "chapters/01-intro.html",
+    "title": "2  Moleküler Dinamik Simülasyonlarına Giriş",
+    "section": "",
+    "text": "2.1 Basit bir Python örneği\nBu kitapta moleküler dinamik (MD) simülasyonlarını Türkçe olarak anlatacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: -0.04151466278259986",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonlarına Giriş</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-md-simulasyonlari.html",
+    "href": "chapters/02-md-simulasyonlari.html",
+    "title": "3  MD Simülasyonları",
+    "section": "",
+    "text": "Bu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MD Simülasyonları</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-kod-ornekleri.html",
+    "href": "chapters/03-kod-ornekleri.html",
+    "title": "4  Kod Örnekleri",
+    "section": "",
+    "text": "Bu bölümde Python ve Bash kod örnekleri yer alacak.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kod Örnekleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/references.html",
+    "href": "chapters/references.html",
+    "title": "5  Kaynaklar",
+    "section": "",
+    "text": "Frenkel, D., & Smit, B. (2001). Understanding Molecular Simulation.\nRapaport, D. C. (2004). The Art of Molecular Dynamics Simulation.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Kaynaklar</span>"
+    ]
+  }
+]
