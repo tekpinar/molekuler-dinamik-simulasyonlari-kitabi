@@ -2,26 +2,26 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Biyomoleküllerin Moleküler Dinamik Simülasyonları: Gromacs ile Pratik Bir Yaklaşım",
+    "title": "Proteinlerin Moleküler Dinamik Simülasyonları",
     "section": "",
-    "text": "1 Hoşgeldiniz\nBu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını ele alacağız.\n📥 Kitabı PDF olarak indir: Moleküler Dinamik Simülasyonları (PDF)\nBaşlamak için Giriş bölümüne göz atın.",
+    "text": "Bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını ele alacağız. Kitap kısa bir teorik bilgiler bölümü ile başlayacak. Kitapta ağırlıklı olarak MD simülasyonlarının açık kaynak kodlu Gromacs paketi ile yapılması hedefleniyor.Teorik temeller bölümünden sonra MS simülasyonlarına hazırlık aşamaları anlatılacaktır. Son olarak ise MD simülasyonu analiz teknikleri bir bölüm olarak sunulacaktır.\n📥 Kitabı PDF olarak indir: Moleküler Dinamik Simülasyonları (PDF)\nBaşlamak için Giriş bölümüne göz atın.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonları</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Önsöz</span>"
     ]
   },
   {
     "objectID": "chapters/01-intro.html",
     "href": "chapters/01-intro.html",
-    "title": "2  Moleküler Dinamik Simülasyonlarına Giriş",
+    "title": "2  Teorik Temeller",
     "section": "",
-    "text": "2.1 Basit bir Python örneği\nBu kitapta moleküler dinamik (MD) simülasyonlarını Türkçe olarak anlatacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: -0.026627605248629557",
+    "text": "2.1 Basit bir Python örneği\nBu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: -0.05196562548360761",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonlarına Giriş</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
     ]
   },
   {
-    "objectID": "chapters/02-md-simulasyonlari.html",
-    "href": "chapters/02-md-simulasyonlari.html",
+    "objectID": "chapters/02-md-preparations.html",
+    "href": "chapters/02-md-preparations.html",
     "title": "3  MD Simülasyonları",
     "section": "",
     "text": "Bu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.",
@@ -30,13 +30,13 @@
     ]
   },
   {
-    "objectID": "chapters/03-kod-ornekleri.html",
-    "href": "chapters/03-kod-ornekleri.html",
-    "title": "4  Kod Örnekleri",
+    "objectID": "chapters/03-md-analyses.html",
+    "href": "chapters/03-md-analyses.html",
+    "title": "4  MD Simülasyon Analizleri",
     "section": "",
     "text": "Bu bölümde Python ve Bash kod örnekleri yer alacak.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kod Örnekleri</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
   },
   {

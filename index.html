@@ -9,7 +9,7 @@
 <meta name="author" content="Doç. Dr.&nbsp;Mustafa TEKPINAR">
 <meta name="dcterms.date" content="2025-09-08">
 
-<title>Biyomoleküllerin Moleküler Dinamik Simülasyonları: Gromacs ile Pratik Bir Yaklaşım</title>
+<title>Proteinlerin Moleküler Dinamik Simülasyonları</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Moleküler Dinamik Simülasyonları</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Önsöz</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -98,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Biyomoleküllerin Moleküler Dinamik Simülasyonları: Gromacs ile Pratik Bir Yaklaşım</a> 
+      <a href="./">Proteinlerin Moleküler Dinamik Simülasyonları</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -111,25 +111,25 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Moleküler Dinamik Simülasyonları</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Önsöz</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/01-intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Moleküler Dinamik Simülasyonlarına Giriş</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Teorik Temeller</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/02-md-simulasyonlari.html" class="sidebar-item-text sidebar-link">
+  <a href="./chapters/02-md-preparations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">MD Simülasyonları</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/03-kod-ornekleri.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Kod Örnekleri</span></span></a>
+  <a href="./chapters/03-md-analyses.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">MD Simülasyon Analizleri</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -143,21 +143,13 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#hoşgeldiniz" id="toc-hoşgeldiniz" class="nav-link active" data-scroll-target="#hoşgeldiniz"><span class="header-section-number">1</span> Hoşgeldiniz</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Biyomoleküllerin Moleküler Dinamik Simülasyonları: Gromacs ile Pratik Bir Yaklaşım</h1>
+<h1 class="title">Proteinlerin Moleküler Dinamik Simülasyonları</h1>
 </div>
 
 
@@ -186,14 +178,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="hoşgeldiniz" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Hoşgeldiniz</h1>
-<p>Bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını ele alacağız.</p>
-<p>📥 <strong>Kitabı PDF olarak indir:</strong> <a href="_book/Biyomoleküllerin-Moleküler-Dinamik-Simülasyonları--Gromacs-ile-Pratik-Bir-Yaklaşım.pdf_">Moleküler Dinamik Simülasyonları (PDF)</a></p>
+<p>Bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını ele alacağız. Kitap kısa bir teorik bilgiler bölümü ile başlayacak. Kitapta ağırlıklı olarak MD simülasyonlarının açık kaynak kodlu Gromacs paketi ile yapılması hedefleniyor.Teorik temeller bölümünden sonra MS simülasyonlarına hazırlık aşamaları anlatılacaktır. Son olarak ise MD simülasyonu analiz teknikleri bir bölüm olarak sunulacaktır.</p>
+<p>📥 <strong>Kitabı PDF olarak indir:</strong> <a href="_book/Proteinlerin-Moleküler-Dinamik-Simülasyonları.pdf">Moleküler Dinamik Simülasyonları (PDF)</a></p>
 <p>Başlamak için <a href="./chapters/01-intro.html">Giriş</a> bölümüne göz atın.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -599,8 +588,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/01-intro.html" class="pagination-link" aria-label="Moleküler Dinamik Simülasyonlarına Giriş">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Moleküler Dinamik Simülasyonlarına Giriş</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapters/01-intro.html" class="pagination-link" aria-label="Teorik Temeller">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Teorik Temeller</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
