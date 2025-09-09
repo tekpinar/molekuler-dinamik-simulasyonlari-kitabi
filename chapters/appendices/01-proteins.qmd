@@ -1,5 +1,5 @@
 ---
-title: "Amino Asitler ve Proteinler"
+title: "Ek 1: Amino Asitler ve Proteinler"
 ---
 
 ## Giriş
@@ -39,12 +39,11 @@ Protein yapısını kavramak için dört düzeyi ayırt ederiz:
 
 Bu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan zincir etkileşimleri (hidrofobik paketleme, hidrojen bağları, tuz köprüleri, aromatik etkileşimler, disülfit bağları) tersiyer mimariyi şekillendirir; uygun arayüzler ise kuaterner etkileşimleri mümkün kılar.
 
-**Şekil 2 — Yapı düzeylerinin şematik gösterimi (Ghibli esintili SVG)**
-
 ```{markdown}
 ![Yapı düzeylerinin şematik gösterimi](figures/protein-yapilari.png){#fig-ps fig-align="center" width="80%"}
 
 TODO: @fig-ps'yi düzeltmeyi unutma. !!!
+
 ---
 
 ## Özet

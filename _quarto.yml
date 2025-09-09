@@ -12,8 +12,8 @@ book:
   - chapters/01-intro.qmd
   - chapters/02-md-preparations.qmd
   - chapters/03-md-analyses.qmd
-  - chapters/references.qmd
   - chapters/appendices/01-proteins.qmd
+  - references.qmd
 
 format:
   html:
@@ -21,7 +21,7 @@ format:
     theme: cosmo
   pdf:
     lang: tr
-    pdf-engine: xelatex
+    pdf-engine: lualatex
     documentclass: scrbook
 
 output-dir: _book

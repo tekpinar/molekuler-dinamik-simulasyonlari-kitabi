@@ -3,6 +3,14 @@ title: "Gromacs ile MD Simülasyonlarına Hazırlık"
 ---
 
 Bu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız.
+Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdaki basamakları içerir:
+
+1. Sistemin inşa edilmesi
+2. Sistemin enerjisinin minimize edilmesi
+3. Sistemin dengelenmesi (equilibration)
+4. Üretim aşaması
+
+Bu basamakları teker teker ele alalım.
 
 ## Basit bir Python örneği
 

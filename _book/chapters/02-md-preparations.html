@@ -171,14 +171,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Kaynaklar</span></span></a>
+  <a href="../chapters/appendices/01-proteins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ek 1: Amino Asitler ve Proteinler</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/appendices/01-proteins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Amino Asitler ve Proteinler</span></span></a>
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Kaynaklar</span></span></a>
   </div>
 </li>
     </ul>
@@ -217,16 +217,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Bu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız.</p>
+<p>Bu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız. Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdaki basamakları içerir:</p>
+<ol type="1">
+<li>Sistemin inşa edilmesi</li>
+<li>Sistemin enerjisinin minimize edilmesi</li>
+<li>Sistemin dengelenmesi (equilibration)</li>
+<li>Üretim aşaması</li>
+</ol>
+<p>Bu basamakları teker teker ele alalım.</p>
 <section id="basit-bir-python-örneği" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="basit-bir-python-örneği"><span class="header-section-number">3.1</span> Basit bir Python örneği</h2>
-<div id="e6364edd" class="cell" data-execution_count="1">
+<div id="a1420ca1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ortalama hız:"</span>, np.mean(v))</span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Ortalama hız: 0.0109615938880495</code></pre>
+<pre><code>Ortalama hız: 0.011992538176027771</code></pre>
 </div>
 </div>
 

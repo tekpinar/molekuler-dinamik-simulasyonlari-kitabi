@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Proteinlerin Moleküler Dinamik Simülasyonları",
     "section": "",
-    "text": "Proteinlerin moleküler dinamik simülasyonları fizik, kimya, moleküler biyoloji, eczacılık, tıp ve biyomühendislik gibi çeşitli alanlarda kullanılan bilişimsel bir araştırma tekniğidir. Bu tekniğin geniş bir uygulama alanı olmasında rağmen bu alandaki Türkçe kaynak sayısı oldukça azdır. Bu nedenle, bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını pratik bir yaklaşımla ele alacağız. Kitapta ağırlıklı olarak MD simülasyonlarının açık kaynak kodlu Gromacs paketi ile yapılması hedeflenmektedir. Kitap, kısa bir teorik temeller bölümü ile başlayacaktır. Teorik temeller bölümünden sonra MD simülasyonlarına hazırlık aşamaları anlatılacaktır. Son bölümde ise MD simülasyonu analiz teknikleri sunulacaktır. Kitabın teorik bilgilerle dolu bir kitap olmasından ziyade pratik bir uygulama kitabı olması hedeflenmektedir. Kitabın, bu alanda araştırma yapmak isteyen ancak yabancı dildeki kaynaklardan henüz tam yararlanamayan ileri lisans öğrencileri ve lisansüstü öğrenciler için faydalı olacağını ümit ediyorum.\n📥 Kitabı PDF olarak indir: Proteinlerin Moleküler Dinamik Simülasyonları (PDF)\nBaşlamak için Teorik Temeller bölümüne göz atın.",
+    "text": "Moleküler dinamik simülasyonları fizik, kimya, moleküler biyoloji, eczacılık, tıp ve biyomühendislik gibi çeşitli alanlarda kullanılan bilişimsel bir araştırma tekniğidir. Bu tekniğin geniş bir uygulama alanı olmasında rağmen bu alandaki Türkçe kaynak sayısı oldukça azdır. Bu nedenle, bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını pratik bir yaklaşımla ele alacağız. Kitapta ağırlıklı olarak MD simülasyonlarının açık kaynak kodlu Gromacs paketi ile yapılması hedeflenmektedir. Kitap, kısa bir teorik temeller bölümü ile başlayacaktır. Teorik temeller bölümünden sonra MD simülasyonlarına hazırlık aşamaları anlatılacaktır. Son bölümde ise MD simülasyonu analiz teknikleri sunulacaktır. Kitabın teorik bilgilerle dolu bir kitap olmasından ziyade pratik bir uygulama kitabı olması hedeflenmektedir. Kitabın, bu alanda araştırma yapmak isteyen ancak yabancı dildeki kaynaklardan henüz tam yararlanamayan ileri lisans öğrencileri ve lisansüstü öğrenciler için faydalı olacağını ümit ediyorum.\n📥 Kitabı PDF olarak indir: Proteinlerin Moleküler Dinamik Simülasyonları (PDF)\nBaşlamak için Teorik Temeller bölümüne göz atın.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Önsöz</span>"
     ]
@@ -74,7 +74,7 @@
     "href": "chapters/02-md-preparations.html",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
     "section": "",
-    "text": "3.1 Basit bir Python örneği\nBu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.0109615938880495",
+    "text": "3.1 Basit bir Python örneği\nBu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız. Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdaki basamakları içerir:\nBu basamakları teker teker ele alalım.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.011992538176027771",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -90,63 +90,73 @@
     ]
   },
   {
-    "objectID": "chapters/references.html",
-    "href": "chapters/references.html",
-    "title": "5  Kaynaklar",
-    "section": "",
-    "text": "Frenkel, D., & Smit, B. (2001). Understanding Molecular Simulation.\nRapaport, D. C. (2004). The Art of Molecular Dynamics Simulation.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Kaynaklar</span>"
-    ]
-  },
-  {
     "objectID": "chapters/appendices/01-proteins.html",
     "href": "chapters/appendices/01-proteins.html",
-    "title": "6  Amino Asitler ve Proteinler",
+    "title": "5  Ek 1: Amino Asitler ve Proteinler",
     "section": "",
-    "text": "6.1 Giriş\nProteinler, canlılığın iş yapan makromolekülleridir. Kataliz (enzimler), taşıma (hemoglobin), savunma (antikorlar), sinyal iletimi (reseptörler) ve yapı (keratin, kollajen) gibi pek çok görevi üstlenirler. Tüm bu çeşitliliğin ortak kökeni amino asitlerdir—yani proteinlerin temel yapıtaşları.\nBu bölümde önce amino asitlerin ortak mimarisini ve kimyasal çeşitliliğini özetleyecek, ardından proteinlerin birincil, ikincil, tersiyer ve kuaterner yapı düzeylerini anlaşılır bir dille ele alacağız. Bölüm denklem içermez; kavramsal bir çerçeve sunar.",
+    "text": "5.1 Giriş\nProteinler, canlılığın iş yapan makromolekülleridir. Kataliz (enzimler), taşıma (hemoglobin), savunma (antikorlar), sinyal iletimi (reseptörler) ve yapı (keratin, kollajen) gibi pek çok görevi üstlenirler. Tüm bu çeşitliliğin ortak kökeni amino asitlerdir—yani proteinlerin temel yapıtaşları.\nBu bölümde önce amino asitlerin ortak mimarisini ve kimyasal çeşitliliğini özetleyecek, ardından proteinlerin birincil, ikincil, tersiyer ve kuaterner yapı düzeylerini anlaşılır bir dille ele alacağız. Bölüm denklem içermez; kavramsal bir çerçeve sunar.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Amino Asitler ve Proteinler</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/01-proteins.html#amino-asitler",
     "href": "chapters/appendices/01-proteins.html#amino-asitler",
-    "title": "6  Amino Asitler ve Proteinler",
-    "section": "6.2 Amino Asitler",
-    "text": "6.2 Amino Asitler\nHer amino asit, aynı omurgayı paylaşır: bir amino grubu (–NH₂), bir karboksil grubu (–COOH), kiral bir alfa karbonu (Cα) ve değişken yan zincir (R grubu). R grubu; polar/apolar olma, yük taşıma, aromatiklik veya kükürt içeriği gibi özellikleriyle amino asitlerin kimyasal davranışını belirler.\n\nApolar (hidrofobik): Val, Leu, Ile, Met, Ala, Phe, Trp, Pro\n\nPolar yüksüz: Ser, Thr, Asn, Gln, Tyr, Cys\n\nAsidik (negatif yüklü): Asp, Glu\n\nBazik (pozitif yüklü): Lys, Arg, His\n\nYan zincirlerin bu çeşitliliği, proteinlerin katlanma dinamiklerinden etkileşim ağlarına kadar her şeyi etkiler.\n\n\n\n\n\n\nŞekil 6.1: Amino asidin genel yapısı\n\n\n\nTODO: Şekil 6.1’yi düzeltmeyi unutma. !!!",
+    "title": "5  Ek 1: Amino Asitler ve Proteinler",
+    "section": "5.2 Amino Asitler",
+    "text": "5.2 Amino Asitler\nHer amino asit, aynı omurgayı paylaşır: bir amino grubu (–NH₂), bir karboksil grubu (–COOH), kiral bir alfa karbonu (Cα) ve değişken yan zincir (R grubu). R grubu; polar/apolar olma, yük taşıma, aromatiklik veya kükürt içeriği gibi özellikleriyle amino asitlerin kimyasal davranışını belirler.\n\nApolar (hidrofobik): Val, Leu, Ile, Met, Ala, Phe, Trp, Pro\n\nPolar yüksüz: Ser, Thr, Asn, Gln, Tyr, Cys\n\nAsidik (negatif yüklü): Asp, Glu\n\nBazik (pozitif yüklü): Lys, Arg, His\n\nYan zincirlerin bu çeşitliliği, proteinlerin katlanma dinamiklerinden etkileşim ağlarına kadar her şeyi etkiler.\n\n\n\n\n\n\nŞekil 5.1: Amino asidin genel yapısı\n\n\n\nTODO: Şekil 5.1’yi düzeltmeyi unutma. !!!",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Amino Asitler ve Proteinler</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/01-proteins.html#proteinlerin-yapı-düzeyleri",
     "href": "chapters/appendices/01-proteins.html#proteinlerin-yapı-düzeyleri",
-    "title": "6  Amino Asitler ve Proteinler",
-    "section": "6.3 Proteinlerin Yapı Düzeyleri",
-    "text": "6.3 Proteinlerin Yapı Düzeyleri\nProtein yapısını kavramak için dört düzeyi ayırt ederiz:\n\nBirincil yapı (primary): Amino asitlerin doğrusal dizilimi (sekans).\n\nİkincil yapı (secondary): Yerel düzenli motifler — α-heliks ve β-tabaka gibi.\n\nTersiyer yapı (tertiary): Tek zincirin üç boyutlu, işlevsel katlanmış hali.\n\nKuaterner yapı (quaternary): Birden fazla polimer zincirinin (alt birimlerin) bir araya gelerek oluşturduğu kompleks.\n\nBu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan zincir etkileşimleri (hidrofobik paketleme, hidrojen bağları, tuz köprüleri, aromatik etkileşimler, disülfit bağları) tersiyer mimariyi şekillendirir; uygun arayüzler ise kuaterner etkileşimleri mümkün kılar.\nŞekil 2 — Yapı düzeylerinin şematik gösterimi (Ghibli esintili SVG)\n\n\n\n\n\n\nŞekil 6.2: Yapı düzeylerinin şematik gösterimi",
+    "title": "5  Ek 1: Amino Asitler ve Proteinler",
+    "section": "5.3 Proteinlerin Yapı Düzeyleri",
+    "text": "5.3 Proteinlerin Yapı Düzeyleri\nProtein yapısını kavramak için dört düzeyi ayırt ederiz:\n\nBirincil yapı (primary): Amino asitlerin doğrusal dizilimi (sekans).\n\nİkincil yapı (secondary): Yerel düzenli motifler — α-heliks ve β-tabaka gibi.\n\nTersiyer yapı (tertiary): Tek zincirin üç boyutlu, işlevsel katlanmış hali.\n\nKuaterner yapı (quaternary): Birden fazla polimer zincirinin (alt birimlerin) bir araya gelerek oluşturduğu kompleks.\n\nBu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan zincir etkileşimleri (hidrofobik paketleme, hidrojen bağları, tuz köprüleri, aromatik etkileşimler, disülfit bağları) tersiyer mimariyi şekillendirir; uygun arayüzler ise kuaterner etkileşimleri mümkün kılar.\n\n\n\n\n\n\nŞekil 5.2: Yapı düzeylerinin şematik gösterimi\n\n\n\nTODO: Şekil 5.2’yi düzeltmeyi unutma. !!!",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Amino Asitler ve Proteinler</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/appendices/01-proteins.html#todo-fig-psyi-düzeltmeyi-unutma.",
-    "href": "chapters/appendices/01-proteins.html#todo-fig-psyi-düzeltmeyi-unutma.",
-    "title": "6  Amino Asitler ve Proteinler",
-    "section": "6.4 TODO: Şekil 6.2’yi düzeltmeyi unutma. !!!",
-    "text": "6.4 TODO: Şekil 6.2’yi düzeltmeyi unutma. !!!",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Amino Asitler ve Proteinler</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/01-proteins.html#özet",
     "href": "chapters/appendices/01-proteins.html#özet",
-    "title": "6  Amino Asitler ve Proteinler",
-    "section": "6.5 Özet",
-    "text": "6.5 Özet\n\nAmino asitler ortak bir omurga üzerinde farklı R grupları ile kimyasal çeşitlilik sunar.\n\nBirincil yapı sekansı, ikincil yapı yerel motifleri, tersiyer yapı tek zincirin 3B katlanmasını ve kuaterner yapı çoklu alt birimlerin montajını ifade eder.\n\nBu hiyerarşi; katlanma, stabilite ve işlev arasındaki ilişkiyi anlamanın anahtarıdır.",
+    "title": "5  Ek 1: Amino Asitler ve Proteinler",
+    "section": "5.4 Özet",
+    "text": "5.4 Özet\n\nAmino asitler ortak bir omurga üzerinde farklı R grupları ile kimyasal çeşitlilik sunar.\n\nBirincil yapı sekansı, ikincil yapı yerel motifleri, tersiyer yapı tek zincirin 3B katlanmasını ve kuaterner yapı çoklu alt birimlerin montajını ifade eder.\n\nBu hiyerarşi; katlanma, stabilite ve işlev arasındaki ilişkiyi anlamanın anahtarıdır.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Amino Asitler ve Proteinler</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "6  Kaynaklar",
+    "section": "",
+    "text": "6.1 Ders Kitapları",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Kaynaklar</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#ders-kitapları",
+    "href": "references.html#ders-kitapları",
+    "title": "6  Kaynaklar",
+    "section": "",
+    "text": "Frenkel, D., & Smit, B. (2001). Understanding Molecular Simulation.\nRapaport, D. C. (2004). The Art of Molecular Dynamics Simulation.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Kaynaklar</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#derleme-makaleler",
+    "href": "references.html#derleme-makaleler",
+    "title": "6  Kaynaklar",
+    "section": "6.2 Derleme Makaleler",
+    "text": "6.2 Derleme Makaleler",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Kaynaklar</span>"
     ]
   }
 ]
