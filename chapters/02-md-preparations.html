@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr" xml:lang="tr"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.34">
@@ -91,17 +91,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sonuç yok",
+    "search-matching-documents-text": "eşleşen belgeler",
+    "search-copy-link-title": "Aramak için bağlantıyı kopyalayın",
+    "search-hide-matches-text": "Ek eşleşmeleri gizle",
+    "search-more-match-text": "bu belgede bir tane daha eşleşme",
+    "search-more-matches-text": "bu belgede daha fazla eşleşme",
+    "search-clear-button-title": "Temizle",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "İptal et",
+    "search-submit-button-title": "Gönder",
+    "search-label": "Ara"
   }
 }</script>
 
@@ -114,13 +114,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/02-md-preparations.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gromacs ile MD Simülasyonlarına Hazırlık</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Ara" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -137,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Ara"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -168,8 +168,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Kaynaklar</span></span></a>
+  <a href="../chapters/appendices/01-proteins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ek 1: Amino Asitler ve Proteinler</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Kaynaklar</span></span></a>
   </div>
 </li>
     </ul>
@@ -179,10 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">İçindekiler</h2>
    
   <ul>
-  <li><a href="#basit-bir-python-örneği" id="toc-basit-bir-python-örneği" class="nav-link active" data-scroll-target="#basit-bir-python-örneği"><span class="header-section-number">3.1</span> Basit bir Python örneği</a></li>
+  <li><a href="#bu-bölümde-neler-öğreneceğiz" id="toc-bu-bölümde-neler-öğreneceğiz" class="nav-link active" data-scroll-target="#bu-bölümde-neler-öğreneceğiz"><span class="header-section-number">3.1</span> Bu Bölümde Neler Öğreneceğiz?</a></li>
+  <li><a href="#basit-bir-python-örneği" id="toc-basit-bir-python-örneği" class="nav-link" data-scroll-target="#basit-bir-python-örneği"><span class="header-section-number">3.2</span> Basit bir Python örneği</a></li>
+  <li><a href="#bölüm-özeti" id="toc-bölüm-özeti" class="nav-link" data-scroll-target="#bölüm-özeti"><span class="header-section-number">3.3</span> Bölüm Özeti</a></li>
   </ul>
 </nav>
     </div>
@@ -208,18 +216,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Bu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız.</p>
-<section id="basit-bir-python-örneği" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="basit-bir-python-örneği"><span class="header-section-number">3.1</span> Basit bir Python örneği</h2>
-<div id="569527ce" class="cell" data-execution_count="1">
+<section id="bu-bölümde-neler-öğreneceğiz" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="bu-bölümde-neler-öğreneceğiz"><span class="header-section-number">3.1</span> Bu Bölümde Neler Öğreneceğiz?</h2>
+<p>Bu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız. Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdaki basamakları içerir:</p>
+<ol type="1">
+<li>Sistemin inşa edilmesi</li>
+<li>Sistemin enerjisinin minimize edilmesi</li>
+<li>Sistemin dengelenmesi (equilibration)</li>
+<li>Üretim aşaması</li>
+</ol>
+<p>Bu basamakları teker teker ele alalım.</p>
+</section>
+<section id="basit-bir-python-örneği" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="basit-bir-python-örneği"><span class="header-section-number">3.2</span> Basit bir Python örneği</h2>
+<div id="45313051" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ortalama hız:"</span>, np.mean(v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ortalama hız:"</span>, np.mean(v))</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Ortalama hız: 0.036184112110529805</code></pre>
+<pre><code>Ortalama hız: 0.030601160057174705</code></pre>
 </div>
 </div>
+</section>
+<section id="bölüm-özeti" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="bölüm-özeti"><span class="header-section-number">3.3</span> Bölüm Özeti</h2>
 
 
 </section>
@@ -250,12 +271,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Kopyalandı");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Kopyalandı");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",

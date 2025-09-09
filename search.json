@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Proteinlerin Moleküler Dinamik Simülasyonları",
     "section": "",
-    "text": "Proteinlerin moleküler dinamik simülasyonları fizik, kimya, moleküler biyoloji, eczacılık, tıp ve biyomühendislik gibi çeşitli alanlarda kullanılan bilişimsel bir araştırma tekniğidir. Bu tekniğin geniş bir uygulama alanı olmasında rağmen bu alandaki Türkçe kaynak sayısı oldukça azdır. Bu nedenle, bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını pratik bir yaklaşımla ele alacağız. Kitapta ağırlıklı olarak MD simülasyonlarının açık kaynak kodlu Gromacs paketi ile yapılması hedeflenmektedir. Kitap, kısa bir teorik temeller bölümü ile başlayacaktır. Teorik temeller bölümünden sonra MD simülasyonlarına hazırlık aşamaları anlatılacaktır. Son bölümde ise MD simülasyonu analiz teknikleri sunulacaktır. Kitabın teorik bilgilerle dolu bir kitap olmasından ziyade pratik bir uygulama kitabı olması hedeflenmektedir. Kitabın, bu alanda araştırma yapmak isteyen ancak yabancı dildeki kaynaklardan henüz tam yararlanamayan ileri lisans öğrencileri ve lisansüstü öğrenciler için faydalı olacağını ümit ediyorum.\n📥 Kitabı PDF olarak indir: Proteinlerin Moleküler Dinamik Simülasyonları (PDF)\nBaşlamak için Teorik Temeller bölümüne göz atın.",
+    "text": "Moleküler dinamik simülasyonları fizik, kimya, moleküler biyoloji, eczacılık, tıp ve biyomühendislik gibi çeşitli alanlarda kullanılan bilişimsel bir araştırma tekniğidir. Bu tekniğin geniş bir uygulama alanı olmasında rağmen bu alandaki Türkçe kaynak sayısı oldukça azdır. Bu nedenle, bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını pratik bir yaklaşımla ele alacağız. Kitapta ağırlıklı olarak MD simülasyonlarının açık kaynak kodlu Gromacs paketi ile yapılması hedeflenmektedir. Kitap, kısa bir teorik temeller bölümü ile başlayacaktır. Teorik temeller bölümünden sonra MD simülasyonlarına hazırlık aşamaları anlatılacaktır. Son bölümde ise MD simülasyonu analiz teknikleri sunulacaktır. Kitabın teorik bilgilerle dolu bir kitap olmasından ziyade pratik bir uygulama kitabı olması hedeflenmektedir. Kitabın, bu alanda araştırma yapmak isteyen ancak yabancı dildeki kaynaklardan henüz tam yararlanamayan ileri lisans öğrencileri ve lisansüstü öğrenciler için faydalı olacağını ümit ediyorum.\n📥 Kitabı PDF olarak indir: Proteinlerin Moleküler Dinamik Simülasyonları (PDF)\nBaşlamak için Teorik Temeller bölümüne göz atın.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Önsöz</span>"
     ]
@@ -14,7 +14,17 @@
     "href": "chapters/01-intro.html",
     "title": "2  Teorik Temeller",
     "section": "",
-    "text": "2.1 Moleküler Dinamik Simülasyonları Nedir?\nBu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.\nMoleküler dinamik (MD) simülasyonları, atomik ölçekteki sistemlerin zaman içindeki hareketlerini bilgisayar aracılığıyla incelemeye olanak sağlayan güçlü bir yöntemdir. Temel fikir, doğada var olan parçacıkları sayısal olarak temsil etmek ve onların birbirleriyle etkileşimlerini bilgisayar üzerinde adım adım takip etmektir. Böylece laboratuvarda gözlenmesi zor veya imkânsız olan süreçler sanal ortamda canlandırılabilir.\nMD simülasyonlarını cazip kılan noktalardan biri, karmaşık sistemlerin dinamiklerini doğrudan izleyebilmemizdir. Deneysel yöntemler genellikle bu süreçleri anlık görüntüler hâlinde sunarken, MD simülasyonları bize tüm zaman çizgisini ayrıntılı olarak verir.",
+    "text": "2.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-intro.html#moleküler-dinamik-simülasyonları-nedir",
+    "href": "chapters/01-intro.html#moleküler-dinamik-simülasyonları-nedir",
+    "title": "2  Teorik Temeller",
+    "section": "2.2 Moleküler Dinamik Simülasyonları Nedir?",
+    "text": "2.2 Moleküler Dinamik Simülasyonları Nedir?\nMoleküler dinamik (MD) simülasyonları, atomik ölçekteki sistemlerin zaman içindeki hareketlerini bilgisayar aracılığıyla incelemeye olanak sağlayan güçlü bir yöntemdir. Temel fikir, doğada var olan parçacıkları sayısal olarak temsil etmek ve onların birbirleriyle etkileşimlerini bilgisayar üzerinde adım adım takip etmektir. Böylece laboratuvarda gözlenmesi zor veya imkânsız olan süreçler sanal ortamda canlandırılabilir.\nMD simülasyonlarını cazip kılan noktalardan biri, karmaşık sistemlerin dinamiklerini doğrudan izleyebilmemizdir. Deneysel yöntemler genellikle bu süreçleri anlık görüntüler hâlinde sunarken, MD simülasyonları bize tüm zaman çizgisini ayrıntılı olarak verir.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
     ]
@@ -23,8 +33,8 @@
     "objectID": "chapters/01-intro.html#tarihsel-arka-plan",
     "href": "chapters/01-intro.html#tarihsel-arka-plan",
     "title": "2  Teorik Temeller",
-    "section": "2.2 Tarihsel Arka Plan",
-    "text": "2.2 Tarihsel Arka Plan\nMoleküler dinamik yöntemleri ilk olarak 1950’lerin sonunda, bilgisayarların henüz oldukça sınırlı kapasitelere sahip olduğu dönemde geliştirilmiştir. Başlangıçta birkaç düzine atomdan oluşan sistemler üzerinde uygulanan bu teknik, bilgisayar gücündeki olağanüstü gelişmeler sayesinde günümüzde milyonlarca atom içeren biyolojik komplekslere kadar genişletilebilmiştir.\nBu ilerleme yalnızca hesaplama gücündeki artışla değil, aynı zamanda kuvvet alanlarının, algoritmaların ve yazılımların gelişmesiyle de mümkün olmuştur. Bugün MD, ilaç tasarımından nanoteknolojiye kadar pek çok alanda vazgeçilmez bir araçtır.",
+    "section": "2.3 Tarihsel Arka Plan",
+    "text": "2.3 Tarihsel Arka Plan\nMoleküler dinamik yöntemleri ilk olarak 1950’lerin sonunda, bilgisayarların henüz oldukça sınırlı kapasitelere sahip olduğu dönemde geliştirilmiştir. Başlangıçta birkaç düzine atomdan oluşan sistemler üzerinde uygulanan bu teknik, bilgisayar gücündeki olağanüstü gelişmeler sayesinde günümüzde milyonlarca atom içeren biyolojik komplekslere kadar genişletilebilmiştir.\nBu ilerleme yalnızca hesaplama gücündeki artışla değil, aynı zamanda kuvvet alanlarının, algoritmaların ve yazılımların gelişmesiyle de mümkün olmuştur. Bugün MD, ilaç tasarımından nanoteknolojiye kadar pek çok alanda vazgeçilmez bir araçtır.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
     ]
@@ -33,8 +43,8 @@
     "objectID": "chapters/01-intro.html#temel-mantık",
     "href": "chapters/01-intro.html#temel-mantık",
     "title": "2  Teorik Temeller",
-    "section": "2.3 Temel Mantık",
-    "text": "2.3 Temel Mantık\nBir MD simülasyonu, kabaca üç aşamadan oluşur:\n\nBaşlangıç Modelinin Hazırlanması\nÇalışılmak istenen sistemin atomik koordinatları tanımlanır. Bu bir proteinin yapısı, bir polimer zinciri ya da basit bir sıvı karışımı olabilir.\nSistemin Enerjisinin Belirlenmesi\nAtomlar arası etkileşimleri tanımlayan “kuvvet alanı” seçilir. Kuvvet alanı atomlar arası etkileşmelerin hesaplanabilmesi için ihtiyaç duyacağımız parametreler setidir. Bu parametre seti kullanılarak, öncelikle sistemin toplam enerjisi jesaplanır.\nEtki Eden Kuvvetlerin Belirlenmesi\nKorunumlu kuvvetlerin olduğu bir sistemde enerji bilinirse her atom üzerine etki eden kuvvetler hesaplanabilir.\nEtki Eden İvmelerin Belirlenmesi\nEğer bir atoma etkiyen net kuvvet bilinirse F=ma denklemi ile ona etkiye ivme hesaplanabilir.\nZamanın Çok Küçük Adımlarlar İlerletilmesi\nİvme bilinirse hızı hesaplamak sadece temel fizik denklemlerinin uygulanmasıdır. Hız kullanılarak küçük bir zaman dilimi sonrasındaki (dt: genellikle bir kaç femtosaniye) konumlar hesaplanabilir. Konumlar güncellendiği için sistemin enerjisi artık değişmiştir. Bu durumda tekrar 2. adıma gidip bu döngüyü tekrarlamak gerekir.\n\nBu adımların yinelenmesiyle sistemin dinamikleri elde edilir. Ortaya çıkan veriler, sonrasında analiz edilerek anlamlı bilimsel sonuçlara dönüştürülür.",
+    "section": "2.4 Temel Mantık",
+    "text": "2.4 Temel Mantık\nBir MD simülasyonu, kabaca üç aşamadan oluşur:\n\nBaşlangıç Modelinin Hazırlanması\nÇalışılmak istenen sistemin atomik koordinatları tanımlanır. Bu bir proteinin yapısı, bir polimer zinciri ya da basit bir sıvı karışımı olabilir.\nSistemin Enerjisinin Belirlenmesi\nAtomlar arası etkileşimleri tanımlayan “kuvvet alanı” seçilir. Kuvvet alanı atomlar arası etkileşmelerin hesaplanabilmesi için ihtiyaç duyacağımız parametreler setidir. Bu parametre seti kullanılarak, öncelikle sistemin toplam enerjisi jesaplanır.\nEtki Eden Kuvvetlerin Belirlenmesi\nKorunumlu kuvvetlerin olduğu bir sistemde enerji bilinirse her atom üzerine etki eden kuvvetler hesaplanabilir.\nEtki Eden İvmelerin Belirlenmesi\nEğer bir atoma etkiyen net kuvvet bilinirse F=ma denklemi ile ona etkiye ivme hesaplanabilir.\nZamanın Çok Küçük Adımlarlar İlerletilmesi\nİvme bilinirse hızı hesaplamak sadece temel fizik denklemlerinin uygulanmasıdır. Hız kullanılarak küçük bir zaman dilimi sonrasındaki (dt: genellikle bir kaç femtosaniye) konumlar hesaplanabilir. Konumlar güncellendiği için sistemin enerjisi artık değişmiştir. Bu durumda tekrar 2. adıma gidip bu döngüyü tekrarlamak gerekir.\n\nBu adımların yinelenmesiyle sistemin dinamikleri elde edilir. Ortaya çıkan veriler, sonrasında analiz edilerek anlamlı bilimsel sonuçlara dönüştürülür.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
     ]
@@ -43,8 +53,8 @@
     "objectID": "chapters/01-intro.html#güçlü-ve-zayıf-yönler",
     "href": "chapters/01-intro.html#güçlü-ve-zayıf-yönler",
     "title": "2  Teorik Temeller",
-    "section": "2.4 Güçlü ve Zayıf Yönler",
-    "text": "2.4 Güçlü ve Zayıf Yönler\nGüçlü Yanlar:\n\nAtomik çözünürlükte ayrıntı sağlar.\n\nDeneylerde gözlenemeyen süreçler gözlenebilir.\n\nKoşullar kolayca değiştirilebilir (sıcaklık, basınç, iyon derişimi).\n\nZayıf Yanlar:\n\nErişilebilen zaman ölçeği sınırlıdır (mikro–milisaniyeler).\n\nKuvvet alanları belirli yaklaşımlara dayanır, kuantum mekaniksel fiziği tam olarak yansıtmayabilir.",
+    "section": "2.5 Güçlü ve Zayıf Yönler",
+    "text": "2.5 Güçlü ve Zayıf Yönler\nGüçlü Yanlar:\n\nAtomik çözünürlükte ayrıntı sağlar.\n\nDeneylerde gözlenemeyen süreçler gözlenebilir.\n\nKoşullar kolayca değiştirilebilir (sıcaklık, basınç, iyon derişimi).\n\nZayıf Yanlar:\n\nErişilebilen zaman ölçeği sınırlıdır (mikro–milisaniyeler).\n\nKuvvet alanları belirli yaklaşımlara dayanır, kuantum mekaniksel fiziği tam olarak yansıtmayabilir.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
     ]
@@ -53,8 +63,8 @@
     "objectID": "chapters/01-intro.html#neden-önemli",
     "href": "chapters/01-intro.html#neden-önemli",
     "title": "2  Teorik Temeller",
-    "section": "2.5 Neden Önemli?",
-    "text": "2.5 Neden Önemli?\nMoleküler dinamik simülasyonlarının önemi, deneysel verilerle tamamlayıcı bir ilişki kurabilmesinde yatmaktadır.\n\nDeneyler bize makroskopik gözlemler sunarken, MD simülasyonları bu gözlemlerin ardındaki atomik ayrıntıları ortaya çıkarır.\nProtein kristal yapıları bize “donmuş” bir görüntü verir; MD ise bu yapının esnekliğini ve hareketliliğini gösterir.\nMalzeme testleri bir polimerin dayanıklılığını ölçebilir; MD ise polimer zincirlerinin kırılma mekanizmasını açıklayabilir.",
+    "section": "2.6 Neden Önemli?",
+    "text": "2.6 Neden Önemli?\nMoleküler dinamik simülasyonlarının önemi, deneysel verilerle tamamlayıcı bir ilişki kurabilmesinde yatmaktadır.\n\nDeneyler bize makroskopik gözlemler sunarken, MD simülasyonları bu gözlemlerin ardındaki atomik ayrıntıları ortaya çıkarır.\nProtein kristal yapıları bize “donmuş” bir görüntü verir; MD ise bu yapının esnekliğini ve hareketliliğini gösterir.\nMalzeme testleri bir polimerin dayanıklılığını ölçebilir; MD ise polimer zincirlerinin kırılma mekanizmasını açıklayabilir.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
     ]
@@ -63,8 +73,18 @@
     "objectID": "chapters/01-intro.html#sonuç",
     "href": "chapters/01-intro.html#sonuç",
     "title": "2  Teorik Temeller",
-    "section": "2.6 Sonuç",
-    "text": "2.6 Sonuç\nMoleküler dinamik simülasyonları, modern bilimin en güçlü mikroskoplarından biri gibidir: Atomların dünyasına benzersiz bir pencere açar. Elbette her mikroskop gibi sınırlamaları vardır; ancak doğru kullanıldığında hem biyolojide hem de malzeme biliminde olağanüstü katkılar sağlar.",
+    "section": "2.7 Sonuç",
+    "text": "2.7 Sonuç\nMoleküler dinamik simülasyonları, modern bilimin en güçlü mikroskoplarından biri gibidir: Atomların dünyasına benzersiz bir pencere açar. Elbette her mikroskop gibi sınırlamaları vardır; ancak doğru kullanıldığında hem biyolojide hem de malzeme biliminde olağanüstü katkılar sağlar.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-intro.html#bölüm-özeti",
+    "href": "chapters/01-intro.html#bölüm-özeti",
+    "title": "2  Teorik Temeller",
+    "section": "2.8 Bölüm Özeti",
+    "text": "2.8 Bölüm Özeti",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
     ]
@@ -74,7 +94,37 @@
     "href": "chapters/02-md-preparations.html",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
     "section": "",
-    "text": "3.1 Basit bir Python örneği\nBu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.036184112110529805",
+    "text": "3.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız. Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdaki basamakları içerir:\nBu basamakları teker teker ele alalım.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-md-preparations.html#bu-bölümde-neler-öğreneceğiz",
+    "href": "chapters/02-md-preparations.html#bu-bölümde-neler-öğreneceğiz",
+    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "section": "",
+    "text": "Sistemin inşa edilmesi\nSistemin enerjisinin minimize edilmesi\nSistemin dengelenmesi (equilibration)\nÜretim aşaması",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-md-preparations.html#basit-bir-python-örneği",
+    "href": "chapters/02-md-preparations.html#basit-bir-python-örneği",
+    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "section": "3.2 Basit bir Python örneği",
+    "text": "3.2 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.030601160057174705",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-md-preparations.html#bölüm-özeti",
+    "href": "chapters/02-md-preparations.html#bölüm-özeti",
+    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "section": "3.3 Bölüm Özeti",
+    "text": "3.3 Bölüm Özeti",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -84,19 +134,89 @@
     "href": "chapters/03-md-analyses.html",
     "title": "4  MD Simülasyon Analizleri",
     "section": "",
-    "text": "Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır.",
+    "text": "4.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır.Ele alacağımız standart analiz teknikleri şunlardır:",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
   },
   {
-    "objectID": "chapters/references.html",
-    "href": "chapters/references.html",
-    "title": "5  Kaynaklar",
-    "section": "",
-    "text": "Frenkel, D., & Smit, B. (2001). Understanding Molecular Simulation.\nRapaport, D. C. (2004). The Art of Molecular Dynamics Simulation.",
+    "objectID": "chapters/03-md-analyses.html#bölüm-özeti",
+    "href": "chapters/03-md-analyses.html#bölüm-özeti",
+    "title": "4  MD Simülasyon Analizleri",
+    "section": "4.2 Bölüm Özeti",
+    "text": "4.2 Bölüm Özeti",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Kaynaklar</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/01-proteins.html",
+    "href": "chapters/appendices/01-proteins.html",
+    "title": "5  Ek 1: Amino Asitler ve Proteinler",
+    "section": "",
+    "text": "5.1 Giriş\nProteinler, canlılığın iş yapan makromolekülleridir. Kataliz (enzimler), taşıma (hemoglobin), savunma (antikorlar), sinyal iletimi (reseptörler) ve yapı (keratin, kollajen) gibi pek çok görevi üstlenirler. Tüm bu çeşitliliğin ortak kökeni amino asitlerdir—yani proteinlerin temel yapıtaşları.\nBu bölümde önce amino asitlerin ortak mimarisini ve kimyasal çeşitliliğini özetleyecek, ardından proteinlerin birincil, ikincil, tersiyer ve kuaterner yapı düzeylerini anlaşılır bir dille ele alacağız. Bölüm denklem içermez; kavramsal bir çerçeve sunar.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/01-proteins.html#amino-asitler",
+    "href": "chapters/appendices/01-proteins.html#amino-asitler",
+    "title": "5  Ek 1: Amino Asitler ve Proteinler",
+    "section": "5.2 Amino Asitler",
+    "text": "5.2 Amino Asitler\nHer amino asit, aynı omurgayı paylaşır: bir amino grubu (–NH₂), bir karboksil grubu (–COOH), kiral bir alfa karbonu (Cα) ve değişken yan zincir (R grubu). R grubu; polar/apolar olma, yük taşıma, aromatiklik veya kükürt içeriği gibi özellikleriyle amino asitlerin kimyasal davranışını belirler.\n\nApolar (hidrofobik): Val, Leu, Ile, Met, Ala, Phe, Trp, Pro\n\nPolar yüksüz: Ser, Thr, Asn, Gln, Tyr, Cys\n\nAsidik (negatif yüklü): Asp, Glu\n\nBazik (pozitif yüklü): Lys, Arg, His\n\nYan zincirlerin bu çeşitliliği, proteinlerin katlanma dinamiklerinden etkileşim ağlarına kadar her şeyi etkiler.\n\n\n\n\n\n\nŞekil 5.1: Amino asidin genel yapısı\n\n\n\nTODO: Şekil 5.1’yi düzeltmeyi unutma. !!!",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/01-proteins.html#proteinlerin-yapı-düzeyleri",
+    "href": "chapters/appendices/01-proteins.html#proteinlerin-yapı-düzeyleri",
+    "title": "5  Ek 1: Amino Asitler ve Proteinler",
+    "section": "5.3 Proteinlerin Yapı Düzeyleri",
+    "text": "5.3 Proteinlerin Yapı Düzeyleri\nProtein yapısını kavramak için dört düzeyi ayırt ederiz:\n\nBirincil yapı (primary): Amino asitlerin doğrusal dizilimi (sekans).\n\nİkincil yapı (secondary): Yerel düzenli motifler — α-heliks ve β-tabaka gibi.\n\nTersiyer yapı (tertiary): Tek zincirin üç boyutlu, işlevsel katlanmış hali.\n\nKuaterner yapı (quaternary): Birden fazla polimer zincirinin (alt birimlerin) bir araya gelerek oluşturduğu kompleks.\n\nBu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan zincir etkileşimleri (hidrofobik paketleme, hidrojen bağları, tuz köprüleri, aromatik etkileşimler, disülfit bağları) tersiyer mimariyi şekillendirir; uygun arayüzler ise kuaterner etkileşimleri mümkün kılar.\n\n\n\n\n\n\nŞekil 5.2: Yapı düzeylerinin şematik gösterimi\n\n\n\nTODO: Şekil 5.2’yi düzeltmeyi unutma. !!!",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/01-proteins.html#özet",
+    "href": "chapters/appendices/01-proteins.html#özet",
+    "title": "5  Ek 1: Amino Asitler ve Proteinler",
+    "section": "5.4 Özet",
+    "text": "5.4 Özet\n\nAmino asitler ortak bir omurga üzerinde farklı R grupları ile kimyasal çeşitlilik sunar.\n\nBirincil yapı sekansı, ikincil yapı yerel motifleri, tersiyer yapı tek zincirin 3B katlanmasını ve kuaterner yapı çoklu alt birimlerin montajını ifade eder.\n\nBu hiyerarşi; katlanma, stabilite ve işlev arasındaki ilişkiyi anlamanın anahtarıdır.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "6  Kaynaklar",
+    "section": "",
+    "text": "6.1 Ders Kitapları",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Kaynaklar</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#ders-kitapları",
+    "href": "references.html#ders-kitapları",
+    "title": "6  Kaynaklar",
+    "section": "",
+    "text": "Frenkel, D., & Smit, B. (2001). Understanding Molecular Simulation.\n\n\n\n\n\n\n\nNot\n\n\n\nNisbeten eski bir kitap. Hala C ile örnekler içeriyor.\n\n\n\nRapaport, D. C. (2004). The Art of Molecular Dynamics Simulation.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Kaynaklar</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#derleme-makaleler",
+    "href": "references.html#derleme-makaleler",
+    "title": "6  Kaynaklar",
+    "section": "6.2 Derleme Makaleler",
+    "text": "6.2 Derleme Makaleler\n\nHollingsworth, S. A., & Dror, R. O. (2018). Molecular dynamics simulation for all. Neuron, 99(6), 1129-1143.\nKarplus, M., & McCammon, J. A. (2002). Molecular dynamics simulations of biomolecules. Nature structural biology, 9(9), 646-652.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Kaynaklar</span>"
     ]
   }
 ]
