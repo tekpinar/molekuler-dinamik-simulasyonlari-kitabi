@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -157,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-md-preparations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">MD Simülasyonları</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gromacs ile MD Simülasyonlarına Hazırlık</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -182,7 +147,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#basit-bir-python-örneği" id="toc-basit-bir-python-örneği" class="nav-link active" data-scroll-target="#basit-bir-python-örneği"><span class="header-section-number">2.1</span> Basit bir Python örneği</a></li>
+  <li><a href="#moleküler-dinamik-simülasyonları-nedir" id="toc-moleküler-dinamik-simülasyonları-nedir" class="nav-link active" data-scroll-target="#moleküler-dinamik-simülasyonları-nedir"><span class="header-section-number">2.1</span> Moleküler Dinamik Simülasyonları Nedir?</a></li>
+  <li><a href="#tarihsel-arka-plan" id="toc-tarihsel-arka-plan" class="nav-link" data-scroll-target="#tarihsel-arka-plan"><span class="header-section-number">2.2</span> Tarihsel Arka Plan</a></li>
+  <li><a href="#temel-mantık" id="toc-temel-mantık" class="nav-link" data-scroll-target="#temel-mantık"><span class="header-section-number">2.3</span> Temel Mantık</a></li>
+  <li><a href="#güçlü-ve-zayıf-yönler" id="toc-güçlü-ve-zayıf-yönler" class="nav-link" data-scroll-target="#güçlü-ve-zayıf-yönler"><span class="header-section-number">2.4</span> Güçlü ve Zayıf Yönler</a></li>
+  <li><a href="#neden-önemli" id="toc-neden-önemli" class="nav-link" data-scroll-target="#neden-önemli"><span class="header-section-number">2.5</span> Neden Önemli?</a></li>
+  <li><a href="#sonuç" id="toc-sonuç" class="nav-link" data-scroll-target="#sonuç"><span class="header-section-number">2.6</span> Sonuç</a></li>
   </ul>
 </nav>
     </div>
@@ -209,17 +179,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Bu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.</p>
-<section id="basit-bir-python-örneği" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="basit-bir-python-örneği"><span class="header-section-number">2.1</span> Basit bir Python örneği</h2>
-<div id="4d66eeb2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ortalama hız:"</span>, np.mean(v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Ortalama hız: -0.05196562548360761</code></pre>
-</div>
-</div>
+<section id="moleküler-dinamik-simülasyonları-nedir" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="moleküler-dinamik-simülasyonları-nedir"><span class="header-section-number">2.1</span> Moleküler Dinamik Simülasyonları Nedir?</h2>
+<p>Moleküler dinamik (MD) simülasyonları, atomik ölçekteki sistemlerin zaman içindeki hareketlerini bilgisayar aracılığıyla incelemeye olanak sağlayan güçlü bir yöntemdir. Temel fikir, doğada var olan parçacıkları sayısal olarak temsil etmek ve onların birbirleriyle etkileşimlerini bilgisayar üzerinde adım adım takip etmektir. Böylece laboratuvarda gözlenmesi zor veya imkânsız olan süreçler sanal ortamda canlandırılabilir.</p>
+<p>MD simülasyonlarını cazip kılan noktalardan biri, karmaşık sistemlerin dinamiklerini doğrudan <em>izleyebilmemizdir</em>. Deneysel yöntemler genellikle bu süreçleri anlık görüntüler hâlinde sunarken, MD simülasyonları bize tüm zaman çizgisini ayrıntılı olarak verir.</p>
+<hr>
+</section>
+<section id="tarihsel-arka-plan" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="tarihsel-arka-plan"><span class="header-section-number">2.2</span> Tarihsel Arka Plan</h2>
+<p>Moleküler dinamik yöntemleri ilk olarak 1950’lerin sonunda, bilgisayarların henüz oldukça sınırlı kapasitelere sahip olduğu dönemde geliştirilmiştir. Başlangıçta birkaç düzine atomdan oluşan sistemler üzerinde uygulanan bu teknik, bilgisayar gücündeki olağanüstü gelişmeler sayesinde günümüzde milyonlarca atom içeren biyolojik komplekslere kadar genişletilebilmiştir.</p>
+<p>Bu ilerleme yalnızca hesaplama gücündeki artışla değil, aynı zamanda kuvvet alanlarının, algoritmaların ve yazılımların gelişmesiyle de mümkün olmuştur. Bugün MD, ilaç tasarımından nanoteknolojiye kadar pek çok alanda vazgeçilmez bir araçtır.</p>
+<hr>
+</section>
+<section id="temel-mantık" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="temel-mantık"><span class="header-section-number">2.3</span> Temel Mantık</h2>
+<p>Bir MD simülasyonu, kabaca üç aşamadan oluşur:</p>
+<ol type="1">
+<li><p><strong>Başlangıç Modelinin Hazırlanması</strong><br>
+Çalışılmak istenen sistemin atomik koordinatları tanımlanır. Bu bir proteinin yapısı, bir polimer zinciri ya da basit bir sıvı karışımı olabilir.</p></li>
+<li><p><strong>Sistemin Enerjisinin Belirlenmesi</strong><br>
+Atomlar arası etkileşimleri tanımlayan “kuvvet alanı” seçilir. Kuvvet alanı atomlar arası etkileşmelerin hesaplanabilmesi için ihtiyaç duyacağımız parametreler setidir. Bu parametre seti kullanılarak, öncelikle sistemin toplam enerjisi jesaplanır.</p></li>
+<li><p><strong>Etki Eden Kuvvetlerin Belirlenmesi</strong><br>
+Korunumlu kuvvetlerin olduğu bir sistemde enerji bilinirse her atom üzerine etki eden kuvvetler hesaplanabilir.</p></li>
+<li><p><strong>Etki Eden İvmelerin Belirlenmesi</strong><br>
+Eğer bir atoma etkiyen net kuvvet bilinirse F=ma denklemi ile ona etkiye ivme hesaplanabilir.</p></li>
+<li><p><strong>Zamanın Çok Küçük Adımlarlar İlerletilmesi</strong><br>
+İvme bilinirse hızı hesaplamak sadece temel fizik denklemlerinin uygulanmasıdır. Hız kullanılarak küçük bir zaman dilimi sonrasındaki (dt: genellikle bir kaç femtosaniye) konumlar hesaplanabilir. Konumlar güncellendiği için sistemin enerjisi artık değişmiştir. Bu durumda tekrar 2. adıma gidip bu döngüyü tekrarlamak gerekir.</p></li>
+</ol>
+<p>Bu adımların yinelenmesiyle sistemin dinamikleri elde edilir. Ortaya çıkan veriler, sonrasında analiz edilerek anlamlı bilimsel sonuçlara dönüştürülür.</p>
+<hr>
+</section>
+<section id="güçlü-ve-zayıf-yönler" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="güçlü-ve-zayıf-yönler"><span class="header-section-number">2.4</span> Güçlü ve Zayıf Yönler</h2>
+<p><strong>Güçlü Yanlar:</strong></p>
+<ul>
+<li>Atomik çözünürlükte ayrıntı sağlar.<br>
+</li>
+<li>Deneylerde gözlenemeyen süreçler gözlenebilir.<br>
+</li>
+<li>Koşullar kolayca değiştirilebilir (sıcaklık, basınç, iyon derişimi).</li>
+</ul>
+<p><strong>Zayıf Yanlar:</strong></p>
+<ul>
+<li>Erişilebilen zaman ölçeği sınırlıdır (mikro–milisaniyeler).<br>
+</li>
+<li>Kuvvet alanları belirli yaklaşımlara dayanır, kuantum mekaniksel fiziği tam olarak yansıtmayabilir.</li>
+</ul>
+<hr>
+</section>
+<section id="neden-önemli" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="neden-önemli"><span class="header-section-number">2.5</span> Neden Önemli?</h2>
+<p>Moleküler dinamik simülasyonlarının önemi, deneysel verilerle <strong>tamamlayıcı</strong> bir ilişki kurabilmesinde yatmaktadır.</p>
+<ul>
+<li>Deneyler bize makroskopik gözlemler sunarken, MD simülasyonları bu gözlemlerin ardındaki atomik ayrıntıları ortaya çıkarır.</li>
+<li>Protein kristal yapıları bize “donmuş” bir görüntü verir; MD ise bu yapının esnekliğini ve hareketliliğini gösterir.</li>
+<li>Malzeme testleri bir polimerin dayanıklılığını ölçebilir; MD ise polimer zincirlerinin kırılma mekanizmasını açıklayabilir.</li>
+</ul>
+<hr>
+</section>
+<section id="sonuç" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="sonuç"><span class="header-section-number">2.6</span> Sonuç</h2>
+<p>Moleküler dinamik simülasyonları, modern bilimin en güçlü mikroskoplarından biri gibidir: Atomların dünyasına benzersiz bir pencere açar. Elbette her mikroskop gibi sınırlamaları vardır; ancak doğru kullanıldığında hem biyolojide hem de malzeme biliminde olağanüstü katkılar sağlar.</p>
 
 
 </section>
@@ -631,8 +651,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/02-md-preparations.html" class="pagination-link" aria-label="MD Simülasyonları">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">MD Simülasyonları</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/02-md-preparations.html" class="pagination-link" aria-label="Gromacs ile MD Simülasyonlarına Hazırlık">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gromacs ile MD Simülasyonlarına Hazırlık</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
