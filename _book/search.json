@@ -74,7 +74,7 @@
     "href": "chapters/02-md-preparations.html",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
     "section": "",
-    "text": "3.1 Basit bir Python örneği\nBu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: -0.04960252040534361",
+    "text": "3.1 Basit bir Python örneği\nBu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.0109615938880495",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -97,6 +97,56 @@
     "text": "Frenkel, D., & Smit, B. (2001). Understanding Molecular Simulation.\nRapaport, D. C. (2004). The Art of Molecular Dynamics Simulation.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Kaynaklar</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/01-proteins.html",
+    "href": "chapters/appendices/01-proteins.html",
+    "title": "6  Amino Asitler ve Proteinler",
+    "section": "",
+    "text": "6.1 Giriş\nProteinler, canlılığın iş yapan makromolekülleridir. Kataliz (enzimler), taşıma (hemoglobin), savunma (antikorlar), sinyal iletimi (reseptörler) ve yapı (keratin, kollajen) gibi pek çok görevi üstlenirler. Tüm bu çeşitliliğin ortak kökeni amino asitlerdir—yani proteinlerin temel yapıtaşları.\nBu bölümde önce amino asitlerin ortak mimarisini ve kimyasal çeşitliliğini özetleyecek, ardından proteinlerin birincil, ikincil, tersiyer ve kuaterner yapı düzeylerini anlaşılır bir dille ele alacağız. Bölüm denklem içermez; kavramsal bir çerçeve sunar.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Amino Asitler ve Proteinler</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/01-proteins.html#amino-asitler",
+    "href": "chapters/appendices/01-proteins.html#amino-asitler",
+    "title": "6  Amino Asitler ve Proteinler",
+    "section": "6.2 Amino Asitler",
+    "text": "6.2 Amino Asitler\nHer amino asit, aynı omurgayı paylaşır: bir amino grubu (–NH₂), bir karboksil grubu (–COOH), kiral bir alfa karbonu (Cα) ve değişken yan zincir (R grubu). R grubu; polar/apolar olma, yük taşıma, aromatiklik veya kükürt içeriği gibi özellikleriyle amino asitlerin kimyasal davranışını belirler.\n\nApolar (hidrofobik): Val, Leu, Ile, Met, Ala, Phe, Trp, Pro\n\nPolar yüksüz: Ser, Thr, Asn, Gln, Tyr, Cys\n\nAsidik (negatif yüklü): Asp, Glu\n\nBazik (pozitif yüklü): Lys, Arg, His\n\nYan zincirlerin bu çeşitliliği, proteinlerin katlanma dinamiklerinden etkileşim ağlarına kadar her şeyi etkiler.\n\n\n\n\n\n\nŞekil 6.1: Amino asidin genel yapısı\n\n\n\nTODO: Şekil 6.1’yi düzeltmeyi unutma. !!!",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Amino Asitler ve Proteinler</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/01-proteins.html#proteinlerin-yapı-düzeyleri",
+    "href": "chapters/appendices/01-proteins.html#proteinlerin-yapı-düzeyleri",
+    "title": "6  Amino Asitler ve Proteinler",
+    "section": "6.3 Proteinlerin Yapı Düzeyleri",
+    "text": "6.3 Proteinlerin Yapı Düzeyleri\nProtein yapısını kavramak için dört düzeyi ayırt ederiz:\n\nBirincil yapı (primary): Amino asitlerin doğrusal dizilimi (sekans).\n\nİkincil yapı (secondary): Yerel düzenli motifler — α-heliks ve β-tabaka gibi.\n\nTersiyer yapı (tertiary): Tek zincirin üç boyutlu, işlevsel katlanmış hali.\n\nKuaterner yapı (quaternary): Birden fazla polimer zincirinin (alt birimlerin) bir araya gelerek oluşturduğu kompleks.\n\nBu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan zincir etkileşimleri (hidrofobik paketleme, hidrojen bağları, tuz köprüleri, aromatik etkileşimler, disülfit bağları) tersiyer mimariyi şekillendirir; uygun arayüzler ise kuaterner etkileşimleri mümkün kılar.\nŞekil 2 — Yapı düzeylerinin şematik gösterimi (Ghibli esintili SVG)\n\n\n\n\n\n\nŞekil 6.2: Yapı düzeylerinin şematik gösterimi",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Amino Asitler ve Proteinler</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/01-proteins.html#todo-fig-psyi-düzeltmeyi-unutma.",
+    "href": "chapters/appendices/01-proteins.html#todo-fig-psyi-düzeltmeyi-unutma.",
+    "title": "6  Amino Asitler ve Proteinler",
+    "section": "6.4 TODO: Şekil 6.2’yi düzeltmeyi unutma. !!!",
+    "text": "6.4 TODO: Şekil 6.2’yi düzeltmeyi unutma. !!!",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Amino Asitler ve Proteinler</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/01-proteins.html#özet",
+    "href": "chapters/appendices/01-proteins.html#özet",
+    "title": "6  Amino Asitler ve Proteinler",
+    "section": "6.5 Özet",
+    "text": "6.5 Özet\n\nAmino asitler ortak bir omurga üzerinde farklı R grupları ile kimyasal çeşitlilik sunar.\n\nBirincil yapı sekansı, ikincil yapı yerel motifleri, tersiyer yapı tek zincirin 3B katlanmasını ve kuaterner yapı çoklu alt birimlerin montajını ifade eder.\n\nBu hiyerarşi; katlanma, stabilite ve işlev arasındaki ilişkiyi anlamanın anahtarıdır.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Amino Asitler ve Proteinler</span>"
     ]
   }
 ]

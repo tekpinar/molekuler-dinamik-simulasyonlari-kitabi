@@ -1,0 +1,54 @@
+---
+title: "Amino Asitler ve Proteinler"
+---
+
+## Giriş
+
+Proteinler, canlılığın iş yapan makromolekülleridir. Kataliz (enzimler), taşıma (hemoglobin), savunma (antikorlar), sinyal iletimi (reseptörler) ve yapı (keratin, kollajen) gibi pek çok görevi üstlenirler. Tüm bu çeşitliliğin ortak kökeni **amino asitler**dir—yani proteinlerin temel yapıtaşları.
+
+Bu bölümde önce amino asitlerin ortak mimarisini ve kimyasal çeşitliliğini özetleyecek, ardından proteinlerin **birincil, ikincil, tersiyer ve kuaterner** yapı düzeylerini anlaşılır bir dille ele alacağız. Bölüm denklem içermez; kavramsal bir çerçeve sunar.
+
+---
+
+## Amino Asitler
+
+Her amino asit, aynı omurgayı paylaşır: bir **amino grubu** (–NH₂), bir **karboksil grubu** (–COOH), kiral bir **alfa karbonu** (Cα) ve değişken **yan zincir** (**R grubu**). R grubu; polar/apolar olma, yük taşıma, aromatiklik veya kükürt içeriği gibi özellikleriyle amino asitlerin kimyasal davranışını belirler.
+
+- **Apolar (hidrofobik)**: Val, Leu, Ile, Met, Ala, Phe, Trp, Pro  
+- **Polar yüksüz**: Ser, Thr, Asn, Gln, Tyr, Cys  
+- **Asidik (negatif yüklü)**: Asp, Glu  
+- **Bazik (pozitif yüklü)**: Lys, Arg, His  
+
+Yan zincirlerin bu çeşitliliği, proteinlerin katlanma dinamiklerinden etkileşim ağlarına kadar her şeyi etkiler.
+
+```{markdown}
+![Amino asidin genel yapısı](figures/amino-asit.png){#fig-aa fig-align="center" width="80%"}
+
+TODO: @fig-aa'yi düzeltmeyi unutma. !!!
+
+---
+
+## Proteinlerin Yapı Düzeyleri
+
+Protein yapısını kavramak için dört düzeyi ayırt ederiz:
+
+1. **Birincil yapı (primary)**: Amino asitlerin doğrusal dizilimi (sekans).  
+2. **İkincil yapı (secondary)**: Yerel düzenli motifler — **α-heliks** ve **β-tabaka** gibi.  
+3. **Tersiyer yapı (tertiary)**: Tek zincirin üç boyutlu, işlevsel katlanmış hali.  
+4. **Kuaterner yapı (quaternary)**: Birden fazla polimer zincirinin (alt birimlerin) bir araya gelerek oluşturduğu kompleks.
+
+Bu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan zincir etkileşimleri (hidrofobik paketleme, hidrojen bağları, tuz köprüleri, aromatik etkileşimler, disülfit bağları) tersiyer mimariyi şekillendirir; uygun arayüzler ise kuaterner etkileşimleri mümkün kılar.
+
+**Şekil 2 — Yapı düzeylerinin şematik gösterimi (Ghibli esintili SVG)**
+
+```{markdown}
+![Yapı düzeylerinin şematik gösterimi](figures/protein-yapilari.png){#fig-ps fig-align="center" width="80%"}
+
+TODO: @fig-ps'yi düzeltmeyi unutma. !!!
+---
+
+## Özet
+
+- Amino asitler ortak bir omurga üzerinde farklı **R grupları** ile kimyasal çeşitlilik sunar.  
+- **Birincil yapı** sekansı, **ikincil yapı** yerel motifleri, **tersiyer yapı** tek zincirin 3B katlanmasını ve **kuaterner yapı** çoklu alt birimlerin montajını ifade eder.  
+- Bu hiyerarşi; katlanma, stabilite ve işlev arasındaki ilişkiyi anlamanın anahtarıdır.

@@ -6,17 +6,21 @@ book:
   output-file: "Proteinlerin-Molekuler-Dinamik-Simulasyonlari"
   author: "Doç. Dr. Mustafa TEKPINAR"
   date: today
+  language: tr-TR
   chapters:
   - index.qmd
   - chapters/01-intro.qmd
   - chapters/02-md-preparations.qmd
   - chapters/03-md-analyses.qmd
   - chapters/references.qmd
+  - chapters/appendices/01-proteins.qmd
 
 format:
   html:
+    lang: tr
     theme: cosmo
   pdf:
+    lang: tr
     pdf-engine: xelatex
     documentclass: scrbook
 
