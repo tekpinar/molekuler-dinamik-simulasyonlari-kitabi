@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Proteinlerin Moleküler Dinamik Simülasyonları",
     "section": "",
-    "text": "Bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını ele alacağız. Kitap kısa bir teorik bilgiler bölümü ile başlayacak. Kitapta ağırlıklı olarak MD simülasyonlarının açık kaynak kodlu Gromacs paketi ile yapılması hedefleniyor.Teorik temeller bölümünden sonra MS simülasyonlarına hazırlık aşamaları anlatılacaktır. Son olarak ise MD simülasyonu analiz teknikleri bir bölüm olarak sunulacaktır.\n📥 Kitabı PDF olarak indir: Moleküler Dinamik Simülasyonları (PDF)\nBaşlamak için Giriş bölümüne göz atın.",
+    "text": "Proteinlerin moleküler dinamik simülasyonları fizik, kimya, moleküler biyoloji, eczacılık, tıp ve biyomühendislik gibi çeşitli alanlarda kullanılan bilişimsel bir araştırma tekniğidir. Bu tekniğin geniş bir uygulama alanı olmasında rağmen bu alandaki Türkçe kaynak sayısı oldukça azdır. Bu nedenle, bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını pratik bir yaklaşımla ele alacağız. Kitapta ağırlıklı olarak MD simülasyonlarının açık kaynak kodlu Gromacs paketi ile yapılması hedeflenmektedir. Kitap, kısa bir teorik temeller bölümü ile başlayacaktır. Teorik temeller bölümünden sonra MD simülasyonlarına hazırlık aşamaları anlatılacaktır. Son bölümde ise MD simülasyonu analiz teknikleri sunulacaktır. Kitabın teorik bilgilerle dolu bir kitap olmasından ziyade pratik bir uygulama kitabı olması hedeflenmektedir. Kitabın, bu alanda araştırma yapmak isteyen ancak yabancı dildeki kaynaklardan henüz tam yararlanamayan ileri lisans öğrencileri ve lisansüstü öğrenciler için faydalı olacağını ümit ediyorum.\n📥 Kitabı PDF olarak indir: Proteinlerin Moleküler Dinamik Simülasyonları (PDF)\nBaşlamak için Teorik Temeller bölümüne göz atın.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Önsöz</span>"
     ]
@@ -14,7 +14,57 @@
     "href": "chapters/01-intro.html",
     "title": "2  Teorik Temeller",
     "section": "",
-    "text": "2.1 Basit bir Python örneği\nBu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.02298774132348611",
+    "text": "2.1 Moleküler Dinamik Simülasyonları Nedir?\nBu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.\nMoleküler dinamik (MD) simülasyonları, atomik ölçekteki sistemlerin zaman içindeki hareketlerini bilgisayar aracılığıyla incelemeye olanak sağlayan güçlü bir yöntemdir. Temel fikir, doğada var olan parçacıkları sayısal olarak temsil etmek ve onların birbirleriyle etkileşimlerini bilgisayar üzerinde adım adım takip etmektir. Böylece laboratuvarda gözlenmesi zor veya imkânsız olan süreçler sanal ortamda canlandırılabilir.\nMD simülasyonlarını cazip kılan noktalardan biri, karmaşık sistemlerin dinamiklerini doğrudan izleyebilmemizdir. Deneysel yöntemler genellikle bu süreçleri anlık görüntüler hâlinde sunarken, MD simülasyonları bize tüm zaman çizgisini ayrıntılı olarak verir.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-intro.html#tarihsel-arka-plan",
+    "href": "chapters/01-intro.html#tarihsel-arka-plan",
+    "title": "2  Teorik Temeller",
+    "section": "2.2 Tarihsel Arka Plan",
+    "text": "2.2 Tarihsel Arka Plan\nMoleküler dinamik yöntemleri ilk olarak 1950’lerin sonunda, bilgisayarların henüz oldukça sınırlı kapasitelere sahip olduğu dönemde geliştirilmiştir. Başlangıçta birkaç düzine atomdan oluşan sistemler üzerinde uygulanan bu teknik, bilgisayar gücündeki olağanüstü gelişmeler sayesinde günümüzde milyonlarca atom içeren biyolojik komplekslere kadar genişletilebilmiştir.\nBu ilerleme yalnızca hesaplama gücündeki artışla değil, aynı zamanda kuvvet alanlarının, algoritmaların ve yazılımların gelişmesiyle de mümkün olmuştur. Bugün MD, ilaç tasarımından nanoteknolojiye kadar pek çok alanda vazgeçilmez bir araçtır.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-intro.html#temel-mantık",
+    "href": "chapters/01-intro.html#temel-mantık",
+    "title": "2  Teorik Temeller",
+    "section": "2.3 Temel Mantık",
+    "text": "2.3 Temel Mantık\nBir MD simülasyonu, kabaca üç aşamadan oluşur:\n\nBaşlangıç Modelinin Hazırlanması\nÇalışılmak istenen sistemin atomik koordinatları tanımlanır. Bu bir proteinin yapısı, bir polimer zinciri ya da basit bir sıvı karışımı olabilir.\nSistemin Enerjisinin Belirlenmesi\nAtomlar arası etkileşimleri tanımlayan “kuvvet alanı” seçilir. Kuvvet alanı atomlar arası etkileşmelerin hesaplanabilmesi için ihtiyaç duyacağımız parametreler setidir. Bu parametre seti kullanılarak, öncelikle sistemin toplam enerjisi jesaplanır.\nEtki Eden Kuvvetlerin Belirlenmesi\nKorunumlu kuvvetlerin olduğu bir sistemde enerji bilinirse her atom üzerine etki eden kuvvetler hesaplanabilir.\nEtki Eden İvmelerin Belirlenmesi\nEğer bir atoma etkiyen net kuvvet bilinirse F=ma denklemi ile ona etkiye ivme hesaplanabilir.\nZamanın Çok Küçük Adımlarlar İlerletilmesi\nİvme bilinirse hızı hesaplamak sadece temel fizik denklemlerinin uygulanmasıdır. Hız kullanılarak küçük bir zaman dilimi sonrasındaki (dt: genellikle bir kaç femtosaniye) konumlar hesaplanabilir. Konumlar güncellendiği için sistemin enerjisi artık değişmiştir. Bu durumda tekrar 2. adıma gidip bu döngüyü tekrarlamak gerekir.\n\nBu adımların yinelenmesiyle sistemin dinamikleri elde edilir. Ortaya çıkan veriler, sonrasında analiz edilerek anlamlı bilimsel sonuçlara dönüştürülür.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-intro.html#güçlü-ve-zayıf-yönler",
+    "href": "chapters/01-intro.html#güçlü-ve-zayıf-yönler",
+    "title": "2  Teorik Temeller",
+    "section": "2.4 Güçlü ve Zayıf Yönler",
+    "text": "2.4 Güçlü ve Zayıf Yönler\nGüçlü Yanlar:\n\nAtomik çözünürlükte ayrıntı sağlar.\n\nDeneylerde gözlenemeyen süreçler gözlenebilir.\n\nKoşullar kolayca değiştirilebilir (sıcaklık, basınç, iyon derişimi).\n\nZayıf Yanlar:\n\nErişilebilen zaman ölçeği sınırlıdır (mikro–milisaniyeler).\n\nKuvvet alanları belirli yaklaşımlara dayanır, kuantum mekaniksel fiziği tam olarak yansıtmayabilir.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-intro.html#neden-önemli",
+    "href": "chapters/01-intro.html#neden-önemli",
+    "title": "2  Teorik Temeller",
+    "section": "2.5 Neden Önemli?",
+    "text": "2.5 Neden Önemli?\nMoleküler dinamik simülasyonlarının önemi, deneysel verilerle tamamlayıcı bir ilişki kurabilmesinde yatmaktadır.\n\nDeneyler bize makroskopik gözlemler sunarken, MD simülasyonları bu gözlemlerin ardındaki atomik ayrıntıları ortaya çıkarır.\nProtein kristal yapıları bize “donmuş” bir görüntü verir; MD ise bu yapının esnekliğini ve hareketliliğini gösterir.\nMalzeme testleri bir polimerin dayanıklılığını ölçebilir; MD ise polimer zincirlerinin kırılma mekanizmasını açıklayabilir.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-intro.html#sonuç",
+    "href": "chapters/01-intro.html#sonuç",
+    "title": "2  Teorik Temeller",
+    "section": "2.6 Sonuç",
+    "text": "2.6 Sonuç\nMoleküler dinamik simülasyonları, modern bilimin en güçlü mikroskoplarından biri gibidir: Atomların dünyasına benzersiz bir pencere açar. Elbette her mikroskop gibi sınırlamaları vardır; ancak doğru kullanıldığında hem biyolojide hem de malzeme biliminde olağanüstü katkılar sağlar.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
     ]
@@ -22,11 +72,11 @@
   {
     "objectID": "chapters/02-md-preparations.html",
     "href": "chapters/02-md-preparations.html",
-    "title": "3  MD Simülasyonları",
+    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
     "section": "",
-    "text": "Bu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.",
+    "text": "3.1 Basit bir Python örneği\nBu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız.\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: -0.04960252040534361",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MD Simülasyonları</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
   },
   {
@@ -34,7 +84,7 @@
     "href": "chapters/03-md-analyses.html",
     "title": "4  MD Simülasyon Analizleri",
     "section": "",
-    "text": "Bu bölümde Python ve Bash kod örnekleri yer alacak.",
+    "text": "Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]

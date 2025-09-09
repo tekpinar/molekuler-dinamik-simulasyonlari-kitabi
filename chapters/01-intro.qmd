@@ -3,13 +3,86 @@ title: "Teorik Temeller"
 ---
 
 Bu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.
-  
 
-## Basit bir Python örneği
+## Moleküler Dinamik Simülasyonları Nedir?
 
-```{python}
-import numpy as np
+Moleküler dinamik (MD) simülasyonları, atomik ölçekteki sistemlerin zaman içindeki
+hareketlerini bilgisayar aracılığıyla incelemeye olanak sağlayan güçlü bir yöntemdir.
+Temel fikir, doğada var olan parçacıkları sayısal olarak temsil etmek ve onların
+birbirleriyle etkileşimlerini bilgisayar üzerinde adım adım takip etmektir. Böylece
+laboratuvarda gözlenmesi zor veya imkânsız olan süreçler sanal ortamda canlandırılabilir.
 
-v = np.random.normal(0, 1, size=1000)
-print("Ortalama hız:", np.mean(v))
-```
+MD simülasyonlarını cazip kılan noktalardan biri, karmaşık sistemlerin dinamiklerini
+doğrudan *izleyebilmemizdir*. Deneysel yöntemler genellikle bu süreçleri anlık
+görüntüler hâlinde sunarken, MD simülasyonları bize tüm zaman çizgisini ayrıntılı olarak verir.
+
+---
+
+## Tarihsel Arka Plan
+
+Moleküler dinamik yöntemleri ilk olarak 1950’lerin sonunda, bilgisayarların henüz oldukça sınırlı kapasitelere sahip olduğu dönemde geliştirilmiştir. Başlangıçta birkaç düzine atomdan oluşan sistemler üzerinde uygulanan bu teknik, bilgisayar gücündeki olağanüstü gelişmeler sayesinde günümüzde milyonlarca atom içeren biyolojik komplekslere kadar genişletilebilmiştir.
+
+Bu ilerleme yalnızca hesaplama gücündeki artışla değil, aynı zamanda kuvvet alanlarının, algoritmaların ve yazılımların gelişmesiyle de mümkün olmuştur. Bugün MD,
+ilaç tasarımından nanoteknolojiye kadar pek çok alanda vazgeçilmez bir araçtır.
+
+---
+
+## Temel Mantık
+
+Bir MD simülasyonu, kabaca üç aşamadan oluşur:
+
+1. **Başlangıç Modelinin Hazırlanması**  
+   Çalışılmak istenen sistemin atomik koordinatları tanımlanır. Bu bir proteinin yapısı,
+   bir polimer zinciri ya da basit bir sıvı karışımı olabilir.
+
+2. **Sistemin Enerjisinin Belirlenmesi**  
+   Atomlar arası etkileşimleri tanımlayan “kuvvet alanı” seçilir. Kuvvet alanı atomlar arası etkileşmelerin hesaplanabilmesi için ihtiyaç duyacağımız parametreler setidir. Bu parametre seti kullanılarak, öncelikle sistemin toplam enerjisi jesaplanır. 
+
+3. **Etki Eden Kuvvetlerin Belirlenmesi**  
+   Korunumlu kuvvetlerin olduğu bir sistemde enerji bilinirse her atom üzerine etki eden kuvvetler hesaplanabilir. 
+
+4. **Etki Eden İvmelerin Belirlenmesi**  
+   Eğer bir atoma etkiyen net kuvvet bilinirse F=ma denklemi ile ona etkiye ivme hesaplanabilir. 
+
+5. **Zamanın Çok Küçük Adımlarlar İlerletilmesi**  
+   İvme bilinirse hızı hesaplamak sadece temel fizik denklemlerinin uygulanmasıdır. Hız kullanılarak küçük bir zaman dilimi sonrasındaki (dt: genellikle bir kaç femtosaniye) konumlar hesaplanabilir. Konumlar güncellendiği için sistemin enerjisi artık değişmiştir. Bu durumda tekrar 2. adıma gidip bu döngüyü tekrarlamak gerekir. 
+
+Bu adımların yinelenmesiyle sistemin dinamikleri elde edilir. Ortaya çıkan veriler,
+sonrasında analiz edilerek anlamlı bilimsel sonuçlara dönüştürülür.
+
+---
+
+## Güçlü ve Zayıf Yönler
+
+**Güçlü Yanlar:**
+
+- Atomik çözünürlükte ayrıntı sağlar.  
+- Deneylerde gözlenemeyen süreçler gözlenebilir.  
+- Koşullar kolayca değiştirilebilir (sıcaklık, basınç, iyon derişimi).  
+
+**Zayıf Yanlar:**
+
+- Erişilebilen zaman ölçeği sınırlıdır (mikro–milisaniyeler).  
+- Kuvvet alanları belirli yaklaşımlara dayanır, kuantum mekaniksel fiziği tam olarak yansıtmayabilir.  
+
+---
+
+## Neden Önemli?
+
+Moleküler dinamik simülasyonlarının önemi, deneysel verilerle
+**tamamlayıcı** bir ilişki kurabilmesinde yatmaktadır.
+
+- Deneyler bize makroskopik gözlemler sunarken, MD simülasyonları
+bu gözlemlerin ardındaki atomik ayrıntıları ortaya çıkarır.
+- Protein kristal yapıları bize “donmuş” bir görüntü verir;
+MD ise bu yapının esnekliğini ve hareketliliğini gösterir.
+- Malzeme testleri bir polimerin dayanıklılığını ölçebilir;
+MD ise polimer zincirlerinin kırılma mekanizmasını açıklayabilir.
+
+---
+
+## Sonuç
+
+Moleküler dinamik simülasyonları, modern bilimin en güçlü mikroskoplarından biri gibidir: Atomların dünyasına benzersiz bir pencere açar. Elbette her mikroskop gibi sınırlamaları vardır; ancak doğru kullanıldığında hem biyolojide hem de malzeme biliminde olağanüstü katkılar sağlar.
+
+

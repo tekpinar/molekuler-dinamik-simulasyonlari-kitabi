@@ -2,4 +2,4 @@
 title: "MD Simülasyon Analizleri"
 ---
 
-Bu bölümde Python ve Bash kod örnekleri yer alacak.
+Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır.

@@ -3,6 +3,7 @@ project:
 
 book:
   title: "Proteinlerin Moleküler Dinamik Simülasyonları"
+  output-file: "Proteinlerin-Molekuler-Dinamik-Simulasyonlari"
   author: "Doç. Dr. Mustafa TEKPINAR"
   date: today
   chapters:
