@@ -2,4 +2,10 @@
 title: "MD Simülasyon Analizleri"
 ---
 
-Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır.
+## Bu Bölümde Neler Öğreneceğiz?
+
+Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır.Ele alacağımız standart analiz teknikleri şunlardır:
+
+## Bölüm Özeti
+
+

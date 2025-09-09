@@ -2,6 +2,8 @@
 title: "Teorik Temeller"
 ---
 
+## Bu Bölümde Neler Öğreneceğiz?
+
 Bu bölümde moleküler dinamik simülasyonlarının temel kavramlarını ele alacağız.
 
 ## Moleküler Dinamik Simülasyonları Nedir?
@@ -84,5 +86,8 @@ MD ise polimer zincirlerinin kırılma mekanizmasını açıklayabilir.
 ## Sonuç
 
 Moleküler dinamik simülasyonları, modern bilimin en güçlü mikroskoplarından biri gibidir: Atomların dünyasına benzersiz bir pencere açar. Elbette her mikroskop gibi sınırlamaları vardır; ancak doğru kullanıldığında hem biyolojide hem de malzeme biliminde olağanüstü katkılar sağlar.
+
+## Bölüm Özeti
+
 
 

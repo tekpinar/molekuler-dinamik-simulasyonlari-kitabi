@@ -5,8 +5,15 @@ title: "Kaynaklar"
 ## Ders Kitapları
 
 - Frenkel, D., & Smit, B. (2001). *Understanding Molecular Simulation*.
+
+::: {.callout-note}
+Nisbeten eski bir kitap. Hala C ile örnekler içeriyor.
+:::
+
 - Rapaport, D. C. (2004). *The Art of Molecular Dynamics Simulation*.
 
 ## Derleme Makaleler
 
-- 
+- [Hollingsworth, S. A., & Dror, R. O. (2018). Molecular dynamics simulation for all. Neuron, 99(6), 1129-1143.](https://www.cell.com/neuron/fulltext/S0896-6273(18)30684-6) 
+
+- [Karplus, M., & McCammon, J. A. (2002). Molecular dynamics simulations of biomolecules. Nature structural biology, 9(9), 646-652.](https://www.nature.com/articles/nsb0902-646)
