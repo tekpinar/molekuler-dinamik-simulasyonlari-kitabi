@@ -110,11 +110,41 @@
     ]
   },
   {
+    "objectID": "chapters/02-md-preparations.html#sistemin-inşa-edilmesi",
+    "href": "chapters/02-md-preparations.html#sistemin-inşa-edilmesi",
+    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "section": "3.2 Sistemin inşa edilmesi",
+    "text": "3.2 Sistemin inşa edilmesi\n\nHedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi\nSisteme solvent eklenmesi\nSisteme doğal ortam iyonlarının eklenmesi",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-md-preparations.html#enerji-minimizasyonu",
+    "href": "chapters/02-md-preparations.html#enerji-minimizasyonu",
+    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "section": "3.3 Enerji minimizasyonu",
+    "text": "3.3 Enerji minimizasyonu\nHazırladığımız sistemde birbirine aşırı yakın parçacıklar olabilir. Bunların birbirinden uzaklaştırılması ve parçaçıklarının belirli bir denge konumuna getirilmesi gerekir. Bunun için sistemin toplam enerjisinin minimize edilmesi gerekir. Bu aşamada parçacıklara herhangi bir hız atanmadığı akılda tutulmalıdır.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-md-preparations.html#dengeleme-simülasyonları",
+    "href": "chapters/02-md-preparations.html#dengeleme-simülasyonları",
+    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "section": "3.4 Dengeleme simülasyonları",
+    "text": "3.4 Dengeleme simülasyonları\nDengeleme simülasyonları Gromacs içerisinde iki aşamada yapılır: 1. NVT dengeleme: Bu aşamada sistemin parçacık sayısı (N), hacmi (V) ve sıcaklığı (T) sabit tutulur. 2. NPT dengeleme: Bu aşamada sistemin parçacık sayısı (N), basıncı (P) ve sıcaklığı (T) sabit tutulur.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+    ]
+  },
+  {
     "objectID": "chapters/02-md-preparations.html#basit-bir-python-örneği",
     "href": "chapters/02-md-preparations.html#basit-bir-python-örneği",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
-    "section": "3.2 Basit bir Python örneği",
-    "text": "3.2 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.030601160057174705",
+    "section": "3.5 Basit bir Python örneği",
+    "text": "3.5 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.012245815771983632",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -123,8 +153,8 @@
     "objectID": "chapters/02-md-preparations.html#bölüm-özeti",
     "href": "chapters/02-md-preparations.html#bölüm-özeti",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
-    "section": "3.3 Bölüm Özeti",
-    "text": "3.3 Bölüm Özeti",
+    "section": "3.6 Bölüm Özeti",
+    "text": "3.6 Bölüm Özeti",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -134,7 +164,27 @@
     "href": "chapters/03-md-analyses.html",
     "title": "4  MD Simülasyon Analizleri",
     "section": "",
-    "text": "4.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır.Ele alacağımız standart analiz teknikleri şunlardır:",
+    "text": "4.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır. Bu analiz teknikleri yapısal ve enerji analizleri olarak ikiye ayrılabilir. Ele alacağımız yapısal analiz teknikleri şunlardır: RMSD, RMSF, SASA, ikincil yapı, Rg, PCA.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-md-analyses.html#yapısal-analizler",
+    "href": "chapters/03-md-analyses.html#yapısal-analizler",
+    "title": "4  MD Simülasyon Analizleri",
+    "section": "4.2 Yapısal Analizler",
+    "text": "4.2 Yapısal Analizler\n\n4.2.1 RMSD (Root Mean Squared Distance):\n\n\n4.2.2 RMSF (Root Mean Squared Distance):\n\n\n4.2.3 SASA (Solvent Accessible Surface Area):",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-md-analyses.html#enerji-analizleri",
+    "href": "chapters/03-md-analyses.html#enerji-analizleri",
+    "title": "4  MD Simülasyon Analizleri",
+    "section": "4.3 Enerji Analizleri",
+    "text": "4.3 Enerji Analizleri",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
@@ -143,15 +193,15 @@
     "objectID": "chapters/03-md-analyses.html#bölüm-özeti",
     "href": "chapters/03-md-analyses.html#bölüm-özeti",
     "title": "4  MD Simülasyon Analizleri",
-    "section": "4.2 Bölüm Özeti",
-    "text": "4.2 Bölüm Özeti",
+    "section": "4.4 Bölüm Özeti",
+    "text": "4.4 Bölüm Özeti",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
   },
   {
-    "objectID": "chapters/appendices/01-proteins.html",
-    "href": "chapters/appendices/01-proteins.html",
+    "objectID": "chapters/appendices/01-amino-acids-and-proteins.html",
+    "href": "chapters/appendices/01-amino-acids-and-proteins.html",
     "title": "5  Ek 1: Amino Asitler ve Proteinler",
     "section": "",
     "text": "5.1 Giriş\nProteinler, canlılığın iş yapan makromolekülleridir. Kataliz (enzimler), taşıma (hemoglobin), savunma (antikorlar), sinyal iletimi (reseptörler) ve yapı (keratin, kollajen) gibi pek çok görevi üstlenirler. Tüm bu çeşitliliğin ortak kökeni amino asitlerdir—yani proteinlerin temel yapıtaşları.\nBu bölümde önce amino asitlerin ortak mimarisini ve kimyasal çeşitliliğini özetleyecek, ardından proteinlerin birincil, ikincil, tersiyer ve kuaterner yapı düzeylerini anlaşılır bir dille ele alacağız. Bölüm denklem içermez; kavramsal bir çerçeve sunar.",
@@ -160,8 +210,8 @@
     ]
   },
   {
-    "objectID": "chapters/appendices/01-proteins.html#amino-asitler",
-    "href": "chapters/appendices/01-proteins.html#amino-asitler",
+    "objectID": "chapters/appendices/01-amino-acids-and-proteins.html#amino-asitler",
+    "href": "chapters/appendices/01-amino-acids-and-proteins.html#amino-asitler",
     "title": "5  Ek 1: Amino Asitler ve Proteinler",
     "section": "5.2 Amino Asitler",
     "text": "5.2 Amino Asitler\nHer amino asit, aynı omurgayı paylaşır: bir amino grubu (–NH₂), bir karboksil grubu (–COOH), kiral bir alfa karbonu (Cα) ve değişken yan zincir (R grubu). R grubu; polar/apolar olma, yük taşıma, aromatiklik veya kükürt içeriği gibi özellikleriyle amino asitlerin kimyasal davranışını belirler.\n\nApolar (hidrofobik): Val, Leu, Ile, Met, Ala, Phe, Trp, Pro\n\nPolar yüksüz: Ser, Thr, Asn, Gln, Tyr, Cys\n\nAsidik (negatif yüklü): Asp, Glu\n\nBazik (pozitif yüklü): Lys, Arg, His\n\nYan zincirlerin bu çeşitliliği, proteinlerin katlanma dinamiklerinden etkileşim ağlarına kadar her şeyi etkiler.\n\n\n\n\n\n\nŞekil 5.1: Amino asidin genel yapısı\n\n\n\nTODO: Şekil 5.1’yi düzeltmeyi unutma. !!!",
@@ -170,8 +220,8 @@
     ]
   },
   {
-    "objectID": "chapters/appendices/01-proteins.html#proteinlerin-yapı-düzeyleri",
-    "href": "chapters/appendices/01-proteins.html#proteinlerin-yapı-düzeyleri",
+    "objectID": "chapters/appendices/01-amino-acids-and-proteins.html#proteinlerin-yapı-düzeyleri",
+    "href": "chapters/appendices/01-amino-acids-and-proteins.html#proteinlerin-yapı-düzeyleri",
     "title": "5  Ek 1: Amino Asitler ve Proteinler",
     "section": "5.3 Proteinlerin Yapı Düzeyleri",
     "text": "5.3 Proteinlerin Yapı Düzeyleri\nProtein yapısını kavramak için dört düzeyi ayırt ederiz:\n\nBirincil yapı (primary): Amino asitlerin doğrusal dizilimi (sekans).\n\nİkincil yapı (secondary): Yerel düzenli motifler — α-heliks ve β-tabaka gibi.\n\nTersiyer yapı (tertiary): Tek zincirin üç boyutlu, işlevsel katlanmış hali.\n\nKuaterner yapı (quaternary): Birden fazla polimer zincirinin (alt birimlerin) bir araya gelerek oluşturduğu kompleks.\n\nBu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan zincir etkileşimleri (hidrofobik paketleme, hidrojen bağları, tuz köprüleri, aromatik etkileşimler, disülfit bağları) tersiyer mimariyi şekillendirir; uygun arayüzler ise kuaterner etkileşimleri mümkün kılar.\n\n\n\n\n\n\nŞekil 5.2: Yapı düzeylerinin şematik gösterimi\n\n\n\nTODO: Şekil 5.2’yi düzeltmeyi unutma. !!!",
@@ -180,8 +230,8 @@
     ]
   },
   {
-    "objectID": "chapters/appendices/01-proteins.html#özet",
-    "href": "chapters/appendices/01-proteins.html#özet",
+    "objectID": "chapters/appendices/01-amino-acids-and-proteins.html#özet",
+    "href": "chapters/appendices/01-amino-acids-and-proteins.html#özet",
     "title": "5  Ek 1: Amino Asitler ve Proteinler",
     "section": "5.4 Özet",
     "text": "5.4 Özet\n\nAmino asitler ortak bir omurga üzerinde farklı R grupları ile kimyasal çeşitlilik sunar.\n\nBirincil yapı sekansı, ikincil yapı yerel motifleri, tersiyer yapı tek zincirin 3B katlanmasını ve kuaterner yapı çoklu alt birimlerin montajını ifade eder.\n\nBu hiyerarşi; katlanma, stabilite ve işlev arasındaki ilişkiyi anlamanın anahtarıdır.",

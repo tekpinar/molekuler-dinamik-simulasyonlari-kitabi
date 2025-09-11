@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/appendices/01-proteins.html" rel="next">
+<link href="../chapters/appendices/01-amino-acids-and-proteins.html" rel="next">
 <link href="../chapters/02-md-preparations.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/appendices/01-proteins.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/appendices/01-amino-acids-and-proteins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ek 1: Amino Asitler ve Proteinler</span></span></a>
   </div>
 </li>
@@ -154,7 +154,14 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#bu-bölümde-neler-öğreneceğiz" id="toc-bu-bölümde-neler-öğreneceğiz" class="nav-link active" data-scroll-target="#bu-bölümde-neler-öğreneceğiz"><span class="header-section-number">4.1</span> Bu Bölümde Neler Öğreneceğiz?</a></li>
-  <li><a href="#bölüm-özeti" id="toc-bölüm-özeti" class="nav-link" data-scroll-target="#bölüm-özeti"><span class="header-section-number">4.2</span> Bölüm Özeti</a></li>
+  <li><a href="#yapısal-analizler" id="toc-yapısal-analizler" class="nav-link" data-scroll-target="#yapısal-analizler"><span class="header-section-number">4.2</span> Yapısal Analizler</a>
+  <ul class="collapse">
+  <li><a href="#rmsd-root-mean-squared-distance" id="toc-rmsd-root-mean-squared-distance" class="nav-link" data-scroll-target="#rmsd-root-mean-squared-distance"><span class="header-section-number">4.2.1</span> RMSD (Root Mean Squared Distance):</a></li>
+  <li><a href="#rmsf-root-mean-squared-distance" id="toc-rmsf-root-mean-squared-distance" class="nav-link" data-scroll-target="#rmsf-root-mean-squared-distance"><span class="header-section-number">4.2.2</span> RMSF (Root Mean Squared Distance):</a></li>
+  <li><a href="#sasa-solvent-accessible-surface-area" id="toc-sasa-solvent-accessible-surface-area" class="nav-link" data-scroll-target="#sasa-solvent-accessible-surface-area"><span class="header-section-number">4.2.3</span> SASA (Solvent Accessible Surface Area):</a></li>
+  </ul></li>
+  <li><a href="#enerji-analizleri" id="toc-enerji-analizleri" class="nav-link" data-scroll-target="#enerji-analizleri"><span class="header-section-number">4.3</span> Enerji Analizleri</a></li>
+  <li><a href="#bölüm-özeti" id="toc-bölüm-özeti" class="nav-link" data-scroll-target="#bölüm-özeti"><span class="header-section-number">4.4</span> Bölüm Özeti</a></li>
   </ul>
 </nav>
     </div>
@@ -182,10 +189,25 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="bu-bölümde-neler-öğreneceğiz" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="bu-bölümde-neler-öğreneceğiz"><span class="header-section-number">4.1</span> Bu Bölümde Neler Öğreneceğiz?</h2>
-<p>Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır.Ele alacağımız standart analiz teknikleri şunlardır:</p>
+<p>Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır. Bu analiz teknikleri yapısal ve enerji analizleri olarak ikiye ayrılabilir. Ele alacağımız yapısal analiz teknikleri şunlardır: RMSD, RMSF, SASA, ikincil yapı, Rg, PCA.</p>
 </section>
-<section id="bölüm-özeti" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="bölüm-özeti"><span class="header-section-number">4.2</span> Bölüm Özeti</h2>
+<section id="yapısal-analizler" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="yapısal-analizler"><span class="header-section-number">4.2</span> Yapısal Analizler</h2>
+<section id="rmsd-root-mean-squared-distance" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="rmsd-root-mean-squared-distance"><span class="header-section-number">4.2.1</span> RMSD (Root Mean Squared Distance):</h3>
+</section>
+<section id="rmsf-root-mean-squared-distance" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="rmsf-root-mean-squared-distance"><span class="header-section-number">4.2.2</span> RMSF (Root Mean Squared Distance):</h3>
+</section>
+<section id="sasa-solvent-accessible-surface-area" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="sasa-solvent-accessible-surface-area"><span class="header-section-number">4.2.3</span> SASA (Solvent Accessible Surface Area):</h3>
+</section>
+</section>
+<section id="enerji-analizleri" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="enerji-analizleri"><span class="header-section-number">4.3</span> Enerji Analizleri</h2>
+</section>
+<section id="bölüm-özeti" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="bölüm-özeti"><span class="header-section-number">4.4</span> Bölüm Özeti</h2>
 
 
 </section>
@@ -597,7 +619,7 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/appendices/01-proteins.html" class="pagination-link" aria-label="Ek 1: Amino Asitler ve Proteinler">
+      <a href="../chapters/appendices/01-amino-acids-and-proteins.html" class="pagination-link" aria-label="Ek 1: Amino Asitler ve Proteinler">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ek 1: Amino Asitler ve Proteinler</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/appendices/01-proteins.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/appendices/01-amino-acids-and-proteins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ek 1: Amino Asitler ve Proteinler</span></span></a>
   </div>
 </li>
@@ -189,8 +189,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#bu-bölümde-neler-öğreneceğiz" id="toc-bu-bölümde-neler-öğreneceğiz" class="nav-link active" data-scroll-target="#bu-bölümde-neler-öğreneceğiz"><span class="header-section-number">3.1</span> Bu Bölümde Neler Öğreneceğiz?</a></li>
-  <li><a href="#basit-bir-python-örneği" id="toc-basit-bir-python-örneği" class="nav-link" data-scroll-target="#basit-bir-python-örneği"><span class="header-section-number">3.2</span> Basit bir Python örneği</a></li>
-  <li><a href="#bölüm-özeti" id="toc-bölüm-özeti" class="nav-link" data-scroll-target="#bölüm-özeti"><span class="header-section-number">3.3</span> Bölüm Özeti</a></li>
+  <li><a href="#sistemin-inşa-edilmesi" id="toc-sistemin-inşa-edilmesi" class="nav-link" data-scroll-target="#sistemin-inşa-edilmesi"><span class="header-section-number">3.2</span> Sistemin inşa edilmesi</a></li>
+  <li><a href="#enerji-minimizasyonu" id="toc-enerji-minimizasyonu" class="nav-link" data-scroll-target="#enerji-minimizasyonu"><span class="header-section-number">3.3</span> Enerji minimizasyonu</a></li>
+  <li><a href="#dengeleme-simülasyonları" id="toc-dengeleme-simülasyonları" class="nav-link" data-scroll-target="#dengeleme-simülasyonları"><span class="header-section-number">3.4</span> Dengeleme simülasyonları</a></li>
+  <li><a href="#basit-bir-python-örneği" id="toc-basit-bir-python-örneği" class="nav-link" data-scroll-target="#basit-bir-python-örneği"><span class="header-section-number">3.5</span> Basit bir Python örneği</a></li>
+  <li><a href="#bölüm-özeti" id="toc-bölüm-özeti" class="nav-link" data-scroll-target="#bölüm-özeti"><span class="header-section-number">3.6</span> Bölüm Özeti</a></li>
   </ul>
 </nav>
     </div>
@@ -227,20 +230,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Bu basamakları teker teker ele alalım.</p>
 </section>
-<section id="basit-bir-python-örneği" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="basit-bir-python-örneği"><span class="header-section-number">3.2</span> Basit bir Python örneği</h2>
-<div id="45313051" class="cell" data-execution_count="1">
+<section id="sistemin-inşa-edilmesi" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sistemin-inşa-edilmesi"><span class="header-section-number">3.2</span> Sistemin inşa edilmesi</h2>
+<ol type="1">
+<li>Hedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi</li>
+<li>Sisteme solvent eklenmesi</li>
+<li>Sisteme doğal ortam iyonlarının eklenmesi</li>
+</ol>
+</section>
+<section id="enerji-minimizasyonu" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="enerji-minimizasyonu"><span class="header-section-number">3.3</span> Enerji minimizasyonu</h2>
+<p>Hazırladığımız sistemde birbirine aşırı yakın parçacıklar olabilir. Bunların birbirinden uzaklaştırılması ve parçaçıklarının belirli bir denge konumuna getirilmesi gerekir. Bunun için sistemin toplam enerjisinin minimize edilmesi gerekir. Bu aşamada parçacıklara herhangi bir hız atanmadığı akılda tutulmalıdır.</p>
+</section>
+<section id="dengeleme-simülasyonları" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="dengeleme-simülasyonları"><span class="header-section-number">3.4</span> Dengeleme simülasyonları</h2>
+<p>Dengeleme simülasyonları Gromacs içerisinde iki aşamada yapılır: 1. NVT dengeleme: Bu aşamada sistemin parçacık sayısı (N), hacmi (V) ve sıcaklığı (T) sabit tutulur. 2. NPT dengeleme: Bu aşamada sistemin parçacık sayısı (N), basıncı (P) ve sıcaklığı (T) sabit tutulur.</p>
+</section>
+<section id="basit-bir-python-örneği" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="basit-bir-python-örneği"><span class="header-section-number">3.5</span> Basit bir Python örneği</h2>
+<div id="3b3dd9e5" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ortalama hız:"</span>, np.mean(v))</span></code><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Ortalama hız: 0.030601160057174705</code></pre>
+<pre><code>Ortalama hız: 0.012245815771983632</code></pre>
 </div>
 </div>
 </section>
-<section id="bölüm-özeti" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="bölüm-özeti"><span class="header-section-number">3.3</span> Bölüm Özeti</h2>
+<section id="bölüm-özeti" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="bölüm-özeti"><span class="header-section-number">3.6</span> Bölüm Özeti</h2>
 
 
 </section>
