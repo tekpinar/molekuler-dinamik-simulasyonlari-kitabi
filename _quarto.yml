@@ -12,7 +12,7 @@ book:
   - chapters/01-intro.qmd
   - chapters/02-md-preparations.qmd
   - chapters/03-md-analyses.qmd
-  - chapters/appendices/01-proteins.qmd
+  - chapters/appendices/01-amino-acids-and-proteins.qmd
   - references.qmd
 
 format:
