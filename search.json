@@ -114,7 +114,7 @@
     "href": "chapters/02-md-preparations.html#sistemin-inşa-edilmesi",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
     "section": "3.2 Sistemin inşa edilmesi",
-    "text": "3.2 Sistemin inşa edilmesi\n\nHedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi\nSisteme solvent eklenmesi\nSisteme doğal ortam iyonlarının eklenmesi",
+    "text": "3.2 Sistemin inşa edilmesi\nSistemin doğru bir biçimde inşa edilmesi için adım adım ilerlemek gerekir: 1. Proteinin hazırlanması 3. Sisteme solvent eklenmesi 4. Sisteme doğal ortam iyonlarının eklenmesi\n\n3.2.1 Proteinin hazırlanması\nHedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi ve doğru protonasyon durumlarının belirlenmesi için aşağıdaki adımlar uygulanır:\n\ninitial_pdb=AF-P22303-F1-model_v4\n\nfile_prefix=aces_human_monomer_wt\n\nforce_field=amber99sb-ildn\n\n#Call pdb2pqr to determine protonation states of the residues\n#according to pH 7.4\npdb2pqr30 --ff PARSE --ffout AMBER  --titration-state-method\\\n    propka --with-ph 7.4 ${initial_pdb}.pdb \\\n    ${initial_pdb-pwb2pqr30.pqr \\\n    --pdb-output ${initial_pdb}-pwb2pqr30.pdb\n\n#Add hydrogens if absent, select water model and force field\ngmx pdb2gmx -f ${initial_pdb}-pwb2pqr30.pdb \\\n    -o ${file_prefix}_processed.pdb \\\n    -water ${solvent_model} -ff ${force_field} -ignh\n\n\n\n3.2.2 Sisteme solvent eklenmesi\nProteinler genellikle su ortamında işlevlerini yerine getirir. Bu nedenle bir simülasyon yaparken sisteme mutlaka su eklenmesi gerekir. Aşağıdaki bash komutları ile sisteme su ekleyebiliriz.\n\nbuffer=1.1\n\n#Define box properties\ngmx editconf -f ${file_prefix}_processed.pdb \\\n    -o ${file_prefix}_newbox.pdb \\\n    -bt octahedron -c -d ${buffer} -princ\n\n#Note that if spc, spce, or tip3p model is used, solvent_model=spc216\nsolvent_model=tip3p\n\n#Produce box\nif [ \"$solvent_model\" == \"tip3p\" ] || \\\n    [ \"$solvent_model\" == \"spc\" ] || \\\n    [ \"$solvent_model\" == \"spce\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs spc216.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\nif [ \"$solvent_model\" == \"tip4p\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs tip4p.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\n\n3.2.3 Sisteme doğal ortam iyonlarının eklenmesi\nAşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır.\n#Prepare for ion addition\ngmx grompp -f ions2.mdp -c ${file_prefix}_solv.pdb -maxwarn 2 \\\n    -p topol.top -o ions.tpr\n\n#Produce and place ions\ngmx genion -s ions.tpr -o ${file_prefix}_solv_ions.pdb \\\n    -p topol.top -pname NA -nname CL -neutral -conc 0.15\n\n#Good news: Preparation is over!\n#Bad news : Trouble has just started!",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -144,7 +144,7 @@
     "href": "chapters/02-md-preparations.html#basit-bir-python-örneği",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
     "section": "3.5 Basit bir Python örneği",
-    "text": "3.5 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.012245815771983632",
+    "text": "3.5 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.01439765545561302",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -164,7 +164,7 @@
     "href": "chapters/03-md-analyses.html",
     "title": "4  MD Simülasyon Analizleri",
     "section": "",
-    "text": "4.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır. Bu analiz teknikleri yapısal ve enerji analizleri olarak ikiye ayrılabilir. Ele alacağımız yapısal analiz teknikleri şunlardır: RMSD, RMSF, SASA, ikincil yapı, Rg, PCA.",
+    "text": "4.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır. Bu analiz teknikleri yapısal ve enerji analizleri olarak ikiye ayrılabilir. Ele alacağımız yapısal analiz teknikleri şunlardır: RMSD, RMSF, Rg,SASA, ikincil yapı, PCA.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
@@ -174,7 +174,7 @@
     "href": "chapters/03-md-analyses.html#yapısal-analizler",
     "title": "4  MD Simülasyon Analizleri",
     "section": "4.2 Yapısal Analizler",
-    "text": "4.2 Yapısal Analizler\n\n4.2.1 RMSD (Root Mean Squared Distance):\n\n\n4.2.2 RMSF (Root Mean Squared Distance):\n\n\n4.2.3 SASA (Solvent Accessible Surface Area):",
+    "text": "4.2 Yapısal Analizler\nYapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir.\n\n4.2.1 RMSD (Root Mean Squared Distance):\n\n\n4.2.2 RMSF (Root Mean Squared Fluctuations):\n\n\n4.2.3 Rg (Radius of gyration):\n\n\n4.2.4 SASA (Solvent Accessible Surface Area):\n\n\n4.2.5 İkincil Yapı",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
