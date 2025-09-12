@@ -144,7 +144,7 @@
     "href": "chapters/02-md-preparations.html#basit-bir-python-örneği",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
     "section": "3.5 Basit bir Python örneği",
-    "text": "3.5 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.01439765545561302",
+    "text": "3.5 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: -0.05705170630080223",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -230,11 +230,31 @@
     ]
   },
   {
+    "objectID": "chapters/appendices/01-amino-acids-and-proteins.html#protein-yapısı-belirleme-yöntemleri",
+    "href": "chapters/appendices/01-amino-acids-and-proteins.html#protein-yapısı-belirleme-yöntemleri",
+    "title": "5  Ek 1: Amino Asitler ve Proteinler",
+    "section": "5.4 Protein Yapısı Belirleme Yöntemleri",
+    "text": "5.4 Protein Yapısı Belirleme Yöntemleri\nProteinlerin üç boyutlu yapısını anlamak, biyolojik işlevlerini çözümlemek için temel bir gerekliliktir. Bir proteinin dizisi (birincil yapısı) genomdan doğrudan elde edilebilir, ancak bu dizinin nasıl katlanarak üç boyutlu bir yapıya dönüştüğünü bilmek için ek yöntemlere ihtiyaç vardır. Bu yöntemler iki ana başlık altında toplanabilir: deneysel yöntemler ve teorik yöntemler.\n\n5.4.1 Deneysel Yöntemler\n\n5.4.1.1 X-ışını Kristalografisi\nX-ışını kristalografisi, protein yapısını çözmek için uzun yıllardır kullanılan “altın standart” yöntemdir. Protein kristallerinden elde edilen kırınım desenleri analiz edilerek atomların üç boyutlu yerleşimi ortaya çıkarılır.\n- Avantajı: Yüksek çözünürlük (genellikle 2 Å veya daha iyi).\n- Dezavantajı: Kristal büyütmek zordur ve bazı proteinler kristallenmez.\n\n\n5.4.1.2 Nükleer Manyetik Rezonans (NMR) Spektroskopisi\nNMR, çözeltideki proteinlerin yapısını belirlemeye yarar. Atom çekirdekleri arasındaki manyetik etkileşimler ölçülür ve bunlardan uzaysal kısıtlamalar elde edilir.\n- Avantajı: Kristalleşme gerektirmez, proteinin doğal ortamına daha yakındır.\n- Dezavantajı: Genellikle 40 kDa altındaki proteinler için uygundur.\n\n\n5.4.1.3 Kriyo-Elektron Mikroskopisi (Kriyo-EM)\nSon yıllarda büyük bir atılım yapan Kriyo-EM, özellikle büyük makromoleküler komplekslerin yapısını belirlemede öne çıkmaktadır. Proteinler hızlıca dondurulur ve elektron mikroskobu ile görüntülenir.\n- Avantajı: Kristalleşme gerekmez, büyük komplekslerde başarılıdır.\n- Dezavantajı: Küçük proteinlerde çözünürlük sınırlı olabilir.\n\n\n\n5.4.2 Teorik Yöntemler\n\n5.4.2.1 Homoloji Modellemesi\nEğer hedef proteine benzer bir proteinin yapısı biliniyorsa, bu yapı şablon olarak kullanılarak hedef proteinin olası yapısı tahmin edilir.\n- Avantajı: Güvenilir şablon olduğunda iyi sonuç verir.\n- Dezavantajı: Şablon bulunmadığında sınırlıdır.\n\n\n5.4.2.2 Ab initio (de novo) Modelleme\nProtein yapısı tamamen diziden yola çıkarak tahmin edilmeye çalışılır. Fiziksel prensipler veya istatistiksel yaklaşımlar kullanılır.\n- Avantajı: Şablon gerektirmez.\n- Dezavantajı: Özellikle büyük proteinlerde halen zorluklar vardır.\n\n\n5.4.2.3 Yapay Zekâ Tabanlı Yöntemler\nSon dönemde AlphaFold ve benzeri yapay zekâ tabanlı yöntemler, protein yapısı tahmininde çığır açmıştır. Bu sistemler, devasa protein veri tabanlarından öğrenilen bilgileri kullanarak oldukça doğru tahminler yapabilmektedir.\nSonuç olarak, protein yapısını belirleme çalışmaları, biyoinformatik ile yapısal biyolojinin kesişiminde yer almaktadır. Deneysel yöntemler atomik ayrıntıyı verirken, teorik yöntemler hız ve esneklik sağlar. Bu iki yaklaşımın birlikteliği, günümüzde protein biliminin en güçlü araçlarından birini oluşturmaktadır.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/01-amino-acids-and-proteins.html#protein-veri-tabanları",
+    "href": "chapters/appendices/01-amino-acids-and-proteins.html#protein-veri-tabanları",
+    "title": "5  Ek 1: Amino Asitler ve Proteinler",
+    "section": "5.5 Protein Veri Tabanları",
+    "text": "5.5 Protein Veri Tabanları\nProteinler için en temel deneysel veri kaynağı Protein Databank’tir. Ancak, milyonlarca protein içeren AlphaFold veritabanı da deneysel yapısı bilinmeyen proteinler için oldukça iyi bir başlangıç noktasıdır.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+    ]
+  },
+  {
     "objectID": "chapters/appendices/01-amino-acids-and-proteins.html#özet",
     "href": "chapters/appendices/01-amino-acids-and-proteins.html#özet",
     "title": "5  Ek 1: Amino Asitler ve Proteinler",
-    "section": "5.4 Özet",
-    "text": "5.4 Özet\n\nAmino asitler ortak bir omurga üzerinde farklı R grupları ile kimyasal çeşitlilik sunar.\n\nBirincil yapı sekansı, ikincil yapı yerel motifleri, tersiyer yapı tek zincirin 3B katlanmasını ve kuaterner yapı çoklu alt birimlerin montajını ifade eder.\n\nBu hiyerarşi; katlanma, stabilite ve işlev arasındaki ilişkiyi anlamanın anahtarıdır.",
+    "section": "5.6 Özet",
+    "text": "5.6 Özet\n\nAmino asitler ortak bir omurga üzerinde farklı R grupları ile kimyasal çeşitlilik sunar.\n\nBirincil yapı sekansı, ikincil yapı yerel motifleri, tersiyer yapı tek zincirin 3B katlanmasını ve kuaterner yapı çoklu alt birimlerin montajını ifade eder.\n\nBu hiyerarşi; katlanma, stabilite ve işlev arasındaki ilişkiyi anlamanın anahtarıdır.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
     ]
