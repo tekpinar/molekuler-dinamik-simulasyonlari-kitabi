@@ -192,7 +192,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#bu-bölümde-neler-öğreneceğiz" id="toc-bu-bölümde-neler-öğreneceğiz" class="nav-link active" data-scroll-target="#bu-bölümde-neler-öğreneceğiz"><span class="header-section-number">3.1</span> Bu Bölümde Neler Öğreneceğiz?</a></li>
-  <li><a href="#sistemin-inşa-edilmesi" id="toc-sistemin-inşa-edilmesi" class="nav-link" data-scroll-target="#sistemin-inşa-edilmesi"><span class="header-section-number">3.2</span> Sistemin inşa edilmesi</a></li>
+  <li><a href="#sistemin-inşa-edilmesi" id="toc-sistemin-inşa-edilmesi" class="nav-link" data-scroll-target="#sistemin-inşa-edilmesi"><span class="header-section-number">3.2</span> Sistemin inşa edilmesi</a>
+  <ul class="collapse">
+  <li><a href="#proteinin-hazırlanması" id="toc-proteinin-hazırlanması" class="nav-link" data-scroll-target="#proteinin-hazırlanması"><span class="header-section-number">3.2.1</span> Proteinin hazırlanması</a></li>
+  <li><a href="#sisteme-solvent-eklenmesi" id="toc-sisteme-solvent-eklenmesi" class="nav-link" data-scroll-target="#sisteme-solvent-eklenmesi"><span class="header-section-number">3.2.2</span> Sisteme solvent eklenmesi</a></li>
+  <li><a href="#sisteme-doğal-ortam-iyonlarının-eklenmesi" id="toc-sisteme-doğal-ortam-iyonlarının-eklenmesi" class="nav-link" data-scroll-target="#sisteme-doğal-ortam-iyonlarının-eklenmesi"><span class="header-section-number">3.2.3</span> Sisteme doğal ortam iyonlarının eklenmesi</a></li>
+  </ul></li>
   <li><a href="#enerji-minimizasyonu" id="toc-enerji-minimizasyonu" class="nav-link" data-scroll-target="#enerji-minimizasyonu"><span class="header-section-number">3.3</span> Enerji minimizasyonu</a></li>
   <li><a href="#dengeleme-simülasyonları" id="toc-dengeleme-simülasyonları" class="nav-link" data-scroll-target="#dengeleme-simülasyonları"><span class="header-section-number">3.4</span> Dengeleme simülasyonları</a></li>
   <li><a href="#basit-bir-python-örneği" id="toc-basit-bir-python-örneği" class="nav-link" data-scroll-target="#basit-bir-python-örneği"><span class="header-section-number">3.5</span> Basit bir Python örneği</a></li>
@@ -235,11 +240,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sistemin-inşa-edilmesi" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="sistemin-inşa-edilmesi"><span class="header-section-number">3.2</span> Sistemin inşa edilmesi</h2>
-<ol type="1">
-<li>Hedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi</li>
-<li>Sisteme solvent eklenmesi</li>
-<li>Sisteme doğal ortam iyonlarının eklenmesi</li>
-</ol>
+<p>Sistemin doğru bir biçimde inşa edilmesi için adım adım ilerlemek gerekir: 1. Proteinin hazırlanması 3. Sisteme solvent eklenmesi 4. Sisteme doğal ortam iyonlarının eklenmesi</p>
+<section id="proteinin-hazırlanması" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="proteinin-hazırlanması"><span class="header-section-number">3.2.1</span> Proteinin hazırlanması</h3>
+<p>Hedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi ve doğru protonasyon durumlarının belirlenmesi için aşağıdaki adımlar uygulanır:</p>
+<pre class="{bash}"><code>
+initial_pdb=AF-P22303-F1-model_v4
+
+file_prefix=aces_human_monomer_wt
+
+force_field=amber99sb-ildn
+
+#Call pdb2pqr to determine protonation states of the residues \
+#according to pH 7.4
+pdb2pqr30 --ff PARSE --ffout AMBER  --titration-state-method \
+    propka --with-ph 7.4 ${initial_pdb}.pdb \
+    ${initial_pdb-pwb2pqr30.pqr \
+    --pdb-output ${initial_pdb}-pwb2pqr30.pdb
+
+#Add hydrogens if absent, select water model and force field
+gmx pdb2gmx -f ${initial_pdb}-pwb2pqr30.pdb \
+    -o ${file_prefix}_processed.pdb \
+    -water ${solvent_model} -ff ${force_field} -ignh
+</code></pre>
+</section>
+<section id="sisteme-solvent-eklenmesi" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="sisteme-solvent-eklenmesi"><span class="header-section-number">3.2.2</span> Sisteme solvent eklenmesi</h3>
+<p>Proteinler genellikle su ortamında işlevlerini yerine getirir. Bu nedenle bir simülasyon yaparken sisteme mutlaka su eklenmesi gerekir. Aşağıdaki bash komutları ile sisteme su ekleyebiliriz.</p>
+<pre class="{bash}"><code>
+buffer=1.1
+
+#Define box properties
+gmx editconf -f ${file_prefix}_processed.pdb -o ${file_prefix}_newbox.pdb \
+    -bt octahedron -c -d ${buffer} -princ
+
+#Note that if spc, spce, or tip3p model is used, solvent_model=spc216
+solvent_model=tip3p
+
+#Produce box
+if [ "$solvent_model" == "tip3p" ] || [ "$solvent_model" == "spc" ] || [ "$solvent_model" == "spce" ];
+then
+    gmx solvate -cp ${file_prefix}_newbox.pdb -cs spc216.gro \
+        -o ${file_prefix}_solv.pdb -p topol.top
+fi
+
+if [ "$solvent_model" == "tip4p" ];
+then
+    gmx solvate -cp ${file_prefix}_newbox.pdb -cs tip4p.gro \
+        -o ${file_prefix}_solv.pdb -p topol.top
+fi</code></pre>
+</section>
+<section id="sisteme-doğal-ortam-iyonlarının-eklenmesi" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="sisteme-doğal-ortam-iyonlarının-eklenmesi"><span class="header-section-number">3.2.3</span> Sisteme doğal ortam iyonlarının eklenmesi</h3>
+<p>Aşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır.</p>
+<pre class="{bash}"><code>#Prepare for ion addition
+gmx grompp -f ions2.mdp -c ${file_prefix}_solv.pdb -maxwarn 2 \
+    -p topol.top -o ions.tpr
+
+#Produce and place ions
+gmx genion -s ions.tpr -o ${file_prefix}_solv_ions.pdb \
+    -p topol.top -pname NA -nname CL -neutral -conc 0.15
+
+#Good news: Preparation is over!
+#Bad news : Trouble has just started!
+</code></pre>
+</section>
 </section>
 <section id="enerji-minimizasyonu" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="enerji-minimizasyonu"><span class="header-section-number">3.3</span> Enerji minimizasyonu</h2>
@@ -251,13 +316,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="basit-bir-python-örneği" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="basit-bir-python-örneği"><span class="header-section-number">3.5</span> Basit bir Python örneği</h2>
-<div id="e7cba359" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ortalama hız:"</span>, np.mean(v))</span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="f9281ba3" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ortalama hız:"</span>, np.mean(v))</span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Ortalama hız: -0.008515121169097679</code></pre>
+<pre><code>Ortalama hız: 0.0030141516757769436</code></pre>
 </div>
 </div>
 </section>

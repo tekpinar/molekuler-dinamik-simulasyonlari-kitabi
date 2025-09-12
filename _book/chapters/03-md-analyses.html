@@ -160,8 +160,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#yapısal-analizler" id="toc-yapısal-analizler" class="nav-link" data-scroll-target="#yapısal-analizler"><span class="header-section-number">4.2</span> Yapısal Analizler</a>
   <ul class="collapse">
   <li><a href="#rmsd-root-mean-squared-distance" id="toc-rmsd-root-mean-squared-distance" class="nav-link" data-scroll-target="#rmsd-root-mean-squared-distance"><span class="header-section-number">4.2.1</span> RMSD (Root Mean Squared Distance):</a></li>
-  <li><a href="#rmsf-root-mean-squared-distance" id="toc-rmsf-root-mean-squared-distance" class="nav-link" data-scroll-target="#rmsf-root-mean-squared-distance"><span class="header-section-number">4.2.2</span> RMSF (Root Mean Squared Distance):</a></li>
-  <li><a href="#sasa-solvent-accessible-surface-area" id="toc-sasa-solvent-accessible-surface-area" class="nav-link" data-scroll-target="#sasa-solvent-accessible-surface-area"><span class="header-section-number">4.2.3</span> SASA (Solvent Accessible Surface Area):</a></li>
+  <li><a href="#rmsf-root-mean-squared-fluctuations" id="toc-rmsf-root-mean-squared-fluctuations" class="nav-link" data-scroll-target="#rmsf-root-mean-squared-fluctuations"><span class="header-section-number">4.2.2</span> RMSF (Root Mean Squared Fluctuations):</a></li>
+  <li><a href="#rg-radius-of-gyration" id="toc-rg-radius-of-gyration" class="nav-link" data-scroll-target="#rg-radius-of-gyration"><span class="header-section-number">4.2.3</span> Rg (Radius of gyration):</a></li>
+  <li><a href="#sasa-solvent-accessible-surface-area" id="toc-sasa-solvent-accessible-surface-area" class="nav-link" data-scroll-target="#sasa-solvent-accessible-surface-area"><span class="header-section-number">4.2.4</span> SASA (Solvent Accessible Surface Area):</a></li>
+  <li><a href="#ikincil-yapı" id="toc-ikincil-yapı" class="nav-link" data-scroll-target="#ikincil-yapı"><span class="header-section-number">4.2.5</span> İkincil Yapı</a></li>
   </ul></li>
   <li><a href="#enerji-analizleri" id="toc-enerji-analizleri" class="nav-link" data-scroll-target="#enerji-analizleri"><span class="header-section-number">4.3</span> Enerji Analizleri</a></li>
   <li><a href="#bölüm-özeti" id="toc-bölüm-özeti" class="nav-link" data-scroll-target="#bölüm-özeti"><span class="header-section-number">4.4</span> Bölüm Özeti</a></li>
@@ -192,18 +194,24 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="bu-bölümde-neler-öğreneceğiz" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="bu-bölümde-neler-öğreneceğiz"><span class="header-section-number">4.1</span> Bu Bölümde Neler Öğreneceğiz?</h2>
-<p>Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır. Bu analiz teknikleri yapısal ve enerji analizleri olarak ikiye ayrılabilir. Ele alacağımız yapısal analiz teknikleri şunlardır: RMSD, RMSF, SASA, ikincil yapı, Rg, PCA.</p>
+<p>Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır. Bu analiz teknikleri yapısal ve enerji analizleri olarak ikiye ayrılabilir. Ele alacağımız yapısal analiz teknikleri şunlardır: RMSD, RMSF, Rg,SASA, ikincil yapı, PCA.</p>
 </section>
 <section id="yapısal-analizler" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="yapısal-analizler"><span class="header-section-number">4.2</span> Yapısal Analizler</h2>
 <section id="rmsd-root-mean-squared-distance" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="rmsd-root-mean-squared-distance"><span class="header-section-number">4.2.1</span> RMSD (Root Mean Squared Distance):</h3>
 </section>
-<section id="rmsf-root-mean-squared-distance" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="rmsf-root-mean-squared-distance"><span class="header-section-number">4.2.2</span> RMSF (Root Mean Squared Distance):</h3>
+<section id="rmsf-root-mean-squared-fluctuations" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="rmsf-root-mean-squared-fluctuations"><span class="header-section-number">4.2.2</span> RMSF (Root Mean Squared Fluctuations):</h3>
 </section>
-<section id="sasa-solvent-accessible-surface-area" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="sasa-solvent-accessible-surface-area"><span class="header-section-number">4.2.3</span> SASA (Solvent Accessible Surface Area):</h3>
+<section id="rg-radius-of-gyration" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="rg-radius-of-gyration"><span class="header-section-number">4.2.3</span> Rg (Radius of gyration):</h3>
+</section>
+<section id="sasa-solvent-accessible-surface-area" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="sasa-solvent-accessible-surface-area"><span class="header-section-number">4.2.4</span> SASA (Solvent Accessible Surface Area):</h3>
+</section>
+<section id="ikincil-yapı" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="ikincil-yapı"><span class="header-section-number">4.2.5</span> İkincil Yapı</h3>
 </section>
 </section>
 <section id="enerji-analizleri" class="level2" data-number="4.3">

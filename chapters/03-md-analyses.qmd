@@ -4,17 +4,21 @@ title: "MD Simülasyon Analizleri"
 
 ## Bu Bölümde Neler Öğreneceğiz?
 
-Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır. Bu analiz teknikleri yapısal ve enerji analizleri olarak ikiye ayrılabilir. Ele alacağımız yapısal analiz teknikleri şunlardır: RMSD, RMSF, SASA, ikincil yapı, Rg, PCA. 
+Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır. Bu analiz teknikleri yapısal ve enerji analizleri olarak ikiye ayrılabilir. Ele alacağımız yapısal analiz teknikleri şunlardır: RMSD, RMSF, Rg,SASA, ikincil yapı, PCA. 
 
 
 ## Yapısal Analizler
+Yapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir. 
 
 ### RMSD (Root Mean Squared Distance):
 
-### RMSF (Root Mean Squared Distance):
+### RMSF (Root Mean Squared Fluctuations):
+
+### Rg (Radius of gyration):
 
 ### SASA (Solvent Accessible Surface Area):
 
+### İkincil Yapı
 
 ## Enerji Analizleri
 

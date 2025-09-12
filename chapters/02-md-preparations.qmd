@@ -15,10 +15,86 @@ Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdak
 Bu basamakları teker teker ele alalım.
 
 ## Sistemin inşa edilmesi
-
-1. Hedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi
+Sistemin doğru bir biçimde inşa edilmesi için adım adım ilerlemek gerekir:
+1. Proteinin hazırlanması
 3. Sisteme solvent eklenmesi
 4. Sisteme doğal ortam iyonlarının eklenmesi
+
+### Proteinin hazırlanması
+
+Hedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi ve doğru protonasyon durumlarının belirlenmesi için aşağıdaki adımlar uygulanır:
+
+```{bash}
+
+initial_pdb=AF-P22303-F1-model_v4
+
+file_prefix=aces_human_monomer_wt
+
+force_field=amber99sb-ildn
+
+#Call pdb2pqr to determine protonation states of the residues
+#according to pH 7.4
+pdb2pqr30 --ff PARSE --ffout AMBER  --titration-state-method\
+    propka --with-ph 7.4 ${initial_pdb}.pdb \
+    ${initial_pdb-pwb2pqr30.pqr \
+    --pdb-output ${initial_pdb}-pwb2pqr30.pdb
+
+#Add hydrogens if absent, select water model and force field
+gmx pdb2gmx -f ${initial_pdb}-pwb2pqr30.pdb \
+    -o ${file_prefix}_processed.pdb \
+    -water ${solvent_model} -ff ${force_field} -ignh
+
+```
+
+### Sisteme solvent eklenmesi
+
+Proteinler genellikle su ortamında işlevlerini yerine getirir. Bu nedenle bir simülasyon yaparken sisteme mutlaka su eklenmesi gerekir. Aşağıdaki bash komutları ile sisteme su ekleyebiliriz. 
+
+```{bash}
+
+buffer=1.1
+
+#Define box properties
+gmx editconf -f ${file_prefix}_processed.pdb \
+    -o ${file_prefix}_newbox.pdb \
+    -bt octahedron -c -d ${buffer} -princ
+
+#Note that if spc, spce, or tip3p model is used, solvent_model=spc216
+solvent_model=tip3p
+
+#Produce box
+if [ "$solvent_model" == "tip3p" ] || \
+    [ "$solvent_model" == "spc" ] || \
+    [ "$solvent_model" == "spce" ];
+then
+    gmx solvate -cp ${file_prefix}_newbox.pdb -cs spc216.gro \
+        -o ${file_prefix}_solv.pdb -p topol.top
+fi
+
+if [ "$solvent_model" == "tip4p" ];
+then
+    gmx solvate -cp ${file_prefix}_newbox.pdb -cs tip4p.gro \
+        -o ${file_prefix}_solv.pdb -p topol.top
+fi
+```
+
+
+### Sisteme doğal ortam iyonlarının eklenmesi
+Aşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır. 
+
+```{bash}
+#Prepare for ion addition
+gmx grompp -f ions2.mdp -c ${file_prefix}_solv.pdb -maxwarn 2 \
+    -p topol.top -o ions.tpr
+
+#Produce and place ions
+gmx genion -s ions.tpr -o ${file_prefix}_solv_ions.pdb \
+    -p topol.top -pname NA -nname CL -neutral -conc 0.15
+
+#Good news: Preparation is over!
+#Bad news : Trouble has just started!
+
+```
 
 ## Enerji minimizasyonu
 
