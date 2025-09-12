@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-cf374f7e41f5596d5fd42430820b2b76.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-766c1bd875b3cea874dec659daf35f82.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -159,7 +159,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#giriş" id="toc-giriş" class="nav-link active" data-scroll-target="#giriş"><span class="header-section-number">5.1</span> Giriş</a></li>
   <li><a href="#amino-asitler" id="toc-amino-asitler" class="nav-link" data-scroll-target="#amino-asitler"><span class="header-section-number">5.2</span> Amino Asitler</a></li>
   <li><a href="#proteinlerin-yapı-düzeyleri" id="toc-proteinlerin-yapı-düzeyleri" class="nav-link" data-scroll-target="#proteinlerin-yapı-düzeyleri"><span class="header-section-number">5.3</span> Proteinlerin Yapı Düzeyleri</a></li>
-  <li><a href="#özet" id="toc-özet" class="nav-link" data-scroll-target="#özet"><span class="header-section-number">5.4</span> Özet</a></li>
+  <li><a href="#protein-yapısı-belirleme-yöntemleri" id="toc-protein-yapısı-belirleme-yöntemleri" class="nav-link" data-scroll-target="#protein-yapısı-belirleme-yöntemleri"><span class="header-section-number">5.4</span> Protein Yapısı Belirleme Yöntemleri</a>
+  <ul class="collapse">
+  <li><a href="#deneysel-yöntemler" id="toc-deneysel-yöntemler" class="nav-link" data-scroll-target="#deneysel-yöntemler"><span class="header-section-number">5.4.1</span> Deneysel Yöntemler</a></li>
+  <li><a href="#teorik-yöntemler" id="toc-teorik-yöntemler" class="nav-link" data-scroll-target="#teorik-yöntemler"><span class="header-section-number">5.4.2</span> Teorik Yöntemler</a></li>
+  </ul></li>
+  <li><a href="#protein-veri-tabanları" id="toc-protein-veri-tabanları" class="nav-link" data-scroll-target="#protein-veri-tabanları"><span class="header-section-number">5.5</span> Protein Veri Tabanları</a></li>
+  <li><a href="#özet" id="toc-özet" class="nav-link" data-scroll-target="#özet"><span class="header-section-number">5.6</span> Özet</a></li>
   </ul>
 </nav>
     </div>
@@ -243,8 +249,57 @@ ul.task-list li input[type="checkbox"] {
 <p>TODO: <a href="#fig-ps" class="quarto-xref">Şekil&nbsp;<span>5.2</span></a>’yi düzeltmeyi unutma. !!!</p>
 <hr>
 </section>
-<section id="özet" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="özet"><span class="header-section-number">5.4</span> Özet</h2>
+<section id="protein-yapısı-belirleme-yöntemleri" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="protein-yapısı-belirleme-yöntemleri"><span class="header-section-number">5.4</span> Protein Yapısı Belirleme Yöntemleri</h2>
+<p>Proteinlerin üç boyutlu yapısını anlamak, biyolojik işlevlerini çözümlemek için temel bir gerekliliktir. Bir proteinin dizisi (birincil yapısı) genomdan doğrudan elde edilebilir, ancak bu dizinin nasıl katlanarak üç boyutlu bir yapıya dönüştüğünü bilmek için ek yöntemlere ihtiyaç vardır. Bu yöntemler iki ana başlık altında toplanabilir: <strong>deneysel</strong> yöntemler ve <strong>teorik</strong> yöntemler.</p>
+<section id="deneysel-yöntemler" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="deneysel-yöntemler"><span class="header-section-number">5.4.1</span> Deneysel Yöntemler</h3>
+<section id="x-ışını-kristalografisi" class="level4" data-number="5.4.1.1">
+<h4 data-number="5.4.1.1" class="anchored" data-anchor-id="x-ışını-kristalografisi"><span class="header-section-number">5.4.1.1</span> X-ışını Kristalografisi</h4>
+<p>X-ışını kristalografisi, protein yapısını çözmek için uzun yıllardır kullanılan “altın standart” yöntemdir. Protein kristallerinden elde edilen kırınım desenleri analiz edilerek atomların üç boyutlu yerleşimi ortaya çıkarılır.<br>
+- <strong>Avantajı:</strong> Yüksek çözünürlük (genellikle 2 Å veya daha iyi).<br>
+- <strong>Dezavantajı:</strong> Kristal büyütmek zordur ve bazı proteinler kristallenmez.</p>
+</section>
+<section id="nükleer-manyetik-rezonans-nmr-spektroskopisi" class="level4" data-number="5.4.1.2">
+<h4 data-number="5.4.1.2" class="anchored" data-anchor-id="nükleer-manyetik-rezonans-nmr-spektroskopisi"><span class="header-section-number">5.4.1.2</span> Nükleer Manyetik Rezonans (NMR) Spektroskopisi</h4>
+<p>NMR, çözeltideki proteinlerin yapısını belirlemeye yarar. Atom çekirdekleri arasındaki manyetik etkileşimler ölçülür ve bunlardan uzaysal kısıtlamalar elde edilir.<br>
+- <strong>Avantajı:</strong> Kristalleşme gerektirmez, proteinin doğal ortamına daha yakındır.<br>
+- <strong>Dezavantajı:</strong> Genellikle 40 kDa altındaki proteinler için uygundur.</p>
+</section>
+<section id="kriyo-elektron-mikroskopisi-kriyo-em" class="level4" data-number="5.4.1.3">
+<h4 data-number="5.4.1.3" class="anchored" data-anchor-id="kriyo-elektron-mikroskopisi-kriyo-em"><span class="header-section-number">5.4.1.3</span> Kriyo-Elektron Mikroskopisi (Kriyo-EM)</h4>
+<p>Son yıllarda büyük bir atılım yapan Kriyo-EM, özellikle büyük makromoleküler komplekslerin yapısını belirlemede öne çıkmaktadır. Proteinler hızlıca dondurulur ve elektron mikroskobu ile görüntülenir.<br>
+- <strong>Avantajı:</strong> Kristalleşme gerekmez, büyük komplekslerde başarılıdır.<br>
+- <strong>Dezavantajı:</strong> Küçük proteinlerde çözünürlük sınırlı olabilir.</p>
+</section>
+</section>
+<section id="teorik-yöntemler" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="teorik-yöntemler"><span class="header-section-number">5.4.2</span> Teorik Yöntemler</h3>
+<section id="homoloji-modellemesi" class="level4" data-number="5.4.2.1">
+<h4 data-number="5.4.2.1" class="anchored" data-anchor-id="homoloji-modellemesi"><span class="header-section-number">5.4.2.1</span> Homoloji Modellemesi</h4>
+<p>Eğer hedef proteine benzer bir proteinin yapısı biliniyorsa, bu yapı şablon olarak kullanılarak hedef proteinin olası yapısı tahmin edilir.<br>
+- <strong>Avantajı:</strong> Güvenilir şablon olduğunda iyi sonuç verir.<br>
+- <strong>Dezavantajı:</strong> Şablon bulunmadığında sınırlıdır.</p>
+</section>
+<section id="ab-initio-de-novo-modelleme" class="level4" data-number="5.4.2.2">
+<h4 data-number="5.4.2.2" class="anchored" data-anchor-id="ab-initio-de-novo-modelleme"><span class="header-section-number">5.4.2.2</span> Ab initio (de novo) Modelleme</h4>
+<p>Protein yapısı tamamen diziden yola çıkarak tahmin edilmeye çalışılır. Fiziksel prensipler veya istatistiksel yaklaşımlar kullanılır.<br>
+- <strong>Avantajı:</strong> Şablon gerektirmez.<br>
+- <strong>Dezavantajı:</strong> Özellikle büyük proteinlerde halen zorluklar vardır.</p>
+</section>
+<section id="yapay-zekâ-tabanlı-yöntemler" class="level4" data-number="5.4.2.3">
+<h4 data-number="5.4.2.3" class="anchored" data-anchor-id="yapay-zekâ-tabanlı-yöntemler"><span class="header-section-number">5.4.2.3</span> Yapay Zekâ Tabanlı Yöntemler</h4>
+<p>Son dönemde <strong>AlphaFold</strong> ve benzeri yapay zekâ tabanlı yöntemler, protein yapısı tahmininde çığır açmıştır. Bu sistemler, devasa protein veri tabanlarından öğrenilen bilgileri kullanarak oldukça doğru tahminler yapabilmektedir.</p>
+<p>Sonuç olarak, protein yapısını belirleme çalışmaları, biyoinformatik ile yapısal biyolojinin kesişiminde yer almaktadır. Deneysel yöntemler atomik ayrıntıyı verirken, teorik yöntemler hız ve esneklik sağlar. Bu iki yaklaşımın birlikteliği, günümüzde protein biliminin en güçlü araçlarından birini oluşturmaktadır.</p>
+</section>
+</section>
+</section>
+<section id="protein-veri-tabanları" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="protein-veri-tabanları"><span class="header-section-number">5.5</span> Protein Veri Tabanları</h2>
+<p>Proteinler için en temel deneysel veri kaynağı <a href="https://www.rcsb.org/">Protein Databank</a>’tir. Ancak, milyonlarca protein içeren <a href="https://alphafold.ebi.ac.uk/">AlphaFold</a> veritabanı da deneysel yapısı bilinmeyen proteinler için oldukça iyi bir başlangıç noktasıdır.</p>
+</section>
+<section id="özet" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="özet"><span class="header-section-number">5.6</span> Özet</h2>
 <ul>
 <li>Amino asitler ortak bir omurga üzerinde farklı <strong>R grupları</strong> ile kimyasal çeşitlilik sunar.<br>
 </li>

@@ -21,7 +21,7 @@ Her amino asit, aynı omurgayı paylaşır: bir **amino grubu** (–NH₂), bir 
 
 Yan zincirlerin bu çeşitliliği, proteinlerin katlanma dinamiklerinden etkileşim ağlarına kadar her şeyi etkiler.
 
-```{markdown}
+
 ![Amino asidin genel yapısı](figures/amino-asit.png){#fig-aa fig-align="center" width="80%"}
 
 TODO: @fig-aa'yi düzeltmeyi unutma. !!!
@@ -39,12 +39,75 @@ Protein yapısını kavramak için dört düzeyi ayırt ederiz:
 
 Bu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan zincir etkileşimleri (hidrofobik paketleme, hidrojen bağları, tuz köprüleri, aromatik etkileşimler, disülfit bağları) tersiyer mimariyi şekillendirir; uygun arayüzler ise kuaterner etkileşimleri mümkün kılar.
 
-```{markdown}
+
+
 ![Yapı düzeylerinin şematik gösterimi](figures/protein-yapilari.png){#fig-ps fig-align="center" width="80%"}
 
 TODO: @fig-ps'yi düzeltmeyi unutma. !!!
 
 ---
+
+## Protein Yapısı Belirleme Yöntemleri
+
+Proteinlerin üç boyutlu yapısını anlamak, biyolojik işlevlerini çözümlemek için temel bir
+gerekliliktir. Bir proteinin dizisi (birincil yapısı) genomdan doğrudan elde edilebilir,
+ancak bu dizinin nasıl katlanarak üç boyutlu bir yapıya dönüştüğünü bilmek için
+ek yöntemlere ihtiyaç vardır. Bu yöntemler iki ana başlık altında toplanabilir:
+**deneysel** yöntemler ve **teorik** yöntemler.
+
+
+### Deneysel Yöntemler
+
+#### X-ışını Kristalografisi
+X-ışını kristalografisi, protein yapısını çözmek için uzun yıllardır kullanılan
+“altın standart” yöntemdir. Protein kristallerinden elde edilen kırınım desenleri
+analiz edilerek atomların üç boyutlu yerleşimi ortaya çıkarılır.  
+- **Avantajı:** Yüksek çözünürlük (genellikle 2 Å veya daha iyi).  
+- **Dezavantajı:** Kristal büyütmek zordur ve bazı proteinler kristallenmez.  
+
+#### Nükleer Manyetik Rezonans (NMR) Spektroskopisi
+NMR, çözeltideki proteinlerin yapısını belirlemeye yarar. Atom çekirdekleri arasındaki
+manyetik etkileşimler ölçülür ve bunlardan uzaysal kısıtlamalar elde edilir.  
+- **Avantajı:** Kristalleşme gerektirmez, proteinin doğal ortamına daha yakındır.  
+- **Dezavantajı:** Genellikle 40 kDa altındaki proteinler için uygundur.  
+
+#### Kriyo-Elektron Mikroskopisi (Kriyo-EM)
+Son yıllarda büyük bir atılım yapan Kriyo-EM, özellikle büyük makromoleküler
+komplekslerin yapısını belirlemede öne çıkmaktadır. Proteinler hızlıca dondurulur ve
+elektron mikroskobu ile görüntülenir.  
+- **Avantajı:** Kristalleşme gerekmez, büyük komplekslerde başarılıdır.  
+- **Dezavantajı:** Küçük proteinlerde çözünürlük sınırlı olabilir.  
+
+
+### Teorik Yöntemler
+
+#### Homoloji Modellemesi
+Eğer hedef proteine benzer bir proteinin yapısı biliniyorsa, bu yapı şablon olarak
+kullanılarak hedef proteinin olası yapısı tahmin edilir.  
+- **Avantajı:** Güvenilir şablon olduğunda iyi sonuç verir.  
+- **Dezavantajı:** Şablon bulunmadığında sınırlıdır.  
+
+#### Ab initio (de novo) Modelleme
+Protein yapısı tamamen diziden yola çıkarak tahmin edilmeye çalışılır. Fiziksel
+prensipler veya istatistiksel yaklaşımlar kullanılır.  
+- **Avantajı:** Şablon gerektirmez.  
+- **Dezavantajı:** Özellikle büyük proteinlerde halen zorluklar vardır.  
+
+#### Yapay Zekâ Tabanlı Yöntemler
+Son dönemde **AlphaFold** ve benzeri yapay zekâ tabanlı yöntemler, protein yapısı
+tahmininde çığır açmıştır. Bu sistemler, devasa protein veri tabanlarından öğrenilen
+bilgileri kullanarak oldukça doğru tahminler yapabilmektedir.  
+
+Sonuç olarak, protein yapısını belirleme çalışmaları, biyoinformatik ile yapısal biyolojinin
+kesişiminde yer almaktadır. Deneysel yöntemler atomik ayrıntıyı verirken, teorik
+yöntemler hız ve esneklik sağlar. Bu iki yaklaşımın birlikteliği, günümüzde
+protein biliminin en güçlü araçlarından birini oluşturmaktadır.
+
+## Protein Veri Tabanları
+
+Proteinler için en temel deneysel veri kaynağı [Protein Databank](https://www.rcsb.org/)'tir. 
+Ancak, milyonlarca protein içeren [AlphaFold](https://alphafold.ebi.ac.uk/) veritabanı da deneysel yapısı bilinmeyen proteinler için oldukça iyi bir başlangıç noktasıdır. 
+
 
 ## Özet
 
