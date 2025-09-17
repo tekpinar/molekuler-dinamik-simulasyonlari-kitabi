@@ -144,7 +144,7 @@
     "href": "chapters/02-md-preparations.html#basit-bir-python-örneği",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
     "section": "3.5 Basit bir Python örneği",
-    "text": "3.5 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: -0.05705170630080223",
+    "text": "3.5 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.00825280416430795",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
