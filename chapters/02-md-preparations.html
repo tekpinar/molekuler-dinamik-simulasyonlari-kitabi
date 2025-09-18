@@ -177,8 +177,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/appendices/02-md-forcefields.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Kaynaklar</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Kaynaklar</span></span></a>
   </div>
 </li>
     </ul>
@@ -319,13 +325,13 @@ gmx genion -s ions.tpr -o ${file_prefix}_solv_ions.pdb \
 </section>
 <section id="basit-bir-python-örneği" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="basit-bir-python-örneği"><span class="header-section-number">3.5</span> Basit bir Python örneği</h2>
-<div id="ae14a3b4" class="cell" data-execution_count="1">
+<div id="c9aecbb1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ortalama hız:"</span>, np.mean(v))</span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Ortalama hız: 0.00825280416430795</code></pre>
+<pre><code>Ortalama hız: -0.07460420175589985</code></pre>
 </div>
 </div>
 </section>
