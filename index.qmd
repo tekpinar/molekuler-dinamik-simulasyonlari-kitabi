@@ -1,5 +1,8 @@
 ---
 title: "Önsöz"
+format: 
+    gfm:  
+        output-file: README.md
 ---
 
  Moleküler dinamik simülasyonları fizik, kimya, moleküler biyoloji, eczacılık, tıp ve biyomühendislik gibi çeşitli alanlarda kullanılan bilişimsel bir araştırma tekniğidir. Bu tekniğin geniş bir uygulama alanı olmasında rağmen bu alandaki Türkçe kaynak sayısı oldukça azdır. Bu nedenle, bu kitapta proteinlerin moleküler dinamik (MD) simülasyonlarını pratik bir yaklaşımla ele alacağız. Kitapta ağırlıklı olarak MD simülasyonlarının açık kaynak kodlu Gromacs paketi ile yapılması hedeflenmektedir. Kitap, kısa bir teorik temeller bölümü ile başlayacaktır. Teorik temeller bölümünden sonra MD simülasyonlarına hazırlık aşamaları anlatılacaktır. Son bölümde ise MD simülasyonu analiz teknikleri  sunulacaktır. Kitabın teorik bilgilerle dolu bir kitap olmasından ziyade pratik bir uygulama kitabı olması hedeflenmektedir. Kitabın, bu alanda araştırma yapmak isteyen ancak yabancı dildeki kaynaklardan henüz tam yararlanamayan ileri lisans öğrencileri ve lisansüstü öğrenciler için faydalı olacağını ümit ediyorum.

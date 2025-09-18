@@ -144,7 +144,7 @@
     "href": "chapters/02-md-preparations.html#basit-bir-python-örneği",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
     "section": "3.5 Basit bir Python örneği",
-    "text": "3.5 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: 0.036645954672112194",
+    "text": "3.5 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: -0.06221017056022819",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -260,33 +260,93 @@
     ]
   },
   {
+    "objectID": "chapters/appendices/02-md-forcefields.html",
+    "href": "chapters/appendices/02-md-forcefields.html",
+    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "section": "",
+    "text": "6.1 Giriş\nMoleküler dinamik (MD) simülasyonları, proteinlerin ve diğer biyomoleküllerin atomik düzeydeki hareketlerini zaman içinde modellemek için kullanılan güçlü hesaplamalı yöntemlerdir. Bu simülasyonlarda temel amaç, Newton mekaniği yasalarına dayanarak atomların konumlarını ve hızlarını belirli zaman adımları boyunca güncellemektir. Ancak atomlar arası etkileşimlerin doğrudan kuantum mekaniği ile hesaplanması çok pahalı olduğundan, empirik kuvvet alanları (force fields) geliştirilmiştir. Kuvvet alanı, sistemdeki atomlar arasındaki potansiyel enerjiyi tanımlayan matematiksel fonksiyonlar ve parametreler bütünüdür.\nProteinlerin simülasyonunda kullanılan kuvvet alanları, hem kovalent bağların özelliklerini hem de bağsız (non‑bonded) etkileşimleri tanımlar. Doğru bir kuvvet alanı seçimi, simülasyon sonuçlarının deneysel verilerle uyumlu olabilmesi için kritik öneme sahiptir.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/02-md-forcefields.html#kuvvet-alanlarının-genel-yapısı",
+    "href": "chapters/appendices/02-md-forcefields.html#kuvvet-alanlarının-genel-yapısı",
+    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "section": "6.2 Kuvvet Alanlarının Genel Yapısı",
+    "text": "6.2 Kuvvet Alanlarının Genel Yapısı\nTipik bir biyomoleküler kuvvet alanı, potansiyel enerji fonksiyonunu şu bileşenlere ayırır:\n\\[\nE_{total} = E_{bond} + E_{angle} + E_{dihedral} + E_{nonbonded}\n\\]\n\n6.2.1 Bağ (Bond) terimi\nAtom çiftleri arasındaki kovalent bağların uzamasını harmonik yay modeli ile tanımlar:\n\\[\nE_{bond} = \\sum k_b (r - r_0)^2\n\\]\nBurada \\(k_b\\) bağ kuvvet sabiti, \\(r\\) anlık bağ uzunluğu ve \\(r_0\\) denge bağ uzunluğudur.\n\n\n6.2.2 Açı (Angle) terimi\nÜç atom arasındaki bağ açıları için harmonik yaklaşım kullanılır:\n\\[\nE_{angle} = \\sum k_\\theta (\\theta - \\theta_0)^2\n\\]\n\n\n6.2.3 Dihedral (Torsiyon) terimi\nDört atomdan oluşan zincirlerde dönme bariyerlerini tanımlar:\n\\[\nE_{dihedral} = \\sum V_n [1 + \\cos(n\\phi - \\gamma)]\n\\]\nBurada \\(V_n\\) dönme bariyeri yüksekliği, \\(n\\) periyod, \\(\\phi\\) torsiyon açısı ve \\(\\gamma\\) faz kaymasıdır.\n\n\n6.2.4 Bağsız (Non‑bonded) etkileşimler\nVan der Waals ve elektrostatik etkileşimleri içerir. Genelde Lennard–Jones potansiyeli ve Coulomb yasası ile ifade edilir:\n\\[\nE_{nonbonded} = \\sum\\left[ \\frac{A}{r^{12}} - \\frac{B}{r^6} + \\frac{q_i q_j}{4\\pi \\varepsilon_0 r_{ij}} \\right]\n\\]\nBurada \\(A\\) ve \\(B\\) Lennard–Jones sabitleri, \\(q_i\\) ve \\(q_j\\) kısmi yüklerdir.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/02-md-forcefields.html#protein-simülasyonlarında-kullanılan-başlıca-kuvvet-alanları",
+    "href": "chapters/appendices/02-md-forcefields.html#protein-simülasyonlarında-kullanılan-başlıca-kuvvet-alanları",
+    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "section": "6.3 Protein Simülasyonlarında Kullanılan Başlıca Kuvvet Alanları",
+    "text": "6.3 Protein Simülasyonlarında Kullanılan Başlıca Kuvvet Alanları\nYukarıdaki denklemlerde bir sürü sabit parametre olduğunu gördük. Örneğin bağ enerjisini hesaplamak için \\(k_b\\) terimini bilmek gerekir. İki amino birbirine bağlayan C ve N atomları arasındaki peptid bağı için \\(k_b(C-N)\\) değerini nereden elde edeceğiz? Kuvvet alanlarını buna benzer sabitlerin bulunduğu veri setleri olarak değerlendirebiliriz. Biyomoleküllerin MD simülasyonlarında yaygın olarak -kendi içinde tutarlı- bazı veri setleri, bir başka deyişle kuvvet alanları aşağıda tanıtılacaktır.\n\n6.3.1 AMBER\nAMBER (Assisted Model Building with Energy Refinement) aile kuvvet alanları proteinler, nükleik asitler ve ligandlar için yaygın olarak kullanılır. Öne çıkan versiyonlar: ff14SB, ff19SB. Ligand parametrizasyonu için GAFF (General AMBER Force Field) ve kısmi yük hesapları için RESP veya AM1‑BCC yöntemleri tercih edilir.\n\n\n6.3.2 CHARMM\nCHARMM kuvvet alanı geniş kapsamlı parametre setleri sunar (protein, lipid, karbonhidrat vb.). CHARMM36m membran proteinleri ve lipid‑protein etkileşimleri için sık tercih edilen bir versiyondur.\n\n\n6.3.3 OPLS\nOPLS‑AA organik moleküllerin sıvı özelliklerini doğru tahmin etmesi ile bilinir; biyomoleküler simülasyonlarda da kullanılır.\n\n\n6.3.4 GROMOS\nGROMOS serisi, özellikle Avrupa kökenli birçok çalışmada tercih edilen klasik kuvvet alanıdır.\n\n\n6.3.5 Yeni Nesil Kuvvet Alanları\n\nPolarizable force fields (AMOEBA vb.): Elektron bulutunun polarizasyonunu hesaba katarak daha doğru elektrostatik modelleme sağlar.\nML tabanlı potansiyeller: Derin öğrenme ve makine öğrenmesi yöntemleriyle kuantum hesaplamalarına yaklaşıcı potansiyeller geliştirilmektedir.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/02-md-forcefields.html#kuvvet-alanı-seçiminde-dikkat-edilecek-noktalar",
+    "href": "chapters/appendices/02-md-forcefields.html#kuvvet-alanı-seçiminde-dikkat-edilecek-noktalar",
+    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "section": "6.4 Kuvvet Alanı Seçiminde Dikkat Edilecek Noktalar",
+    "text": "6.4 Kuvvet Alanı Seçiminde Dikkat Edilecek Noktalar\n\nProtein tipi: Membran proteinleri için CHARMM36; çözünür globüler proteinler için AMBER ff19SB gibi kombinasyonlar uygun olabilir.\nSu modeli: Kuvvet alanına uygun bir su modeli seçilmelidir (ör. TIP3P, TIP4P‑EW, OPC). Su modeli, özellikle protein yüzeyi ve iyon dağılımı üzerinde belirgin etkiler yapar.\nİyonlar ve konsantrasyon: İyon parametrizasyonu ve iyon konsantrasyonu (NaCl, KCl) biyolojik koşulları yansıtmalıdır.\nLigand/kofaktör parametrizasyonu: Antechamber (AMBER), CGenFF (CHARMM) gibi araçlarla ligand parametreleri çıkarılmalıdır.\nPolarizasyon gereksinimi: Yüksek doğruluk gereken hesaplamalarda polarizable kuvvet alanları düşünülmelidir.\nSimülasyon amaçları: Katlanma, bağlanma serbest enerjisi hesapları, uzun zaman ölçeği dinamikleri gibi farklı amaçlar farklı yaklaşımlar gerektirir.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/02-md-forcefields.html#sık-yapılan-hatalar-ve-öneriler",
+    "href": "chapters/appendices/02-md-forcefields.html#sık-yapılan-hatalar-ve-öneriler",
+    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "section": "6.5 Sık Yapılan Hatalar ve Öneriler",
+    "text": "6.5 Sık Yapılan Hatalar ve Öneriler\n\nKuvvet alanı ile uyumsuz su modeli kullanmak.\nLigand parametrizasyonunu ihmal etmek veya hatalı parametre kullanmak.\nKısa dengeleme süreleriyle üretime geçmek.\nKesme (cutoff) ve uzun menzilli etkileşimler için uygun algoritmalar (PME vb.) kullanmamak.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/02-md-forcefields.html#özet",
+    "href": "chapters/appendices/02-md-forcefields.html#özet",
+    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "section": "6.6 Özet",
+    "text": "6.6 Özet\nKuvvet alanları, MD simülasyonlarının temelini oluşturur. AMBER, CHARMM ve OPLS gibi klasik kuvvet alanları günümüzde yaygın olarak kullanılmakta; ancak polarizable kuvvet alanları ve makine öğrenmesi tabanlı yaklaşımlar daha yüksek doğruluk vaat etmektedir. Simülasyonun amacına göre uygun kuvvet alanı, su modeli ve parametrizasyon stratejisi seçilmesi simülasyonun başarısı için kritik önemdedir.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
-    "title": "6  Kaynaklar",
+    "title": "7  Kaynaklar",
     "section": "",
-    "text": "6.1 Ders Kitapları",
+    "text": "7.1 Ders Kitapları",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Kaynaklar</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Kaynaklar</span>"
     ]
   },
   {
     "objectID": "references.html#ders-kitapları",
     "href": "references.html#ders-kitapları",
-    "title": "6  Kaynaklar",
+    "title": "7  Kaynaklar",
     "section": "",
     "text": "Frenkel, D., & Smit, B. (2001). Understanding Molecular Simulation.\n\n\n\n\n\n\n\nNot\n\n\n\nNisbeten eski bir kitap. Hala C ile örnekler içeriyor.\n\n\n\nRapaport, D. C. (2004). The Art of Molecular Dynamics Simulation.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Kaynaklar</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Kaynaklar</span>"
     ]
   },
   {
     "objectID": "references.html#derleme-makaleler",
     "href": "references.html#derleme-makaleler",
-    "title": "6  Kaynaklar",
-    "section": "6.2 Derleme Makaleler",
-    "text": "6.2 Derleme Makaleler\n\nHollingsworth, S. A., & Dror, R. O. (2018). Molecular dynamics simulation for all. Neuron, 99(6), 1129-1143.\nKarplus, M., & McCammon, J. A. (2002). Molecular dynamics simulations of biomolecules. Nature structural biology, 9(9), 646-652.",
+    "title": "7  Kaynaklar",
+    "section": "7.2 Derleme Makaleler",
+    "text": "7.2 Derleme Makaleler\n\nHollingsworth, S. A., & Dror, R. O. (2018). Molecular dynamics simulation for all. Neuron, 99(6), 1129-1143.\nKarplus, M., & McCammon, J. A. (2002). Molecular dynamics simulations of biomolecules. Nature structural biology, 9(9), 646-652.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Kaynaklar</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Kaynaklar</span>"
     ]
   }
 ]

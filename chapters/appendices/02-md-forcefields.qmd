@@ -14,50 +14,52 @@ Proteinlerin simülasyonunda kullanılan kuvvet alanları, hem kovalent bağlar�
 
 Tipik bir biyomoleküler kuvvet alanı, potansiyel enerji fonksiyonunu şu bileşenlere ayırır:
 
-\[
+$$
 E_{total} = E_{bond} + E_{angle} + E_{dihedral} + E_{nonbonded}
-\]
+$$
 
-### 1. Bağ (Bond) terimi
+### Bağ (Bond) terimi
 
 Atom çiftleri arasındaki kovalent bağların uzamasını harmonik yay modeli ile tanımlar:
 
-\[
+$$
 E_{bond} = \sum k_b (r - r_0)^2
-\]
+$$
 
 Burada $k_b$ bağ kuvvet sabiti, $r$ anlık bağ uzunluğu ve $r_0$ denge bağ uzunluğudur.
 
-### 2. Açı (Angle) terimi
+### Açı (Angle) terimi
 
 Üç atom arasındaki bağ açıları için harmonik yaklaşım kullanılır:
 
-\[
+$$
 E_{angle} = \sum k_\theta (\theta - \theta_0)^2
-\]
+$$
 
-### 3. Diedral (Torsiyon) terimi
+### Dihedral (Torsiyon) terimi
 
 Dört atomdan oluşan zincirlerde dönme bariyerlerini tanımlar:
 
-\[
+$$
 E_{dihedral} = \sum V_n [1 + \cos(n\phi - \gamma)]
-\]
+$$
 
 Burada $V_n$ dönme bariyeri yüksekliği, $n$ periyod, $\phi$ torsiyon açısı ve $\gamma$ faz kaymasıdır.
 
-### 4. Bağsız (Non‑bonded) etkileşimler
+### Bağsız (Non‑bonded) etkileşimler
 
 Van der Waals ve elektrostatik etkileşimleri içerir. Genelde Lennard–Jones potansiyeli ve Coulomb yasası ile ifade edilir:
 
-\[
+$$
 E_{nonbonded} = \sum\left[ \frac{A}{r^{12}} - \frac{B}{r^6} + \frac{q_i q_j}{4\pi \varepsilon_0 r_{ij}} \right]
-\]
+$$
 
 Burada $A$ ve $B$ Lennard–Jones sabitleri, $q_i$ ve $q_j$ kısmi yüklerdir.
 
 
 ## Protein Simülasyonlarında Kullanılan Başlıca Kuvvet Alanları
+
+Yukarıdaki denklemlerde bir sürü sabit parametre olduğunu gördük. Örneğin bağ enerjisini hesaplamak için $k_b$ terimini bilmek gerekir. İki amino birbirine bağlayan C ve N atomları arasındaki peptid bağı için $k_b(C-N)$ değerini nereden elde edeceğiz? Kuvvet alanlarını buna benzer sabitlerin bulunduğu veri setleri olarak değerlendirebiliriz. Biyomoleküllerin MD simülasyonlarında yaygın olarak -kendi içinde tutarlı- bazı veri setleri, bir başka deyişle kuvvet alanları aşağıda tanıtılacaktır. 
 
 ### AMBER
 

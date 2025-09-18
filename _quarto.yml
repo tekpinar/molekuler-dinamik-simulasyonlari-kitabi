@@ -13,6 +13,7 @@ book:
   - chapters/02-md-preparations.qmd
   - chapters/03-md-analyses.qmd
   - chapters/appendices/01-amino-acids-and-proteins.qmd
+  - chapters/appendices/02-md-forcefields.qmd 
   - references.qmd
 
 format:
