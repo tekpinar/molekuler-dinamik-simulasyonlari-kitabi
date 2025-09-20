@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Kaynaklar – Proteinlerin Moleküler Dinamik Simülasyonları</title>
+<title>4&nbsp; MD Simülasyonlarını Çalıştırma – Proteinlerin Moleküler Dinamik Simülasyonları</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +23,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/appendices/03-bash-commands.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-590c6dd2426de8bc52baef09ffcbee94.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/04-md-analyses.html" rel="next">
+<link href="../chapters/02-md-preparations.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-590c6dd2426de8bc52baef09ffcbee94.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -70,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -82,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Kaynaklar</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-md-execution.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">MD Simülasyonlarını Çalıştırma</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ara" onclick="window.quartoOpenSearch();">
@@ -96,10 +126,10 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
+      <a href="../index.html" class="sidebar-logo-link">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Proteinlerin Moleküler Dinamik Simülasyonları</a> 
+      <a href="../">Proteinlerin Moleküler Dinamik Simülasyonları</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -111,55 +141,55 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Önsöz</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/01-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/01-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Teorik Temeller</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/02-md-preparations.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/02-md-preparations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gromacs ile MD Simülasyonlarına Hazırlık</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/03-md-execution.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/03-md-execution.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">MD Simülasyonlarını Çalıştırma</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/04-md-analyses.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/04-md-analyses.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">MD Simülasyon Analizleri</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/appendices/01-amino-acids-and-proteins.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/appendices/01-amino-acids-and-proteins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ek 1: Amino Asitler ve Proteinler</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/appendices/02-md-forcefields.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/appendices/02-md-forcefields.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/appendices/03-bash-commands.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/appendices/03-bash-commands.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ek 1: Bash Komut Satırı</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Kaynaklar</span></span></a>
   </div>
 </li>
@@ -173,8 +203,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">İçindekiler</h2>
    
   <ul>
-  <li><a href="#ders-kitapları" id="toc-ders-kitapları" class="nav-link active" data-scroll-target="#ders-kitapları"><span class="header-section-number">9.1</span> Ders Kitapları</a></li>
-  <li><a href="#derleme-makaleler" id="toc-derleme-makaleler" class="nav-link" data-scroll-target="#derleme-makaleler"><span class="header-section-number">9.2</span> Derleme Makaleler</a></li>
+  <li><a href="#bu-bölümde-neler-öğreneceğiz" id="toc-bu-bölümde-neler-öğreneceğiz" class="nav-link active" data-scroll-target="#bu-bölümde-neler-öğreneceğiz"><span class="header-section-number">4.1</span> Bu Bölümde Neler Öğreneceğiz?</a></li>
+  <li><a href="#enerji-minimizasyonu" id="toc-enerji-minimizasyonu" class="nav-link" data-scroll-target="#enerji-minimizasyonu"><span class="header-section-number">4.2</span> Enerji minimizasyonu</a></li>
+  <li><a href="#dengeleme-simülasyonları" id="toc-dengeleme-simülasyonları" class="nav-link" data-scroll-target="#dengeleme-simülasyonları"><span class="header-section-number">4.3</span> Dengeleme simülasyonları</a></li>
+  <li><a href="#üretim-simülasyonları" id="toc-üretim-simülasyonları" class="nav-link" data-scroll-target="#üretim-simülasyonları"><span class="header-section-number">4.4</span> Üretim simülasyonları</a></li>
+  <li><a href="#yüksek-başarımlı-hesaplama-sistemleri" id="toc-yüksek-başarımlı-hesaplama-sistemleri" class="nav-link" data-scroll-target="#yüksek-başarımlı-hesaplama-sistemleri"><span class="header-section-number">4.5</span> Yüksek başarımlı hesaplama sistemleri</a></li>
+  <li><a href="#bölüm-özeti" id="toc-bölüm-özeti" class="nav-link" data-scroll-target="#bölüm-özeti"><span class="header-section-number">4.6</span> Bölüm Özeti</a></li>
   </ul>
 </nav>
     </div>
@@ -183,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Kaynaklar</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">MD Simülasyonlarını Çalıştırma</span></h1>
 </div>
 
 
@@ -200,34 +234,58 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="ders-kitapları" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="ders-kitapları"><span class="header-section-number">9.1</span> Ders Kitapları</h2>
-<ul>
-<li>Frenkel, D., &amp; Smit, B. (2001). <em>Understanding Molecular Simulation</em>.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Not
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Nisbeten eski bir kitap. Hala C ile örnekler içeriyor.</p>
-</div>
-</div>
-<ul>
-<li>Rapaport, D. C. (2004). <em>The Art of Molecular Dynamics Simulation</em>.</li>
-</ul>
+<section id="bu-bölümde-neler-öğreneceğiz" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="bu-bölümde-neler-öğreneceğiz"><span class="header-section-number">4.1</span> Bu Bölümde Neler Öğreneceğiz?</h2>
+<p>Bu bölümde moleküler dinamik simülasyonları çalıştırmanın temel aşamalarını ele alacağız. Tüm çalıştırma aşamalarından önce grompp (gromacs preprocessor) programını çalıştırıp tpr uzantılı bir dosya elde etmek gerekir.</p>
 </section>
-<section id="derleme-makaleler" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="derleme-makaleler"><span class="header-section-number">9.2</span> Derleme Makaleler</h2>
-<ul>
-<li><p><a href="https://www.cell.com/neuron/fulltext/S0896-6273(18)30684-6">Hollingsworth, S. A., &amp; Dror, R. O. (2018). Molecular dynamics simulation for all. Neuron, 99(6), 1129-1143.</a></p></li>
-<li><p><a href="https://www.nature.com/articles/nsb0902-646">Karplus, M., &amp; McCammon, J. A. (2002). Molecular dynamics simulations of biomolecules. Nature structural biology, 9(9), 646-652.</a></p></li>
-</ul>
+<section id="enerji-minimizasyonu" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="enerji-minimizasyonu"><span class="header-section-number">4.2</span> Enerji minimizasyonu</h2>
+<p>Hazırladığımız sistemde birbirine aşırı yakın parçacıklar olabilir. Bunların birbirinden uzaklaştırılması ve parçaçıklarının belirli bir denge konumuna getirilmesi gerekir. Bunun için sistemin toplam enerjisinin minimize edilmesi gerekir. Bu aşamada parçacıklara herhangi bir hız atanmadığı akılda tutulmalıdır.</p>
+<pre class="{bash}"><code>
+gmx grompp -f minim.mdp -c protein.pdb -p topologyFile.top -o em.tpr
+gmx mdrun -v -deffnm em
+</code></pre>
+</section>
+<section id="dengeleme-simülasyonları" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="dengeleme-simülasyonları"><span class="header-section-number">4.3</span> Dengeleme simülasyonları</h2>
+<p>Dengeleme simülasyonları Gromacs içerisinde iki aşamada yapılır: 1. NVT dengeleme: Bu aşamada sistemin parçacık sayısı (N), hacmi (V) ve sıcaklığı (T) sabit tutulur. Burada, önceki aşamanın sonunda üretilen em.gro dosyasını input olarak kullanacağız. Minimizasyon dosyasına ek olarak NVT dengelemesi sırasında Gromacs tarafından kullanılacak olan nvt.mdp input dosyasına da ihtiyacımız olacaktır.</p>
+<pre class="{bash}"><code>
+gmx grompp -f nvt.mdp -c em.gro -p topologyFile.top -r em.gro -o nvt.tpr
+gmx mdrun -v -deffnm nvt
+</code></pre>
+<ol start="2" type="1">
+<li>NPT dengeleme: Bu aşamada sistemin parçacık sayısı (N), basıncı (P) ve sıcaklığı (T) sabit tutulur.</li>
+</ol>
+<pre class="{bash}"><code>
+gmx grompp -f npt.mdp -c nvt.gro -r nvt.gro -t nvt.cpt -p topologyFile.top -o npt.tpr
+gmx mdrun -v -deffnm npt
+
+</code></pre>
+</section>
+<section id="üretim-simülasyonları" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="üretim-simülasyonları"><span class="header-section-number">4.4</span> Üretim simülasyonları</h2>
+<p>MD simülasyonunun son aşaması olan üretim simülasyonları, genellikle analizini yapacağımız yörünge ve enerji dosyalarının üretildiği aşamadır. Aslında NPT simülasyonları ile çok benzer parametrelere sahiptir ancak NPT simülasyonlarına göre çok daha uzundur. Aşağıdaki komut üretim simülasyonlarını başlatacaktır.</p>
+<pre class="{bash}"><code>
+gmx grompp -f run.mdp -c npt.gro -t npt.cpt -p topologyFile.top -o prod-sim1.tpr
+gmx mdrun -v -deffnm prod-sim1
+</code></pre>
+<p>Eğer üretim aşaması simülasyonunuz herhangi bir sebeple yarıda kesilirse, aşağıdaki komut ile kaldığı yerden devam edebilirsiniz.</p>
+<pre class="{bash}"><code>
+gmx mdrun -v -s prod-sim1.tpr -cpi prod-sim1.cpt -deffnm prod-sim1
+</code></pre>
+<p>MD simülasyonunuz bittikten sonra simülasyon süresinin uzatılması gerektiğini farkedebiliriz. Bu durumda Gromacs içindeki <span class="math inline">\(extend\)</span> parametresinden yararlanabiliriz. Aşağıdaki komut simülasyonu 75 nanosaniye (75000 pikosaniye) uzatmak için yeni bir tpr dosyası oluşturacaktır. Bu yeni tpr kullanılarak simülasyon, kaldığı yerden devam ettirilebilir.</p>
+<pre class="{bash}"><code>
+gmx convert-tpr -s prod-sim1.tpr -extend 75000 -o prod-sim1-extended.tpr
+gmx mdrun -v -s prod-sim1-extended.tpr -cpi prod-sim1.cpt -deffnm prod-sim1
+</code></pre>
+<p>Tüm bilimsel çalışmalarda olduğu gibi MD simülasyonlarını da bir kaç kere tekrarlamak gerekir. Bu, bilimsel çalışmanın tekrarlanabilirliğini ispat etmek için olmazsa olmaz bir şeydir.</p>
+</section>
+<section id="yüksek-başarımlı-hesaplama-sistemleri" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="yüksek-başarımlı-hesaplama-sistemleri"><span class="header-section-number">4.5</span> Yüksek başarımlı hesaplama sistemleri</h2>
+<p>MD simülasyonları çok sayıda işlemciye veya ekran kartına ihtiyaç duyulan uzun hesaplamalardır. Bu nedenle bir masaüstü bilgisayar yerine yüksek başarımlı hesaplama sistemlerinin kullanılması daha uygundur. Ülkemizde bu açıdan en iyi kaynaklardan biri Ulakbim tarafında sağlanan TRUBA-TRGrid hizmetidir. Bu hizmetten yararlanmak için şu web sitesini ziyaret edebilirsiniz: https://portal.truba.gov.tr/</p>
+</section>
+<section id="bölüm-özeti" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="bölüm-özeti"><span class="header-section-number">4.6</span> Bölüm Özeti</h2>
 
 
 </section>
@@ -635,11 +693,14 @@ Not
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapters/appendices/03-bash-commands.html" class="pagination-link" aria-label="Ek 1: Bash Komut Satırı">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ek 1: Bash Komut Satırı</span></span>
+      <a href="../chapters/02-md-preparations.html" class="pagination-link" aria-label="Gromacs ile MD Simülasyonlarına Hazırlık">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gromacs ile MD Simülasyonlarına Hazırlık</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../chapters/04-md-analyses.html" class="pagination-link" aria-label="MD Simülasyon Analizleri">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">MD Simülasyon Analizleri</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

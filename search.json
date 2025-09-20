@@ -110,41 +110,21 @@
     ]
   },
   {
+    "objectID": "chapters/02-md-preparations.html#gromacs-programının-kurulması",
+    "href": "chapters/02-md-preparations.html#gromacs-programının-kurulması",
+    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "section": "3.2 Gromacs programının kurulması",
+    "text": "3.2 Gromacs programının kurulması\nGromacs açık kaynak kodlu bir yazılımdır ve şu adresten indirilebilir: https://manual.gromacs.org/current/download.html\nEğer Ubuntu Linux kullanıyorsanız aşağıdaki komut Gromacs’ı sizin için kuracaktır:\nsudo apt install gromacs",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+    ]
+  },
+  {
     "objectID": "chapters/02-md-preparations.html#sistemin-inşa-edilmesi",
     "href": "chapters/02-md-preparations.html#sistemin-inşa-edilmesi",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
-    "section": "3.2 Sistemin inşa edilmesi",
-    "text": "3.2 Sistemin inşa edilmesi\nSistemin doğru bir biçimde inşa edilmesi için adım adım ilerlemek gerekir: 1. Proteinin hazırlanması 3. Sisteme solvent eklenmesi 4. Sisteme doğal ortam iyonlarının eklenmesi\n\n3.2.1 Proteinin hazırlanması\nHedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi ve doğru protonasyon durumlarının belirlenmesi için aşağıdaki adımlar uygulanır:\n\ninitial_pdb=AF-P22303-F1-model_v4\n\nfile_prefix=aces_human_monomer_wt\n\nforce_field=amber99sb-ildn\n\n#Call pdb2pqr to determine protonation states of the residues\n#according to pH 7.4\npdb2pqr30 --ff PARSE --ffout AMBER  --titration-state-method\\\n    propka --with-ph 7.4 ${initial_pdb}.pdb \\\n    ${initial_pdb-pwb2pqr30.pqr \\\n    --pdb-output ${initial_pdb}-pwb2pqr30.pdb\n\n#Add hydrogens if absent, select water model and force field\ngmx pdb2gmx -f ${initial_pdb}-pwb2pqr30.pdb \\\n    -o ${file_prefix}_processed.pdb \\\n    -water ${solvent_model} -ff ${force_field} -ignh\n\n\n\n3.2.2 Sisteme solvent eklenmesi\nProteinler genellikle su ortamında işlevlerini yerine getirir. Bu nedenle bir simülasyon yaparken sisteme mutlaka su eklenmesi gerekir. Aşağıdaki bash komutları ile sisteme su ekleyebiliriz.\n\nbuffer=1.1\n\n#Define box properties\ngmx editconf -f ${file_prefix}_processed.pdb \\\n    -o ${file_prefix}_newbox.pdb \\\n    -bt octahedron -c -d ${buffer} -princ\n\n#Note that if spc, spce, or tip3p model is used, solvent_model=spc216\nsolvent_model=tip3p\n\n#Produce box\nif [ \"$solvent_model\" == \"tip3p\" ] || \\\n    [ \"$solvent_model\" == \"spc\" ] || \\\n    [ \"$solvent_model\" == \"spce\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs spc216.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\nif [ \"$solvent_model\" == \"tip4p\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs tip4p.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\n\n3.2.3 Sisteme doğal ortam iyonlarının eklenmesi\nAşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır.\n#Prepare for ion addition\ngmx grompp -f ions2.mdp -c ${file_prefix}_solv.pdb -maxwarn 2 \\\n    -p topol.top -o ions.tpr\n\n#Produce and place ions\ngmx genion -s ions.tpr -o ${file_prefix}_solv_ions.pdb \\\n    -p topol.top -pname NA -nname CL -neutral -conc 0.15\n\n#Good news: Preparation is over!\n#Bad news : Trouble has just started!",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/02-md-preparations.html#enerji-minimizasyonu",
-    "href": "chapters/02-md-preparations.html#enerji-minimizasyonu",
-    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
-    "section": "3.3 Enerji minimizasyonu",
-    "text": "3.3 Enerji minimizasyonu\nHazırladığımız sistemde birbirine aşırı yakın parçacıklar olabilir. Bunların birbirinden uzaklaştırılması ve parçaçıklarının belirli bir denge konumuna getirilmesi gerekir. Bunun için sistemin toplam enerjisinin minimize edilmesi gerekir. Bu aşamada parçacıklara herhangi bir hız atanmadığı akılda tutulmalıdır.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/02-md-preparations.html#dengeleme-simülasyonları",
-    "href": "chapters/02-md-preparations.html#dengeleme-simülasyonları",
-    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
-    "section": "3.4 Dengeleme simülasyonları",
-    "text": "3.4 Dengeleme simülasyonları\nDengeleme simülasyonları Gromacs içerisinde iki aşamada yapılır: 1. NVT dengeleme: Bu aşamada sistemin parçacık sayısı (N), hacmi (V) ve sıcaklığı (T) sabit tutulur. 2. NPT dengeleme: Bu aşamada sistemin parçacık sayısı (N), basıncı (P) ve sıcaklığı (T) sabit tutulur.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/02-md-preparations.html#basit-bir-python-örneği",
-    "href": "chapters/02-md-preparations.html#basit-bir-python-örneği",
-    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
-    "section": "3.5 Basit bir Python örneği",
-    "text": "3.5 Basit bir Python örneği\n\nimport numpy as np\n\nv = np.random.normal(0, 1, size=1000)\nprint(\"Ortalama hız:\", np.mean(v))\n\nOrtalama hız: -0.07460420175589985",
+    "section": "3.3 Sistemin inşa edilmesi",
+    "text": "3.3 Sistemin inşa edilmesi\nSistemin doğru bir biçimde inşa edilmesi için adım adım ilerlemek gerekir: 1. Proteinin hazırlanması 3. Sisteme solvent eklenmesi 4. Sisteme doğal ortam iyonlarının eklenmesi\n\n3.3.1 Proteinin hazırlanması\nHedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi ve doğru protonasyon durumlarının belirlenmesi için aşağıdaki adımlar uygulanır:\n\ninitial_pdb=AF-P22303-F1-model_v4\n\nfile_prefix=aces_human_monomer_wt\n\nforce_field=amber99sb-ildn\n\n#Call pdb2pqr to determine protonation states of the residues\n#according to pH 7.4\npdb2pqr30 --ff PARSE --ffout AMBER  --titration-state-method\\\n    propka --with-ph 7.4 ${initial_pdb}.pdb \\\n    ${initial_pdb-pwb2pqr30.pqr \\\n    --pdb-output ${initial_pdb}-pwb2pqr30.pdb\n\n#Add hydrogens if absent, select water model and force field\ngmx pdb2gmx -f ${initial_pdb}-pwb2pqr30.pdb \\\n    -o ${file_prefix}_processed.pdb \\\n    -water ${solvent_model} -ff ${force_field} -ignh\n\n\n\n3.3.2 Sisteme solvent eklenmesi\nProteinler genellikle su ortamında işlevlerini yerine getirir. Bu nedenle bir simülasyon yaparken sisteme mutlaka su eklenmesi gerekir. Aşağıdaki bash komutları ile sisteme su ekleyebiliriz.\n\nbuffer=1.1\n\n#Define box properties\ngmx editconf -f ${file_prefix}_processed.pdb \\\n    -o ${file_prefix}_newbox.pdb \\\n    -bt octahedron -c -d ${buffer} -princ\n\n#Note that if spc, spce, or tip3p model is used, solvent_model=spc216\nsolvent_model=tip3p\n\n#Produce box\nif [ \"$solvent_model\" == \"tip3p\" ] || \\\n    [ \"$solvent_model\" == \"spc\" ] || \\\n    [ \"$solvent_model\" == \"spce\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs spc216.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\nif [ \"$solvent_model\" == \"tip4p\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs tip4p.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\n\n3.3.3 Sisteme doğal ortam iyonlarının eklenmesi\nAşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır.\n#Prepare for ion addition\ngmx grompp -f ions2.mdp -c ${file_prefix}_solv.pdb -maxwarn 2 \\\n    -p topol.top -o ions.tpr\n\n#Produce and place ions\ngmx genion -s ions.tpr -o ${file_prefix}_solv_ions.pdb \\\n    -p topol.top -pname NA -nname CL -neutral -conc 0.15\n\n#Good news: Preparation is over!\n#Bad news : Trouble has just started!",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -153,200 +133,360 @@
     "objectID": "chapters/02-md-preparations.html#bölüm-özeti",
     "href": "chapters/02-md-preparations.html#bölüm-özeti",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
-    "section": "3.6 Bölüm Özeti",
-    "text": "3.6 Bölüm Özeti",
+    "section": "3.4 Bölüm Özeti",
+    "text": "3.4 Bölüm Özeti",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
   },
   {
-    "objectID": "chapters/03-md-analyses.html",
-    "href": "chapters/03-md-analyses.html",
-    "title": "4  MD Simülasyon Analizleri",
+    "objectID": "chapters/03-md-execution.html",
+    "href": "chapters/03-md-execution.html",
+    "title": "4  MD Simülasyonlarını Çalıştırma",
     "section": "",
-    "text": "4.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır. Bu analiz teknikleri yapısal ve enerji analizleri olarak ikiye ayrılabilir. Ele alacağımız yapısal analiz teknikleri şunlardır: RMSD, RMSF, Rg,SASA, ikincil yapı, PCA.",
+    "text": "4.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde moleküler dinamik simülasyonları çalıştırmanın temel aşamalarını ele alacağız. Tüm çalıştırma aşamalarından önce grompp (gromacs preprocessor) programını çalıştırıp tpr uzantılı bir dosya elde etmek gerekir.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyonlarını Çalıştırma</span>"
     ]
   },
   {
-    "objectID": "chapters/03-md-analyses.html#yapısal-analizler",
-    "href": "chapters/03-md-analyses.html#yapısal-analizler",
-    "title": "4  MD Simülasyon Analizleri",
-    "section": "4.2 Yapısal Analizler",
-    "text": "4.2 Yapısal Analizler\nYapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir.\n\n4.2.1 RMSD (Root Mean Squared Distance):\n\n\n4.2.2 RMSF (Root Mean Squared Fluctuations):\n\n\n4.2.3 Rg (Radius of gyration):\n\n\n4.2.4 SASA (Solvent Accessible Surface Area):\n\n\n4.2.5 İkincil Yapı",
+    "objectID": "chapters/03-md-execution.html#enerji-minimizasyonu",
+    "href": "chapters/03-md-execution.html#enerji-minimizasyonu",
+    "title": "4  MD Simülasyonlarını Çalıştırma",
+    "section": "4.2 Enerji minimizasyonu",
+    "text": "4.2 Enerji minimizasyonu\nHazırladığımız sistemde birbirine aşırı yakın parçacıklar olabilir. Bunların birbirinden uzaklaştırılması ve parçaçıklarının belirli bir denge konumuna getirilmesi gerekir. Bunun için sistemin toplam enerjisinin minimize edilmesi gerekir. Bu aşamada parçacıklara herhangi bir hız atanmadığı akılda tutulmalıdır.\n\ngmx grompp -f minim.mdp -c protein.pdb -p topologyFile.top -o em.tpr\ngmx mdrun -v -deffnm em",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyonlarını Çalıştırma</span>"
     ]
   },
   {
-    "objectID": "chapters/03-md-analyses.html#enerji-analizleri",
-    "href": "chapters/03-md-analyses.html#enerji-analizleri",
-    "title": "4  MD Simülasyon Analizleri",
-    "section": "4.3 Enerji Analizleri",
-    "text": "4.3 Enerji Analizleri",
+    "objectID": "chapters/03-md-execution.html#dengeleme-simülasyonları",
+    "href": "chapters/03-md-execution.html#dengeleme-simülasyonları",
+    "title": "4  MD Simülasyonlarını Çalıştırma",
+    "section": "4.3 Dengeleme simülasyonları",
+    "text": "4.3 Dengeleme simülasyonları\nDengeleme simülasyonları Gromacs içerisinde iki aşamada yapılır: 1. NVT dengeleme: Bu aşamada sistemin parçacık sayısı (N), hacmi (V) ve sıcaklığı (T) sabit tutulur. Burada, önceki aşamanın sonunda üretilen em.gro dosyasını input olarak kullanacağız. Minimizasyon dosyasına ek olarak NVT dengelemesi sırasında Gromacs tarafından kullanılacak olan nvt.mdp input dosyasına da ihtiyacımız olacaktır.\n\ngmx grompp -f nvt.mdp -c em.gro -p topologyFile.top -r em.gro -o nvt.tpr\ngmx mdrun -v -deffnm nvt\n\n\nNPT dengeleme: Bu aşamada sistemin parçacık sayısı (N), basıncı (P) ve sıcaklığı (T) sabit tutulur.\n\n\ngmx grompp -f npt.mdp -c nvt.gro -r nvt.gro -t nvt.cpt -p topologyFile.top -o npt.tpr\ngmx mdrun -v -deffnm npt",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyonlarını Çalıştırma</span>"
     ]
   },
   {
-    "objectID": "chapters/03-md-analyses.html#bölüm-özeti",
-    "href": "chapters/03-md-analyses.html#bölüm-özeti",
-    "title": "4  MD Simülasyon Analizleri",
-    "section": "4.4 Bölüm Özeti",
-    "text": "4.4 Bölüm Özeti",
+    "objectID": "chapters/03-md-execution.html#üretim-simülasyonları",
+    "href": "chapters/03-md-execution.html#üretim-simülasyonları",
+    "title": "4  MD Simülasyonlarını Çalıştırma",
+    "section": "4.4 Üretim simülasyonları",
+    "text": "4.4 Üretim simülasyonları\nMD simülasyonunun son aşaması olan üretim simülasyonları, genellikle analizini yapacağımız yörünge ve enerji dosyalarının üretildiği aşamadır. Aslında NPT simülasyonları ile çok benzer parametrelere sahiptir ancak NPT simülasyonlarına göre çok daha uzundur. Aşağıdaki komut üretim simülasyonlarını başlatacaktır.\n\ngmx grompp -f run.mdp -c npt.gro -t npt.cpt -p topologyFile.top -o prod-sim1.tpr\ngmx mdrun -v -deffnm prod-sim1\n\nEğer üretim aşaması simülasyonunuz herhangi bir sebeple yarıda kesilirse, aşağıdaki komut ile kaldığı yerden devam edebilirsiniz.\n\ngmx mdrun -v -s prod-sim1.tpr -cpi prod-sim1.cpt -deffnm prod-sim1\n\nMD simülasyonunuz bittikten sonra simülasyon süresinin uzatılması gerektiğini farkedebiliriz. Bu durumda Gromacs içindeki \\(extend\\) parametresinden yararlanabiliriz. Aşağıdaki komut simülasyonu 75 nanosaniye (75000 pikosaniye) uzatmak için yeni bir tpr dosyası oluşturacaktır. Bu yeni tpr kullanılarak simülasyon, kaldığı yerden devam ettirilebilir.\n\ngmx convert-tpr -s prod-sim1.tpr -extend 75000 -o prod-sim1-extended.tpr\ngmx mdrun -v -s prod-sim1-extended.tpr -cpi prod-sim1.cpt -deffnm prod-sim1\n\nTüm bilimsel çalışmalarda olduğu gibi MD simülasyonlarını da bir kaç kere tekrarlamak gerekir. Bu, bilimsel çalışmanın tekrarlanabilirliğini ispat etmek için olmazsa olmaz bir şeydir.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyonlarını Çalıştırma</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-md-execution.html#yüksek-başarımlı-hesaplama-sistemleri",
+    "href": "chapters/03-md-execution.html#yüksek-başarımlı-hesaplama-sistemleri",
+    "title": "4  MD Simülasyonlarını Çalıştırma",
+    "section": "4.5 Yüksek başarımlı hesaplama sistemleri",
+    "text": "4.5 Yüksek başarımlı hesaplama sistemleri\nMD simülasyonları çok sayıda işlemciye veya ekran kartına ihtiyaç duyulan uzun hesaplamalardır. Bu nedenle bir masaüstü bilgisayar yerine yüksek başarımlı hesaplama sistemlerinin kullanılması daha uygundur. Ülkemizde bu açıdan en iyi kaynaklardan biri Ulakbim tarafında sağlanan TRUBA-TRGrid hizmetidir. Bu hizmetten yararlanmak için şu web sitesini ziyaret edebilirsiniz: https://portal.truba.gov.tr/",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyonlarını Çalıştırma</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-md-execution.html#bölüm-özeti",
+    "href": "chapters/03-md-execution.html#bölüm-özeti",
+    "title": "4  MD Simülasyonlarını Çalıştırma",
+    "section": "4.6 Bölüm Özeti",
+    "text": "4.6 Bölüm Özeti",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>MD Simülasyonlarını Çalıştırma</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html",
+    "href": "chapters/04-md-analyses.html",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "",
+    "text": "5.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır. Bu analiz teknikleri yapısal ve enerji analizleri olarak ikiye ayrılabilir. Ele alacağımız yapısal analiz teknikleri şunlardır: RMSD, RMSF, Rg,SASA, ikincil yapı, PCA.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#yapısal-analizler",
+    "href": "chapters/04-md-analyses.html#yapısal-analizler",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.2 Yapısal Analizler",
+    "text": "5.2 Yapısal Analizler\nYapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir.\n\n5.2.1 RMSD (Root Mean Squared Distance):\n\n\n5.2.2 RMSF (Root Mean Squared Fluctuations):\n\n\n5.2.3 Rg (Radius of gyration):\n\n\n5.2.4 SASA (Solvent Accessible Surface Area):\n\n\n5.2.5 İkincil Yapı",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#enerji-analizleri",
+    "href": "chapters/04-md-analyses.html#enerji-analizleri",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.3 Enerji Analizleri",
+    "text": "5.3 Enerji Analizleri",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#bölüm-özeti",
+    "href": "chapters/04-md-analyses.html#bölüm-özeti",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.4 Bölüm Özeti",
+    "text": "5.4 Bölüm Özeti",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/01-amino-acids-and-proteins.html",
     "href": "chapters/appendices/01-amino-acids-and-proteins.html",
-    "title": "5  Ek 1: Amino Asitler ve Proteinler",
+    "title": "6  Ek 1: Amino Asitler ve Proteinler",
     "section": "",
-    "text": "5.1 Giriş\nProteinler, canlılığın iş yapan makromolekülleridir. Kataliz (enzimler), taşıma (hemoglobin), savunma (antikorlar), sinyal iletimi (reseptörler) ve yapı (keratin, kollajen) gibi pek çok görevi üstlenirler. Tüm bu çeşitliliğin ortak kökeni amino asitlerdir—yani proteinlerin temel yapıtaşları.\nBu bölümde önce amino asitlerin ortak mimarisini ve kimyasal çeşitliliğini özetleyecek, ardından proteinlerin birincil, ikincil, tersiyer ve kuaterner yapı düzeylerini anlaşılır bir dille ele alacağız. Bölüm denklem içermez; kavramsal bir çerçeve sunar.",
+    "text": "6.1 Giriş\nProteinler, canlılığın iş yapan makromolekülleridir. Kataliz (enzimler), taşıma (hemoglobin), savunma (antikorlar), sinyal iletimi (reseptörler) ve yapı (keratin, kollajen) gibi pek çok görevi üstlenirler. Tüm bu çeşitliliğin ortak kökeni amino asitlerdir—yani proteinlerin temel yapıtaşları.\nBu bölümde önce amino asitlerin ortak mimarisini ve kimyasal çeşitliliğini özetleyecek, ardından proteinlerin birincil, ikincil, tersiyer ve kuaterner yapı düzeylerini anlaşılır bir dille ele alacağız. Bölüm denklem içermez; kavramsal bir çerçeve sunar.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/01-amino-acids-and-proteins.html#amino-asitler",
     "href": "chapters/appendices/01-amino-acids-and-proteins.html#amino-asitler",
-    "title": "5  Ek 1: Amino Asitler ve Proteinler",
-    "section": "5.2 Amino Asitler",
-    "text": "5.2 Amino Asitler\nHer amino asit, aynı omurgayı paylaşır: bir amino grubu (–NH₂), bir karboksil grubu (–COOH), kiral bir alfa karbonu (Cα) ve değişken yan zincir (R grubu). R grubu; polar/apolar olma, yük taşıma, aromatiklik veya kükürt içeriği gibi özellikleriyle amino asitlerin kimyasal davranışını belirler.\n\nApolar (hidrofobik): Val, Leu, Ile, Met, Ala, Phe, Trp, Pro\n\nPolar yüksüz: Ser, Thr, Asn, Gln, Tyr, Cys\n\nAsidik (negatif yüklü): Asp, Glu\n\nBazik (pozitif yüklü): Lys, Arg, His\n\nYan zincirlerin bu çeşitliliği, proteinlerin katlanma dinamiklerinden etkileşim ağlarına kadar her şeyi etkiler.\n\n\n\n\n\n\nŞekil 5.1: Amino asidin genel yapısı\n\n\n\nTODO: Şekil 5.1’yi düzeltmeyi unutma. !!!",
+    "title": "6  Ek 1: Amino Asitler ve Proteinler",
+    "section": "6.2 Amino Asitler",
+    "text": "6.2 Amino Asitler\nHer amino asit, aynı omurgayı paylaşır: bir amino grubu (–NH₂), bir karboksil grubu (–COOH), kiral bir alfa karbonu (Cα) ve değişken yan zincir (R grubu). R grubu; polar/apolar olma, yük taşıma, aromatiklik veya kükürt içeriği gibi özellikleriyle amino asitlerin kimyasal davranışını belirler.\n\nApolar (hidrofobik): Val, Leu, Ile, Met, Ala, Phe, Trp, Pro\n\nPolar yüksüz: Ser, Thr, Asn, Gln, Tyr, Cys\n\nAsidik (negatif yüklü): Asp, Glu\n\nBazik (pozitif yüklü): Lys, Arg, His\n\nYan zincirlerin bu çeşitliliği, proteinlerin katlanma dinamiklerinden etkileşim ağlarına kadar her şeyi etkiler.\n\n\n\n\n\n\nŞekil 6.1: Amino asidin genel yapısı\n\n\n\nTODO: Şekil 6.1’yi düzeltmeyi unutma. !!!",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/01-amino-acids-and-proteins.html#proteinlerin-yapı-düzeyleri",
     "href": "chapters/appendices/01-amino-acids-and-proteins.html#proteinlerin-yapı-düzeyleri",
-    "title": "5  Ek 1: Amino Asitler ve Proteinler",
-    "section": "5.3 Proteinlerin Yapı Düzeyleri",
-    "text": "5.3 Proteinlerin Yapı Düzeyleri\nProtein yapısını kavramak için dört düzeyi ayırt ederiz:\n\nBirincil yapı (primary): Amino asitlerin doğrusal dizilimi (sekans).\n\nİkincil yapı (secondary): Yerel düzenli motifler — α-heliks ve β-tabaka gibi.\n\nTersiyer yapı (tertiary): Tek zincirin üç boyutlu, işlevsel katlanmış hali.\n\nKuaterner yapı (quaternary): Birden fazla polimer zincirinin (alt birimlerin) bir araya gelerek oluşturduğu kompleks.\n\nBu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan zincir etkileşimleri (hidrofobik paketleme, hidrojen bağları, tuz köprüleri, aromatik etkileşimler, disülfit bağları) tersiyer mimariyi şekillendirir; uygun arayüzler ise kuaterner etkileşimleri mümkün kılar.\n\n\n\n\n\n\nŞekil 5.2: Yapı düzeylerinin şematik gösterimi\n\n\n\nTODO: Şekil 5.2’yi düzeltmeyi unutma. !!!",
+    "title": "6  Ek 1: Amino Asitler ve Proteinler",
+    "section": "6.3 Proteinlerin Yapı Düzeyleri",
+    "text": "6.3 Proteinlerin Yapı Düzeyleri\nProtein yapısını kavramak için dört düzeyi ayırt ederiz:\n\nBirincil yapı (primary): Amino asitlerin doğrusal dizilimi (sekans).\n\nİkincil yapı (secondary): Yerel düzenli motifler — α-heliks ve β-tabaka gibi.\n\nTersiyer yapı (tertiary): Tek zincirin üç boyutlu, işlevsel katlanmış hali.\n\nKuaterner yapı (quaternary): Birden fazla polimer zincirinin (alt birimlerin) bir araya gelerek oluşturduğu kompleks.\n\nBu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan zincir etkileşimleri (hidrofobik paketleme, hidrojen bağları, tuz köprüleri, aromatik etkileşimler, disülfit bağları) tersiyer mimariyi şekillendirir; uygun arayüzler ise kuaterner etkileşimleri mümkün kılar.\n\n\n\n\n\n\nŞekil 6.2: Yapı düzeylerinin şematik gösterimi\n\n\n\nTODO: Şekil 6.2’yi düzeltmeyi unutma. !!!",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/01-amino-acids-and-proteins.html#protein-yapısı-belirleme-yöntemleri",
     "href": "chapters/appendices/01-amino-acids-and-proteins.html#protein-yapısı-belirleme-yöntemleri",
-    "title": "5  Ek 1: Amino Asitler ve Proteinler",
-    "section": "5.4 Protein Yapısı Belirleme Yöntemleri",
-    "text": "5.4 Protein Yapısı Belirleme Yöntemleri\nProteinlerin üç boyutlu yapısını anlamak, biyolojik işlevlerini çözümlemek için temel bir gerekliliktir. Bir proteinin dizisi (birincil yapısı) genomdan doğrudan elde edilebilir, ancak bu dizinin nasıl katlanarak üç boyutlu bir yapıya dönüştüğünü bilmek için ek yöntemlere ihtiyaç vardır. Bu yöntemler iki ana başlık altında toplanabilir: deneysel yöntemler ve teorik yöntemler.\n\n5.4.1 Deneysel Yöntemler\n\n5.4.1.1 X-ışını Kristalografisi\nX-ışını kristalografisi, protein yapısını çözmek için uzun yıllardır kullanılan “altın standart” yöntemdir. Protein kristallerinden elde edilen kırınım desenleri analiz edilerek atomların üç boyutlu yerleşimi ortaya çıkarılır.\n- Avantajı: Yüksek çözünürlük (genellikle 2 Å veya daha iyi).\n- Dezavantajı: Kristal büyütmek zordur ve bazı proteinler kristallenmez.\n\n\n5.4.1.2 Nükleer Manyetik Rezonans (NMR) Spektroskopisi\nNMR, çözeltideki proteinlerin yapısını belirlemeye yarar. Atom çekirdekleri arasındaki manyetik etkileşimler ölçülür ve bunlardan uzaysal kısıtlamalar elde edilir.\n- Avantajı: Kristalleşme gerektirmez, proteinin doğal ortamına daha yakındır.\n- Dezavantajı: Genellikle 40 kDa altındaki proteinler için uygundur.\n\n\n5.4.1.3 Kriyo-Elektron Mikroskopisi (Kriyo-EM)\nSon yıllarda büyük bir atılım yapan Kriyo-EM, özellikle büyük makromoleküler komplekslerin yapısını belirlemede öne çıkmaktadır. Proteinler hızlıca dondurulur ve elektron mikroskobu ile görüntülenir.\n- Avantajı: Kristalleşme gerekmez, büyük komplekslerde başarılıdır.\n- Dezavantajı: Küçük proteinlerde çözünürlük sınırlı olabilir.\n\n\n\n5.4.2 Teorik Yöntemler\n\n5.4.2.1 Homoloji Modellemesi\nEğer hedef proteine benzer bir proteinin yapısı biliniyorsa, bu yapı şablon olarak kullanılarak hedef proteinin olası yapısı tahmin edilir.\n- Avantajı: Güvenilir şablon olduğunda iyi sonuç verir.\n- Dezavantajı: Şablon bulunmadığında sınırlıdır.\n\n\n5.4.2.2 Ab initio (de novo) Modelleme\nProtein yapısı tamamen diziden yola çıkarak tahmin edilmeye çalışılır. Fiziksel prensipler veya istatistiksel yaklaşımlar kullanılır.\n- Avantajı: Şablon gerektirmez.\n- Dezavantajı: Özellikle büyük proteinlerde halen zorluklar vardır.\n\n\n5.4.2.3 Yapay Zekâ Tabanlı Yöntemler\nSon dönemde AlphaFold ve benzeri yapay zekâ tabanlı yöntemler, protein yapısı tahmininde çığır açmıştır. Bu sistemler, devasa protein veri tabanlarından öğrenilen bilgileri kullanarak oldukça doğru tahminler yapabilmektedir.\nSonuç olarak, protein yapısını belirleme çalışmaları, biyoinformatik ile yapısal biyolojinin kesişiminde yer almaktadır. Deneysel yöntemler atomik ayrıntıyı verirken, teorik yöntemler hız ve esneklik sağlar. Bu iki yaklaşımın birlikteliği, günümüzde protein biliminin en güçlü araçlarından birini oluşturmaktadır.",
+    "title": "6  Ek 1: Amino Asitler ve Proteinler",
+    "section": "6.4 Protein Yapısı Belirleme Yöntemleri",
+    "text": "6.4 Protein Yapısı Belirleme Yöntemleri\nProteinlerin üç boyutlu yapısını anlamak, biyolojik işlevlerini çözümlemek için temel bir gerekliliktir. Bir proteinin dizisi (birincil yapısı) genomdan doğrudan elde edilebilir, ancak bu dizinin nasıl katlanarak üç boyutlu bir yapıya dönüştüğünü bilmek için ek yöntemlere ihtiyaç vardır. Bu yöntemler iki ana başlık altında toplanabilir: deneysel yöntemler ve teorik yöntemler.\n\n6.4.1 Deneysel Yöntemler\n\n6.4.1.1 X-ışını Kristalografisi\nX-ışını kristalografisi, protein yapısını çözmek için uzun yıllardır kullanılan “altın standart” yöntemdir. Protein kristallerinden elde edilen kırınım desenleri analiz edilerek atomların üç boyutlu yerleşimi ortaya çıkarılır.\n- Avantajı: Yüksek çözünürlük (genellikle 2 Å veya daha iyi).\n- Dezavantajı: Kristal büyütmek zordur ve bazı proteinler kristallenmez.\n\n\n6.4.1.2 Nükleer Manyetik Rezonans (NMR) Spektroskopisi\nNMR, çözeltideki proteinlerin yapısını belirlemeye yarar. Atom çekirdekleri arasındaki manyetik etkileşimler ölçülür ve bunlardan uzaysal kısıtlamalar elde edilir.\n- Avantajı: Kristalleşme gerektirmez, proteinin doğal ortamına daha yakındır.\n- Dezavantajı: Genellikle 40 kDa altındaki proteinler için uygundur.\n\n\n6.4.1.3 Kriyo-Elektron Mikroskopisi (Kriyo-EM)\nSon yıllarda büyük bir atılım yapan Kriyo-EM, özellikle büyük makromoleküler komplekslerin yapısını belirlemede öne çıkmaktadır. Proteinler hızlıca dondurulur ve elektron mikroskobu ile görüntülenir.\n- Avantajı: Kristalleşme gerekmez, büyük komplekslerde başarılıdır.\n- Dezavantajı: Küçük proteinlerde çözünürlük sınırlı olabilir.\n\n\n\n6.4.2 Teorik Yöntemler\n\n6.4.2.1 Homoloji Modellemesi\nEğer hedef proteine benzer bir proteinin yapısı biliniyorsa, bu yapı şablon olarak kullanılarak hedef proteinin olası yapısı tahmin edilir.\n- Avantajı: Güvenilir şablon olduğunda iyi sonuç verir.\n- Dezavantajı: Şablon bulunmadığında sınırlıdır.\n\n\n6.4.2.2 Ab initio (de novo) Modelleme\nProtein yapısı tamamen diziden yola çıkarak tahmin edilmeye çalışılır. Fiziksel prensipler veya istatistiksel yaklaşımlar kullanılır.\n- Avantajı: Şablon gerektirmez.\n- Dezavantajı: Özellikle büyük proteinlerde halen zorluklar vardır.\n\n\n6.4.2.3 Yapay Zekâ Tabanlı Yöntemler\nSon dönemde AlphaFold ve benzeri yapay zekâ tabanlı yöntemler, protein yapısı tahmininde çığır açmıştır. Bu sistemler, devasa protein veri tabanlarından öğrenilen bilgileri kullanarak oldukça doğru tahminler yapabilmektedir.\nSonuç olarak, protein yapısını belirleme çalışmaları, biyoinformatik ile yapısal biyolojinin kesişiminde yer almaktadır. Deneysel yöntemler atomik ayrıntıyı verirken, teorik yöntemler hız ve esneklik sağlar. Bu iki yaklaşımın birlikteliği, günümüzde protein biliminin en güçlü araçlarından birini oluşturmaktadır.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/01-amino-acids-and-proteins.html#protein-veri-tabanları",
     "href": "chapters/appendices/01-amino-acids-and-proteins.html#protein-veri-tabanları",
-    "title": "5  Ek 1: Amino Asitler ve Proteinler",
-    "section": "5.5 Protein Veri Tabanları",
-    "text": "5.5 Protein Veri Tabanları\nProteinler için en temel deneysel veri kaynağı Protein Databank’tir. Ancak, milyonlarca protein içeren AlphaFold veritabanı da deneysel yapısı bilinmeyen proteinler için oldukça iyi bir başlangıç noktasıdır.",
+    "title": "6  Ek 1: Amino Asitler ve Proteinler",
+    "section": "6.5 Protein Veri Tabanları",
+    "text": "6.5 Protein Veri Tabanları\nProteinler için en temel deneysel veri kaynağı Protein Databank’tir. Ancak, milyonlarca protein içeren AlphaFold veritabanı da deneysel yapısı bilinmeyen proteinler için oldukça iyi bir başlangıç noktasıdır.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/01-amino-acids-and-proteins.html#özet",
     "href": "chapters/appendices/01-amino-acids-and-proteins.html#özet",
-    "title": "5  Ek 1: Amino Asitler ve Proteinler",
-    "section": "5.6 Özet",
-    "text": "5.6 Özet\n\nAmino asitler ortak bir omurga üzerinde farklı R grupları ile kimyasal çeşitlilik sunar.\n\nBirincil yapı sekansı, ikincil yapı yerel motifleri, tersiyer yapı tek zincirin 3B katlanmasını ve kuaterner yapı çoklu alt birimlerin montajını ifade eder.\n\nBu hiyerarşi; katlanma, stabilite ve işlev arasındaki ilişkiyi anlamanın anahtarıdır.",
+    "title": "6  Ek 1: Amino Asitler ve Proteinler",
+    "section": "6.6 Özet",
+    "text": "6.6 Özet\n\nAmino asitler ortak bir omurga üzerinde farklı R grupları ile kimyasal çeşitlilik sunar.\n\nBirincil yapı sekansı, ikincil yapı yerel motifleri, tersiyer yapı tek zincirin 3B katlanmasını ve kuaterner yapı çoklu alt birimlerin montajını ifade eder.\n\nBu hiyerarşi; katlanma, stabilite ve işlev arasındaki ilişkiyi anlamanın anahtarıdır.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 1: Amino Asitler ve Proteinler</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/02-md-forcefields.html",
     "href": "chapters/appendices/02-md-forcefields.html",
-    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "title": "7  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
     "section": "",
-    "text": "6.1 Giriş\nMoleküler dinamik (MD) simülasyonları, proteinlerin ve diğer biyomoleküllerin atomik düzeydeki hareketlerini zaman içinde modellemek için kullanılan güçlü hesaplamalı yöntemlerdir. Bu simülasyonlarda temel amaç, Newton mekaniği yasalarına dayanarak atomların konumlarını ve hızlarını belirli zaman adımları boyunca güncellemektir. Ancak atomlar arası etkileşimlerin doğrudan kuantum mekaniği ile hesaplanması çok pahalı olduğundan, empirik kuvvet alanları (force fields) geliştirilmiştir. Kuvvet alanı, sistemdeki atomlar arasındaki potansiyel enerjiyi tanımlayan matematiksel fonksiyonlar ve parametreler bütünüdür.\nProteinlerin simülasyonunda kullanılan kuvvet alanları, hem kovalent bağların özelliklerini hem de bağsız (non‑bonded) etkileşimleri tanımlar. Doğru bir kuvvet alanı seçimi, simülasyon sonuçlarının deneysel verilerle uyumlu olabilmesi için kritik öneme sahiptir.",
+    "text": "7.1 Giriş\nMoleküler dinamik (MD) simülasyonları, proteinlerin ve diğer biyomoleküllerin atomik düzeydeki hareketlerini zaman içinde modellemek için kullanılan güçlü hesaplamalı yöntemlerdir. Bu simülasyonlarda temel amaç, Newton mekaniği yasalarına dayanarak atomların konumlarını ve hızlarını belirli zaman adımları boyunca güncellemektir. Ancak atomlar arası etkileşimlerin doğrudan kuantum mekaniği ile hesaplanması çok pahalı olduğundan, empirik kuvvet alanları (force fields) geliştirilmiştir. Kuvvet alanı, sistemdeki atomlar arasındaki potansiyel enerjiyi tanımlayan matematiksel fonksiyonlar ve parametreler bütünüdür.\nProteinlerin simülasyonunda kullanılan kuvvet alanları, hem kovalent bağların özelliklerini hem de bağsız (non‑bonded) etkileşimleri tanımlar. Doğru bir kuvvet alanı seçimi, simülasyon sonuçlarının deneysel verilerle uyumlu olabilmesi için kritik öneme sahiptir.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/02-md-forcefields.html#kuvvet-alanlarının-genel-yapısı",
     "href": "chapters/appendices/02-md-forcefields.html#kuvvet-alanlarının-genel-yapısı",
-    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
-    "section": "6.2 Kuvvet Alanlarının Genel Yapısı",
-    "text": "6.2 Kuvvet Alanlarının Genel Yapısı\nTipik bir biyomoleküler kuvvet alanı, potansiyel enerji fonksiyonunu şu bileşenlere ayırır:\n\\[\nE_{total} = E_{bond} + E_{angle} + E_{dihedral} + E_{nonbonded}\n\\]\n\n6.2.1 Bağ (Bond) terimi\nAtom çiftleri arasındaki kovalent bağların uzamasını harmonik yay modeli ile tanımlar:\n\\[\nE_{bond} = \\sum k_b (r - r_0)^2\n\\]\nBurada \\(k_b\\) bağ kuvvet sabiti, \\(r\\) anlık bağ uzunluğu ve \\(r_0\\) denge bağ uzunluğudur.\n\n\n6.2.2 Açı (Angle) terimi\nÜç atom arasındaki bağ açıları için harmonik yaklaşım kullanılır:\n\\[\nE_{angle} = \\sum k_\\theta (\\theta - \\theta_0)^2\n\\]\n\n\n6.2.3 Dihedral (Torsiyon) terimi\nDört atomdan oluşan zincirlerde dönme bariyerlerini tanımlar:\n\\[\nE_{dihedral} = \\sum V_n [1 + \\cos(n\\phi - \\gamma)]\n\\]\nBurada \\(V_n\\) dönme bariyeri yüksekliği, \\(n\\) periyod, \\(\\phi\\) torsiyon açısı ve \\(\\gamma\\) faz kaymasıdır.\n\n\n6.2.4 Bağsız (Non‑bonded) etkileşimler\nVan der Waals ve elektrostatik etkileşimleri içerir. Genelde Lennard–Jones potansiyeli ve Coulomb yasası ile ifade edilir:\n\\[\nE_{nonbonded} = \\sum\\left[ \\frac{A}{r^{12}} - \\frac{B}{r^6} + \\frac{q_i q_j}{4\\pi \\varepsilon_0 r_{ij}} \\right]\n\\]\nBurada \\(A\\) ve \\(B\\) Lennard–Jones sabitleri, \\(q_i\\) ve \\(q_j\\) kısmi yüklerdir.",
+    "title": "7  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "section": "7.2 Kuvvet Alanlarının Genel Yapısı",
+    "text": "7.2 Kuvvet Alanlarının Genel Yapısı\nTipik bir biyomoleküler kuvvet alanı, potansiyel enerji fonksiyonunu şu bileşenlere ayırır:\n\\[\nE_{total} = E_{bond} + E_{angle} + E_{dihedral} + E_{nonbonded}\n\\]\n\n7.2.1 Bağ (Bond) terimi\nAtom çiftleri arasındaki kovalent bağların uzamasını harmonik yay modeli ile tanımlar:\n\\[\nE_{bond} = \\sum k_b (r - r_0)^2\n\\]\nBurada \\(k_b\\) bağ kuvvet sabiti, \\(r\\) anlık bağ uzunluğu ve \\(r_0\\) denge bağ uzunluğudur.\n\n\n7.2.2 Açı (Angle) terimi\nÜç atom arasındaki bağ açıları için harmonik yaklaşım kullanılır:\n\\[\nE_{angle} = \\sum k_\\theta (\\theta - \\theta_0)^2\n\\]\n\n\n7.2.3 Dihedral (Torsiyon) terimi\nDört atomdan oluşan zincirlerde dönme bariyerlerini tanımlar:\n\\[\nE_{dihedral} = \\sum V_n [1 + \\cos(n\\phi - \\gamma)]\n\\]\nBurada \\(V_n\\) dönme bariyeri yüksekliği, \\(n\\) periyod, \\(\\phi\\) torsiyon açısı ve \\(\\gamma\\) faz kaymasıdır.\n\n\n7.2.4 Bağsız (Non‑bonded) etkileşimler\nVan der Waals ve elektrostatik etkileşimleri içerir. Genelde Lennard–Jones potansiyeli ve Coulomb yasası ile ifade edilir:\n\\[\nE_{nonbonded} = \\sum\\left[ \\frac{A}{r^{12}} - \\frac{B}{r^6} + \\frac{q_i q_j}{4\\pi \\varepsilon_0 r_{ij}} \\right]\n\\]\nBurada \\(A\\) ve \\(B\\) Lennard–Jones sabitleri, \\(q_i\\) ve \\(q_j\\) kısmi yüklerdir.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/02-md-forcefields.html#protein-simülasyonlarında-kullanılan-başlıca-kuvvet-alanları",
     "href": "chapters/appendices/02-md-forcefields.html#protein-simülasyonlarında-kullanılan-başlıca-kuvvet-alanları",
-    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
-    "section": "6.3 Protein Simülasyonlarında Kullanılan Başlıca Kuvvet Alanları",
-    "text": "6.3 Protein Simülasyonlarında Kullanılan Başlıca Kuvvet Alanları\nYukarıdaki denklemlerde bir sürü sabit parametre olduğunu gördük. Örneğin bağ enerjisini hesaplamak için \\(k_b\\) terimini bilmek gerekir. İki amino birbirine bağlayan C ve N atomları arasındaki peptid bağı için \\(k_b(C-N)\\) değerini nereden elde edeceğiz? Kuvvet alanlarını buna benzer sabitlerin bulunduğu veri setleri olarak değerlendirebiliriz. Biyomoleküllerin MD simülasyonlarında yaygın olarak -kendi içinde tutarlı- bazı veri setleri, bir başka deyişle kuvvet alanları aşağıda tanıtılacaktır.\n\n6.3.1 AMBER\nAMBER (Assisted Model Building with Energy Refinement) aile kuvvet alanları proteinler, nükleik asitler ve ligandlar için yaygın olarak kullanılır. Öne çıkan versiyonlar: ff14SB, ff19SB. Ligand parametrizasyonu için GAFF (General AMBER Force Field) ve kısmi yük hesapları için RESP veya AM1‑BCC yöntemleri tercih edilir.\n\n\n6.3.2 CHARMM\nCHARMM kuvvet alanı geniş kapsamlı parametre setleri sunar (protein, lipid, karbonhidrat vb.). CHARMM36m membran proteinleri ve lipid‑protein etkileşimleri için sık tercih edilen bir versiyondur.\n\n\n6.3.3 OPLS\nOPLS‑AA organik moleküllerin sıvı özelliklerini doğru tahmin etmesi ile bilinir; biyomoleküler simülasyonlarda da kullanılır.\n\n\n6.3.4 GROMOS\nGROMOS serisi, özellikle Avrupa kökenli birçok çalışmada tercih edilen klasik kuvvet alanıdır.\n\n\n6.3.5 Yeni Nesil Kuvvet Alanları\n\nPolarizable force fields (AMOEBA vb.): Elektron bulutunun polarizasyonunu hesaba katarak daha doğru elektrostatik modelleme sağlar.\nML tabanlı potansiyeller: Derin öğrenme ve makine öğrenmesi yöntemleriyle kuantum hesaplamalarına yaklaşıcı potansiyeller geliştirilmektedir.",
+    "title": "7  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "section": "7.3 Protein Simülasyonlarında Kullanılan Başlıca Kuvvet Alanları",
+    "text": "7.3 Protein Simülasyonlarında Kullanılan Başlıca Kuvvet Alanları\nYukarıdaki denklemlerde bir sürü sabit parametre olduğunu gördük. Örneğin bağ enerjisini hesaplamak için \\(k_b\\) terimini bilmek gerekir. İki amino birbirine bağlayan C ve N atomları arasındaki peptid bağı için \\(k_b(C-N)\\) değerini nereden elde edeceğiz? Kuvvet alanlarını buna benzer sabitlerin bulunduğu veri setleri olarak değerlendirebiliriz. Biyomoleküllerin MD simülasyonlarında yaygın olarak -kendi içinde tutarlı- bazı veri setleri, bir başka deyişle kuvvet alanları aşağıda tanıtılacaktır.\n\n7.3.1 AMBER\nAMBER (Assisted Model Building with Energy Refinement) aile kuvvet alanları proteinler, nükleik asitler ve ligandlar için yaygın olarak kullanılır. Öne çıkan versiyonlar: ff14SB, ff19SB. Ligand parametrizasyonu için GAFF (General AMBER Force Field) ve kısmi yük hesapları için RESP veya AM1‑BCC yöntemleri tercih edilir.\n\n\n7.3.2 CHARMM\nCHARMM kuvvet alanı geniş kapsamlı parametre setleri sunar (protein, lipid, karbonhidrat vb.). CHARMM36m membran proteinleri ve lipid‑protein etkileşimleri için sık tercih edilen bir versiyondur.\n\n\n7.3.3 OPLS\nOPLS‑AA organik moleküllerin sıvı özelliklerini doğru tahmin etmesi ile bilinir; biyomoleküler simülasyonlarda da kullanılır.\n\n\n7.3.4 GROMOS\nGROMOS serisi, özellikle Avrupa kökenli birçok çalışmada tercih edilen klasik kuvvet alanıdır.\n\n\n7.3.5 Yeni Nesil Kuvvet Alanları\n\nPolarizable force fields (AMOEBA vb.): Elektron bulutunun polarizasyonunu hesaba katarak daha doğru elektrostatik modelleme sağlar.\nML tabanlı potansiyeller: Derin öğrenme ve makine öğrenmesi yöntemleriyle kuantum hesaplamalarına yaklaşıcı potansiyeller geliştirilmektedir.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/02-md-forcefields.html#kuvvet-alanı-seçiminde-dikkat-edilecek-noktalar",
     "href": "chapters/appendices/02-md-forcefields.html#kuvvet-alanı-seçiminde-dikkat-edilecek-noktalar",
-    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
-    "section": "6.4 Kuvvet Alanı Seçiminde Dikkat Edilecek Noktalar",
-    "text": "6.4 Kuvvet Alanı Seçiminde Dikkat Edilecek Noktalar\n\nProtein tipi: Membran proteinleri için CHARMM36; çözünür globüler proteinler için AMBER ff19SB gibi kombinasyonlar uygun olabilir.\nSu modeli: Kuvvet alanına uygun bir su modeli seçilmelidir (ör. TIP3P, TIP4P‑EW, OPC). Su modeli, özellikle protein yüzeyi ve iyon dağılımı üzerinde belirgin etkiler yapar.\nİyonlar ve konsantrasyon: İyon parametrizasyonu ve iyon konsantrasyonu (NaCl, KCl) biyolojik koşulları yansıtmalıdır.\nLigand/kofaktör parametrizasyonu: Antechamber (AMBER), CGenFF (CHARMM) gibi araçlarla ligand parametreleri çıkarılmalıdır.\nPolarizasyon gereksinimi: Yüksek doğruluk gereken hesaplamalarda polarizable kuvvet alanları düşünülmelidir.\nSimülasyon amaçları: Katlanma, bağlanma serbest enerjisi hesapları, uzun zaman ölçeği dinamikleri gibi farklı amaçlar farklı yaklaşımlar gerektirir.",
+    "title": "7  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "section": "7.4 Kuvvet Alanı Seçiminde Dikkat Edilecek Noktalar",
+    "text": "7.4 Kuvvet Alanı Seçiminde Dikkat Edilecek Noktalar\n\nProtein tipi: Membran proteinleri için CHARMM36; çözünür globüler proteinler için AMBER ff19SB gibi kombinasyonlar uygun olabilir.\nSu modeli: Kuvvet alanına uygun bir su modeli seçilmelidir (ör. TIP3P, TIP4P‑EW, OPC). Su modeli, özellikle protein yüzeyi ve iyon dağılımı üzerinde belirgin etkiler yapar.\nİyonlar ve konsantrasyon: İyon parametrizasyonu ve iyon konsantrasyonu (NaCl, KCl) biyolojik koşulları yansıtmalıdır.\nLigand/kofaktör parametrizasyonu: Antechamber (AMBER), CGenFF (CHARMM) gibi araçlarla ligand parametreleri çıkarılmalıdır.\nPolarizasyon gereksinimi: Yüksek doğruluk gereken hesaplamalarda polarizable kuvvet alanları düşünülmelidir.\nSimülasyon amaçları: Katlanma, bağlanma serbest enerjisi hesapları, uzun zaman ölçeği dinamikleri gibi farklı amaçlar farklı yaklaşımlar gerektirir.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/02-md-forcefields.html#sık-yapılan-hatalar-ve-öneriler",
     "href": "chapters/appendices/02-md-forcefields.html#sık-yapılan-hatalar-ve-öneriler",
-    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
-    "section": "6.5 Sık Yapılan Hatalar ve Öneriler",
-    "text": "6.5 Sık Yapılan Hatalar ve Öneriler\n\nKuvvet alanı ile uyumsuz su modeli kullanmak.\nLigand parametrizasyonunu ihmal etmek veya hatalı parametre kullanmak.\nKısa dengeleme süreleriyle üretime geçmek.\nKesme (cutoff) ve uzun menzilli etkileşimler için uygun algoritmalar (PME vb.) kullanmamak.",
+    "title": "7  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "section": "7.5 Sık Yapılan Hatalar ve Öneriler",
+    "text": "7.5 Sık Yapılan Hatalar ve Öneriler\n\nKuvvet alanı ile uyumsuz su modeli kullanmak.\nLigand parametrizasyonunu ihmal etmek veya hatalı parametre kullanmak.\nKısa dengeleme süreleriyle üretime geçmek.\nKesme (cutoff) ve uzun menzilli etkileşimler için uygun algoritmalar (PME vb.) kullanmamak.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
     ]
   },
   {
     "objectID": "chapters/appendices/02-md-forcefields.html#özet",
     "href": "chapters/appendices/02-md-forcefields.html#özet",
-    "title": "6  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
-    "section": "6.6 Özet",
-    "text": "6.6 Özet\nKuvvet alanları, MD simülasyonlarının temelini oluşturur. AMBER, CHARMM ve OPLS gibi klasik kuvvet alanları günümüzde yaygın olarak kullanılmakta; ancak polarizable kuvvet alanları ve makine öğrenmesi tabanlı yaklaşımlar daha yüksek doğruluk vaat etmektedir. Simülasyonun amacına göre uygun kuvvet alanı, su modeli ve parametrizasyon stratejisi seçilmesi simülasyonun başarısı için kritik önemdedir.",
+    "title": "7  Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları",
+    "section": "7.6 Özet",
+    "text": "7.6 Özet\nKuvvet alanları, MD simülasyonlarının temelini oluşturur. AMBER, CHARMM ve OPLS gibi klasik kuvvet alanları günümüzde yaygın olarak kullanılmakta; ancak polarizable kuvvet alanları ve makine öğrenmesi tabanlı yaklaşımlar daha yüksek doğruluk vaat etmektedir. Simülasyonun amacına göre uygun kuvvet alanı, su modeli ve parametrizasyon stratejisi seçilmesi simülasyonun başarısı için kritik önemdedir.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/03-bash-commands.html",
+    "href": "chapters/appendices/03-bash-commands.html",
+    "title": "8  Ek 1: Bash Komut Satırı",
+    "section": "",
+    "text": "8.1 Giriş\nMoleküler dinamik simülasyonları gibi hesaplamalı çalışmalar yapılırken komut satırı kullanımı vazgeçilmezdir. Linux/Unix tabanlı sistemlerde Bash (Bourne Again Shell), en yaygın kullanılan kabuk (shell) ortamıdır. Ubuntu ve Mac OS’ta komut satırını kullanabilmek için Terminal adındaki uygulamaya başlatmak zorundasınız. Terminal komutlarını çalıştırmak ilk başta size zor gelse de uzun vadede işlerinizi inanılmaz kolaylaştıracaktır. Aşağıda günlük işlerde sıkça kullanılan temel Bash komutları özetlenmiştir.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ek 1: Bash Komut Satırı</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/03-bash-commands.html#dosya-ve-dizin-işlemleri",
+    "href": "chapters/appendices/03-bash-commands.html#dosya-ve-dizin-işlemleri",
+    "title": "8  Ek 1: Bash Komut Satırı",
+    "section": "8.2 Dosya ve Dizin İşlemleri",
+    "text": "8.2 Dosya ve Dizin İşlemleri\n\n\n\nKomut\nAçıklama\nÖrnek\n\n\n\n\npwd\nBulunduğunuz dizini gösterir\npwd\n\n\nls\nDizin içeriğini listeler\nls -l\n\n\ncd\nDizin değiştirir\ncd simulations/\n\n\nmkdir\nYeni dizin oluşturur\nmkdir data\n\n\nrm\nDosya veya dizin siler\nrm file.txt, rm -r old_dir",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ek 1: Bash Komut Satırı</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/03-bash-commands.html#dosya-görüntüleme",
+    "href": "chapters/appendices/03-bash-commands.html#dosya-görüntüleme",
+    "title": "8  Ek 1: Bash Komut Satırı",
+    "section": "8.3 Dosya Görüntüleme",
+    "text": "8.3 Dosya Görüntüleme\n\n\n\nKomut\nAçıklama\nÖrnek\n\n\n\n\ncat\nDosya içeriğini görüntüler\ncat notes.txt\n\n\nless\nUzun dosyaları sayfa sayfa gösterir\nless results.log\n\n\nhead\nİlk satırları görüntüler\nhead -n 20 data.txt\n\n\ntail\nSon satırları görüntüler\ntail -f log.txt",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ek 1: Bash Komut Satırı</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/03-bash-commands.html#kopyalama-ve-taşıma",
+    "href": "chapters/appendices/03-bash-commands.html#kopyalama-ve-taşıma",
+    "title": "8  Ek 1: Bash Komut Satırı",
+    "section": "8.4 Kopyalama ve Taşıma",
+    "text": "8.4 Kopyalama ve Taşıma\n\n\n\n\n\n\n\n\nKomut\nAçıklama\nÖrnek\n\n\n\n\ncp\nDosya veya dizin kopyalar\ncp file1.txt backup.txt\n\n\nmv\nDosya veya dizin taşır/yeniden adlandırır\nmv old.txt new.txt",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ek 1: Bash Komut Satırı</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/03-bash-commands.html#arama-ve-filtreleme",
+    "href": "chapters/appendices/03-bash-commands.html#arama-ve-filtreleme",
+    "title": "8  Ek 1: Bash Komut Satırı",
+    "section": "8.5 Arama ve Filtreleme",
+    "text": "8.5 Arama ve Filtreleme\n\n\n\nKomut\nAçıklama\nÖrnek\n\n\n\n\ngrep\nDosyada metin arar\ngrep \"ERROR\" log.txt\n\n\nfind\nDosya/dizin arar\nfind . -name \"*.pdb\"\n\n\nwc\nSatır, kelime, karakter sayar\nwc -l data.txt",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ek 1: Bash Komut Satırı</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/03-bash-commands.html#süreç-ve-kaynak-yönetimi",
+    "href": "chapters/appendices/03-bash-commands.html#süreç-ve-kaynak-yönetimi",
+    "title": "8  Ek 1: Bash Komut Satırı",
+    "section": "8.6 Süreç ve Kaynak Yönetimi",
+    "text": "8.6 Süreç ve Kaynak Yönetimi\n\n\n\nKomut\nAçıklama\nÖrnek\n\n\n\n\nps\nÇalışan süreçleri listeler\nps aux\n\n\ntop\nGerçek zamanlı süreç takibi\ntop\n\n\nkill\nBelirtilen süreci sonlandırır\nkill 12345",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ek 1: Bash Komut Satırı</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/03-bash-commands.html#dosya-aktarımı",
+    "href": "chapters/appendices/03-bash-commands.html#dosya-aktarımı",
+    "title": "8  Ek 1: Bash Komut Satırı",
+    "section": "8.7 Dosya Aktarımı",
+    "text": "8.7 Dosya Aktarımı\n\n\n\n\n\n\n\n\nKomut\nAçıklama\nÖrnek\n\n\n\n\nscp\nDosyayı uzak makineye kopyalar\nscp file.txt user@server:/home/user/\n\n\nrsync\nSenkronize kopyalama yapar\nrsync -av data/ backup/",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ek 1: Bash Komut Satırı</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/03-bash-commands.html#program-kurma",
+    "href": "chapters/appendices/03-bash-commands.html#program-kurma",
+    "title": "8  Ek 1: Bash Komut Satırı",
+    "section": "8.8 Program Kurma",
+    "text": "8.8 Program Kurma\nUbuntu ve türevi işletim sistemlerin program kurmanın en kolay yolu program adının önüne sudo apt install yazmaktır. Örneğin Gromacs programını kurmak için sudo apt install gromacs yazmak yeterli olur. Burada Gromacs kelimesinin ve komuttaki öteki harflerin küçük olduğuna dikkat etmek gerekir. Program, Ubuntu veri tabanlarında mevcutsa işletim sistemi sizden yönetici şifresini soracak ve sonra programı kuracaktır.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ek 1: Bash Komut Satırı</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/03-bash-commands.html#alıştırmalar",
+    "href": "chapters/appendices/03-bash-commands.html#alıştırmalar",
+    "title": "8  Ek 1: Bash Komut Satırı",
+    "section": "8.9 Alıştırmalar",
+    "text": "8.9 Alıştırmalar\n\n\n\n\n\n\nNot\n\n\n\n\nBulunduğunuz dizinin tam yolunu yazdırın.\n💡 İpucu: pwd\n\nBir dizindeki .pdb uzantılı dosyaların sayısını bulun.\n💡 İpucu: ls *.pdb | wc -l\n\nsimulation.log adlı dosyanın son 20 satırını ekranda gösterin.\n💡 İpucu: tail -n 20 simulation.log\n\ndata/ klasörünü backup/ klasörüne kopyalayın.\n💡 İpucu: cp -r data backup\n\nlog.txt dosyasında “ERROR” geçen satırların sayısını bulun.\n💡 İpucu: grep -c \"ERROR\" log.txt\npdb2pqr programını kurun.\n💡 İpucu: sudo apt .........",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ek 1: Bash Komut Satırı</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendices/03-bash-commands.html#sonuç",
+    "href": "chapters/appendices/03-bash-commands.html#sonuç",
+    "title": "8  Ek 1: Bash Komut Satırı",
+    "section": "8.10 Sonuç",
+    "text": "8.10 Sonuç\nBu komutlar, günlük kullanımda en çok ihtiyaç duyulan Bash araçlarıdır. Moleküler dinamik simülasyonlarının kurulumu ve analizi sırasında bu komutların bilinmesi, iş akışlarını büyük ölçüde hızlandırır.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ek 1: Bash Komut Satırı</span>"
     ]
   },
   {
     "objectID": "references.html",
     "href": "references.html",
-    "title": "7  Kaynaklar",
+    "title": "9  Kaynaklar",
     "section": "",
-    "text": "7.1 Ders Kitapları",
+    "text": "9.1 Ders Kitapları",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Kaynaklar</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Kaynaklar</span>"
     ]
   },
   {
     "objectID": "references.html#ders-kitapları",
     "href": "references.html#ders-kitapları",
-    "title": "7  Kaynaklar",
+    "title": "9  Kaynaklar",
     "section": "",
     "text": "Frenkel, D., & Smit, B. (2001). Understanding Molecular Simulation.\n\n\n\n\n\n\n\nNot\n\n\n\nNisbeten eski bir kitap. Hala C ile örnekler içeriyor.\n\n\n\nRapaport, D. C. (2004). The Art of Molecular Dynamics Simulation.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Kaynaklar</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Kaynaklar</span>"
     ]
   },
   {
     "objectID": "references.html#derleme-makaleler",
     "href": "references.html#derleme-makaleler",
-    "title": "7  Kaynaklar",
-    "section": "7.2 Derleme Makaleler",
-    "text": "7.2 Derleme Makaleler\n\nHollingsworth, S. A., & Dror, R. O. (2018). Molecular dynamics simulation for all. Neuron, 99(6), 1129-1143.\nKarplus, M., & McCammon, J. A. (2002). Molecular dynamics simulations of biomolecules. Nature structural biology, 9(9), 646-652.",
+    "title": "9  Kaynaklar",
+    "section": "9.2 Derleme Makaleler",
+    "text": "9.2 Derleme Makaleler\n\nHollingsworth, S. A., & Dror, R. O. (2018). Molecular dynamics simulation for all. Neuron, 99(6), 1129-1143.\nKarplus, M., & McCammon, J. A. (2002). Molecular dynamics simulations of biomolecules. Nature structural biology, 9(9), 646-652.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Kaynaklar</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Kaynaklar</span>"
     ]
   }
 ]
