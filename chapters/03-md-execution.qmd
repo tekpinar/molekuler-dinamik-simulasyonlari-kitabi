@@ -1,0 +1,78 @@
+---
+title: "MD Simülasyonlarını Çalıştırma"
+---
+
+## Bu Bölümde Neler Öğreneceğiz?
+
+Bu bölümde moleküler dinamik simülasyonları çalıştırmanın temel aşamalarını ele alacağız. Tüm çalıştırma aşamalarından önce grompp (gromacs preprocessor) programını çalıştırıp tpr uzantılı bir dosya elde etmek gerekir. 
+
+
+## Enerji minimizasyonu
+
+Hazırladığımız sistemde birbirine aşırı yakın parçacıklar olabilir. Bunların birbirinden uzaklaştırılması ve parçaçıklarının belirli bir denge konumuna getirilmesi gerekir. Bunun için sistemin toplam enerjisinin minimize edilmesi gerekir. Bu aşamada parçacıklara herhangi bir hız atanmadığı akılda tutulmalıdır. 
+
+```{bash}
+
+gmx grompp -f minim.mdp -c protein.pdb -p topologyFile.top -o em.tpr
+gmx mdrun -v -deffnm em
+
+```
+
+## Dengeleme simülasyonları
+
+Dengeleme simülasyonları Gromacs içerisinde iki aşamada yapılır:
+1. NVT dengeleme: Bu aşamada sistemin parçacık sayısı (N), hacmi (V) ve sıcaklığı (T) sabit tutulur. Burada, önceki aşamanın sonunda üretilen em.gro dosyasını input olarak kullanacağız. Minimizasyon dosyasına ek olarak NVT dengelemesi sırasında Gromacs tarafından kullanılacak olan nvt.mdp input dosyasına da ihtiyacımız olacaktır.
+
+```{bash}
+
+gmx grompp -f nvt.mdp -c em.gro -p topologyFile.top -r em.gro -o nvt.tpr
+gmx mdrun -v -deffnm nvt
+
+```
+
+
+2. NPT dengeleme: Bu aşamada sistemin parçacık sayısı (N), basıncı (P) ve sıcaklığı (T) sabit tutulur.
+
+```{bash}
+
+gmx grompp -f npt.mdp -c nvt.gro -r nvt.gro -t nvt.cpt -p topologyFile.top -o npt.tpr
+gmx mdrun -v -deffnm npt
+
+
+```
+
+## Üretim simülasyonları
+MD simülasyonunun son aşaması olan üretim simülasyonları, genellikle analizini yapacağımız yörünge ve enerji dosyalarının üretildiği aşamadır. Aslında NPT simülasyonları ile çok benzer parametrelere sahiptir ancak NPT simülasyonlarına göre çok daha uzundur. Aşağıdaki komut üretim simülasyonlarını başlatacaktır. 
+
+```{bash}
+
+gmx grompp -f run.mdp -c npt.gro -t npt.cpt -p topologyFile.top -o prod-sim1.tpr
+gmx mdrun -v -deffnm prod-sim1
+
+```
+ 
+
+Eğer üretim aşaması simülasyonunuz herhangi bir sebeple yarıda kesilirse, aşağıdaki komut ile kaldığı yerden devam edebilirsiniz. 
+
+```{bash}
+
+gmx mdrun -v -s prod-sim1.tpr -cpi prod-sim1.cpt -deffnm prod-sim1
+
+```
+
+MD simülasyonunuz bittikten sonra simülasyon süresinin uzatılması gerektiğini farkedebiliriz. Bu durumda Gromacs içindeki $extend$ parametresinden yararlanabiliriz. Aşağıdaki komut simülasyonu 75 nanosaniye (75000 pikosaniye) uzatmak için yeni bir tpr dosyası oluşturacaktır. Bu yeni tpr kullanılarak simülasyon, kaldığı yerden devam ettirilebilir. 
+
+
+```{bash}
+
+gmx convert-tpr -s prod-sim1.tpr -extend 75000 -o prod-sim1-extended.tpr
+gmx mdrun -v -s prod-sim1-extended.tpr -cpi prod-sim1.cpt -deffnm prod-sim1
+
+```
+
+Tüm bilimsel çalışmalarda olduğu gibi MD simülasyonlarını da bir kaç kere tekrarlamak gerekir. Bu, bilimsel çalışmanın tekrarlanabilirliğini ispat etmek için olmazsa olmaz bir şeydir. 
+
+## Yüksek başarımlı hesaplama sistemleri 
+MD simülasyonları çok sayıda işlemciye veya ekran kartına ihtiyaç duyulan uzun hesaplamalardır. Bu nedenle bir masaüstü bilgisayar yerine yüksek başarımlı hesaplama sistemlerinin kullanılması daha uygundur. Ülkemizde bu açıdan en iyi kaynaklardan biri Ulakbim tarafında sağlanan TRUBA-TRGrid hizmetidir. Bu hizmetten yararlanmak için şu web sitesini ziyaret edebilirsiniz: https://portal.truba.gov.tr/
+
+## Bölüm Özeti

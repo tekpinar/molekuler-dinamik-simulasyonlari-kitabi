@@ -11,9 +11,11 @@ book:
   - index.qmd
   - chapters/01-intro.qmd
   - chapters/02-md-preparations.qmd
-  - chapters/03-md-analyses.qmd
+  - chapters/03-md-execution.qmd
+  - chapters/04-md-analyses.qmd
   - chapters/appendices/01-amino-acids-and-proteins.qmd
-  - chapters/appendices/02-md-forcefields.qmd 
+  - chapters/appendices/02-md-forcefields.qmd
+  - chapters/appendices/03-bash-commands.qmd 
   - references.qmd
 
 format:

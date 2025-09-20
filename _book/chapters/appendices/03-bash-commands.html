@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Ek 1: Amino Asitler ve Proteinler – Proteinlerin Moleküler Dinamik Simülasyonları</title>
+<title>8&nbsp; Ek 1: Bash Komut Satırı – Proteinlerin Moleküler Dinamik Simülasyonları</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/appendices/02-md-forcefields.html" rel="next">
-<link href="../../chapters/04-md-analyses.html" rel="prev">
+<link href="../../references.html" rel="next">
+<link href="../../chapters/appendices/02-md-forcefields.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/appendices/01-amino-acids-and-proteins.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ek 1: Amino Asitler ve Proteinler</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/appendices/03-bash-commands.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ek 1: Bash Komut Satırı</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ara" onclick="window.quartoOpenSearch();">
@@ -142,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/appendices/01-amino-acids-and-proteins.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/appendices/01-amino-acids-and-proteins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ek 1: Amino Asitler ve Proteinler</span></span></a>
   </div>
 </li>
@@ -154,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/appendices/03-bash-commands.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/appendices/03-bash-commands.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ek 1: Bash Komut Satırı</span></span></a>
   </div>
 </li>
@@ -174,16 +174,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">İçindekiler</h2>
    
   <ul>
-  <li><a href="#giriş" id="toc-giriş" class="nav-link active" data-scroll-target="#giriş"><span class="header-section-number">6.1</span> Giriş</a></li>
-  <li><a href="#amino-asitler" id="toc-amino-asitler" class="nav-link" data-scroll-target="#amino-asitler"><span class="header-section-number">6.2</span> Amino Asitler</a></li>
-  <li><a href="#proteinlerin-yapı-düzeyleri" id="toc-proteinlerin-yapı-düzeyleri" class="nav-link" data-scroll-target="#proteinlerin-yapı-düzeyleri"><span class="header-section-number">6.3</span> Proteinlerin Yapı Düzeyleri</a></li>
-  <li><a href="#protein-yapısı-belirleme-yöntemleri" id="toc-protein-yapısı-belirleme-yöntemleri" class="nav-link" data-scroll-target="#protein-yapısı-belirleme-yöntemleri"><span class="header-section-number">6.4</span> Protein Yapısı Belirleme Yöntemleri</a>
-  <ul class="collapse">
-  <li><a href="#deneysel-yöntemler" id="toc-deneysel-yöntemler" class="nav-link" data-scroll-target="#deneysel-yöntemler"><span class="header-section-number">6.4.1</span> Deneysel Yöntemler</a></li>
-  <li><a href="#teorik-yöntemler" id="toc-teorik-yöntemler" class="nav-link" data-scroll-target="#teorik-yöntemler"><span class="header-section-number">6.4.2</span> Teorik Yöntemler</a></li>
-  </ul></li>
-  <li><a href="#protein-veri-tabanları" id="toc-protein-veri-tabanları" class="nav-link" data-scroll-target="#protein-veri-tabanları"><span class="header-section-number">6.5</span> Protein Veri Tabanları</a></li>
-  <li><a href="#özet" id="toc-özet" class="nav-link" data-scroll-target="#özet"><span class="header-section-number">6.6</span> Özet</a></li>
+  <li><a href="#giriş" id="toc-giriş" class="nav-link active" data-scroll-target="#giriş"><span class="header-section-number">8.1</span> Giriş</a></li>
+  <li><a href="#dosya-ve-dizin-işlemleri" id="toc-dosya-ve-dizin-işlemleri" class="nav-link" data-scroll-target="#dosya-ve-dizin-işlemleri"><span class="header-section-number">8.2</span> Dosya ve Dizin İşlemleri</a></li>
+  <li><a href="#dosya-görüntüleme" id="toc-dosya-görüntüleme" class="nav-link" data-scroll-target="#dosya-görüntüleme"><span class="header-section-number">8.3</span> Dosya Görüntüleme</a></li>
+  <li><a href="#kopyalama-ve-taşıma" id="toc-kopyalama-ve-taşıma" class="nav-link" data-scroll-target="#kopyalama-ve-taşıma"><span class="header-section-number">8.4</span> Kopyalama ve Taşıma</a></li>
+  <li><a href="#arama-ve-filtreleme" id="toc-arama-ve-filtreleme" class="nav-link" data-scroll-target="#arama-ve-filtreleme"><span class="header-section-number">8.5</span> Arama ve Filtreleme</a></li>
+  <li><a href="#süreç-ve-kaynak-yönetimi" id="toc-süreç-ve-kaynak-yönetimi" class="nav-link" data-scroll-target="#süreç-ve-kaynak-yönetimi"><span class="header-section-number">8.6</span> Süreç ve Kaynak Yönetimi</a></li>
+  <li><a href="#dosya-aktarımı" id="toc-dosya-aktarımı" class="nav-link" data-scroll-target="#dosya-aktarımı"><span class="header-section-number">8.7</span> Dosya Aktarımı</a></li>
+  <li><a href="#program-kurma" id="toc-program-kurma" class="nav-link" data-scroll-target="#program-kurma"><span class="header-section-number">8.8</span> Program Kurma</a></li>
+  <li><a href="#alıştırmalar" id="toc-alıştırmalar" class="nav-link" data-scroll-target="#alıştırmalar"><span class="header-section-number">8.9</span> Alıştırmalar</a></li>
+  <li><a href="#sonuç" id="toc-sonuç" class="nav-link" data-scroll-target="#sonuç"><span class="header-section-number">8.10</span> Sonuç</a></li>
   </ul>
 </nav>
     </div>
@@ -192,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ek 1: Amino Asitler ve Proteinler</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ek 1: Bash Komut Satırı</span></h1>
 </div>
 
 
@@ -209,122 +209,248 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="giriş" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="giriş"><span class="header-section-number">6.1</span> Giriş</h2>
-<p>Proteinler, canlılığın iş yapan makromolekülleridir. Kataliz (enzimler), taşıma (hemoglobin), savunma (antikorlar), sinyal iletimi (reseptörler) ve yapı (keratin, kollajen) gibi pek çok görevi üstlenirler. Tüm bu çeşitliliğin ortak kökeni <strong>amino asitler</strong>dir—yani proteinlerin temel yapıtaşları.</p>
-<p>Bu bölümde önce amino asitlerin ortak mimarisini ve kimyasal çeşitliliğini özetleyecek, ardından proteinlerin <strong>birincil, ikincil, tersiyer ve kuaterner</strong> yapı düzeylerini anlaşılır bir dille ele alacağız. Bölüm denklem içermez; kavramsal bir çerçeve sunar.</p>
+<section id="giriş" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="giriş"><span class="header-section-number">8.1</span> Giriş</h2>
+<p>Moleküler dinamik simülasyonları gibi hesaplamalı çalışmalar yapılırken komut satırı kullanımı vazgeçilmezdir. Linux/Unix tabanlı sistemlerde <strong>Bash</strong> (Bourne Again Shell), en yaygın kullanılan kabuk (shell) ortamıdır. Ubuntu ve Mac OS’ta komut satırını kullanabilmek için Terminal adındaki uygulamaya başlatmak zorundasınız. Terminal komutlarını çalıştırmak ilk başta size zor gelse de uzun vadede işlerinizi inanılmaz kolaylaştıracaktır. Aşağıda günlük işlerde sıkça kullanılan temel Bash komutları özetlenmiştir.</p>
 <hr>
 </section>
-<section id="amino-asitler" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="amino-asitler"><span class="header-section-number">6.2</span> Amino Asitler</h2>
-<p>Her amino asit, aynı omurgayı paylaşır: bir <strong>amino grubu</strong> (–NH₂), bir <strong>karboksil grubu</strong> (–COOH), kiral bir <strong>alfa karbonu</strong> (Cα) ve değişken <strong>yan zincir</strong> (<strong>R grubu</strong>). R grubu; polar/apolar olma, yük taşıma, aromatiklik veya kükürt içeriği gibi özellikleriyle amino asitlerin kimyasal davranışını belirler.</p>
-<ul>
-<li><strong>Apolar (hidrofobik)</strong>: Val, Leu, Ile, Met, Ala, Phe, Trp, Pro<br>
-</li>
-<li><strong>Polar yüksüz</strong>: Ser, Thr, Asn, Gln, Tyr, Cys<br>
-</li>
-<li><strong>Asidik (negatif yüklü)</strong>: Asp, Glu<br>
-</li>
-<li><strong>Bazik (pozitif yüklü)</strong>: Lys, Arg, His</li>
-</ul>
-<p>Yan zincirlerin bu çeşitliliği, proteinlerin katlanma dinamiklerinden etkileşim ağlarına kadar her şeyi etkiler.</p>
-<div id="fig-aa" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-aa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/amino-asit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Şekil&nbsp;6.1: Amino asidin genel yapısı
-</figcaption>
-</figure>
-</div>
-<p>TODO: <a href="#fig-aa" class="quarto-xref">Şekil&nbsp;<span>6.1</span></a>’yi düzeltmeyi unutma. !!!</p>
+<section id="dosya-ve-dizin-işlemleri" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="dosya-ve-dizin-işlemleri"><span class="header-section-number">8.2</span> Dosya ve Dizin İşlemleri</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Komut</th>
+<th>Açıklama</th>
+<th>Örnek</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pwd</code></td>
+<td>Bulunduğunuz dizini gösterir</td>
+<td><code>pwd</code></td>
+</tr>
+<tr class="even">
+<td><code>ls</code></td>
+<td>Dizin içeriğini listeler</td>
+<td><code>ls -l</code></td>
+</tr>
+<tr class="odd">
+<td><code>cd</code></td>
+<td>Dizin değiştirir</td>
+<td><code>cd simulations/</code></td>
+</tr>
+<tr class="even">
+<td><code>mkdir</code></td>
+<td>Yeni dizin oluşturur</td>
+<td><code>mkdir data</code></td>
+</tr>
+<tr class="odd">
+<td><code>rm</code></td>
+<td>Dosya veya dizin siler</td>
+<td><code>rm file.txt</code>, <code>rm -r old_dir</code></td>
+</tr>
+</tbody>
+</table>
 <hr>
 </section>
-<section id="proteinlerin-yapı-düzeyleri" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="proteinlerin-yapı-düzeyleri"><span class="header-section-number">6.3</span> Proteinlerin Yapı Düzeyleri</h2>
-<p>Protein yapısını kavramak için dört düzeyi ayırt ederiz:</p>
+<section id="dosya-görüntüleme" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="dosya-görüntüleme"><span class="header-section-number">8.3</span> Dosya Görüntüleme</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Komut</th>
+<th>Açıklama</th>
+<th>Örnek</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cat</code></td>
+<td>Dosya içeriğini görüntüler</td>
+<td><code>cat notes.txt</code></td>
+</tr>
+<tr class="even">
+<td><code>less</code></td>
+<td>Uzun dosyaları sayfa sayfa gösterir</td>
+<td><code>less results.log</code></td>
+</tr>
+<tr class="odd">
+<td><code>head</code></td>
+<td>İlk satırları görüntüler</td>
+<td><code>head -n 20 data.txt</code></td>
+</tr>
+<tr class="even">
+<td><code>tail</code></td>
+<td>Son satırları görüntüler</td>
+<td><code>tail -f log.txt</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="kopyalama-ve-taşıma" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="kopyalama-ve-taşıma"><span class="header-section-number">8.4</span> Kopyalama ve Taşıma</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 41%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Komut</th>
+<th>Açıklama</th>
+<th>Örnek</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cp</code></td>
+<td>Dosya veya dizin kopyalar</td>
+<td><code>cp file1.txt backup.txt</code></td>
+</tr>
+<tr class="even">
+<td><code>mv</code></td>
+<td>Dosya veya dizin taşır/yeniden adlandırır</td>
+<td><code>mv old.txt new.txt</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="arama-ve-filtreleme" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="arama-ve-filtreleme"><span class="header-section-number">8.5</span> Arama ve Filtreleme</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Komut</th>
+<th>Açıklama</th>
+<th>Örnek</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>grep</code></td>
+<td>Dosyada metin arar</td>
+<td><code>grep "ERROR" log.txt</code></td>
+</tr>
+<tr class="even">
+<td><code>find</code></td>
+<td>Dosya/dizin arar</td>
+<td><code>find . -name "*.pdb"</code></td>
+</tr>
+<tr class="odd">
+<td><code>wc</code></td>
+<td>Satır, kelime, karakter sayar</td>
+<td><code>wc -l data.txt</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="süreç-ve-kaynak-yönetimi" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="süreç-ve-kaynak-yönetimi"><span class="header-section-number">8.6</span> Süreç ve Kaynak Yönetimi</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Komut</th>
+<th>Açıklama</th>
+<th>Örnek</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ps</code></td>
+<td>Çalışan süreçleri listeler</td>
+<td><code>ps aux</code></td>
+</tr>
+<tr class="even">
+<td><code>top</code></td>
+<td>Gerçek zamanlı süreç takibi</td>
+<td><code>top</code></td>
+</tr>
+<tr class="odd">
+<td><code>kill</code></td>
+<td>Belirtilen süreci sonlandırır</td>
+<td><code>kill 12345</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="dosya-aktarımı" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="dosya-aktarımı"><span class="header-section-number">8.7</span> Dosya Aktarımı</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 41%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Komut</th>
+<th>Açıklama</th>
+<th>Örnek</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>scp</code></td>
+<td>Dosyayı uzak makineye kopyalar</td>
+<td><code>scp file.txt user@server:/home/user/</code></td>
+</tr>
+<tr class="even">
+<td><code>rsync</code></td>
+<td>Senkronize kopyalama yapar</td>
+<td><code>rsync -av data/ backup/</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="program-kurma" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="program-kurma"><span class="header-section-number">8.8</span> Program Kurma</h2>
+<p>Ubuntu ve türevi işletim sistemlerin program kurmanın en kolay yolu program adının önüne <code>sudo apt install</code> yazmaktır. Örneğin Gromacs programını kurmak için <code>sudo apt install gromacs</code> yazmak yeterli olur. Burada Gromacs kelimesinin ve komuttaki öteki harflerin küçük olduğuna dikkat etmek gerekir. Program, Ubuntu veri tabanlarında mevcutsa işletim sistemi sizden yönetici şifresini soracak ve sonra programı kuracaktır.</p>
+</section>
+<section id="alıştırmalar" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="alıştırmalar"><span class="header-section-number">8.9</span> Alıştırmalar</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Not
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ol type="1">
-<li><strong>Birincil yapı (primary)</strong>: Amino asitlerin doğrusal dizilimi (sekans).<br>
+<li>Bulunduğunuz dizinin tam yolunu yazdırın.<br>
+💡 İpucu: <code>pwd</code><br>
 </li>
-<li><strong>İkincil yapı (secondary)</strong>: Yerel düzenli motifler — <strong>α-heliks</strong> ve <strong>β-tabaka</strong> gibi.<br>
+<li>Bir dizindeki <code>.pdb</code> uzantılı dosyaların sayısını bulun.<br>
+💡 İpucu: <code>ls *.pdb | wc -l</code><br>
 </li>
-<li><strong>Tersiyer yapı (tertiary)</strong>: Tek zincirin üç boyutlu, işlevsel katlanmış hali.<br>
+<li><code>simulation.log</code> adlı dosyanın son 20 satırını ekranda gösterin.<br>
+💡 İpucu: <code>tail -n 20 simulation.log</code><br>
 </li>
-<li><strong>Kuaterner yapı (quaternary)</strong>: Birden fazla polimer zincirinin (alt birimlerin) bir araya gelerek oluşturduğu kompleks.</li>
+<li><code>data/</code> klasörünü <code>backup/</code> klasörüne kopyalayın.<br>
+💡 İpucu: <code>cp -r data backup</code><br>
+</li>
+<li><code>log.txt</code> dosyasında “ERROR” geçen satırların sayısını bulun.<br>
+💡 İpucu: <code>grep -c "ERROR" log.txt</code></li>
+<li>pdb2pqr programını kurun.<br>
+💡 İpucu: <code>sudo apt .........</code><br>
+</li>
 </ol>
-<p>Bu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan zincir etkileşimleri (hidrofobik paketleme, hidrojen bağları, tuz köprüleri, aromatik etkileşimler, disülfit bağları) tersiyer mimariyi şekillendirir; uygun arayüzler ise kuaterner etkileşimleri mümkün kılar.</p>
-<div id="fig-ps" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/protein-yapilari.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Şekil&nbsp;6.2: Yapı düzeylerinin şematik gösterimi
-</figcaption>
-</figure>
 </div>
-<p>TODO: <a href="#fig-ps" class="quarto-xref">Şekil&nbsp;<span>6.2</span></a>’yi düzeltmeyi unutma. !!!</p>
 <hr>
 </section>
-<section id="protein-yapısı-belirleme-yöntemleri" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="protein-yapısı-belirleme-yöntemleri"><span class="header-section-number">6.4</span> Protein Yapısı Belirleme Yöntemleri</h2>
-<p>Proteinlerin üç boyutlu yapısını anlamak, biyolojik işlevlerini çözümlemek için temel bir gerekliliktir. Bir proteinin dizisi (birincil yapısı) genomdan doğrudan elde edilebilir, ancak bu dizinin nasıl katlanarak üç boyutlu bir yapıya dönüştüğünü bilmek için ek yöntemlere ihtiyaç vardır. Bu yöntemler iki ana başlık altında toplanabilir: <strong>deneysel</strong> yöntemler ve <strong>teorik</strong> yöntemler.</p>
-<section id="deneysel-yöntemler" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="deneysel-yöntemler"><span class="header-section-number">6.4.1</span> Deneysel Yöntemler</h3>
-<section id="x-ışını-kristalografisi" class="level4" data-number="6.4.1.1">
-<h4 data-number="6.4.1.1" class="anchored" data-anchor-id="x-ışını-kristalografisi"><span class="header-section-number">6.4.1.1</span> X-ışını Kristalografisi</h4>
-<p>X-ışını kristalografisi, protein yapısını çözmek için uzun yıllardır kullanılan “altın standart” yöntemdir. Protein kristallerinden elde edilen kırınım desenleri analiz edilerek atomların üç boyutlu yerleşimi ortaya çıkarılır.<br>
-- <strong>Avantajı:</strong> Yüksek çözünürlük (genellikle 2 Å veya daha iyi).<br>
-- <strong>Dezavantajı:</strong> Kristal büyütmek zordur ve bazı proteinler kristallenmez.</p>
-</section>
-<section id="nükleer-manyetik-rezonans-nmr-spektroskopisi" class="level4" data-number="6.4.1.2">
-<h4 data-number="6.4.1.2" class="anchored" data-anchor-id="nükleer-manyetik-rezonans-nmr-spektroskopisi"><span class="header-section-number">6.4.1.2</span> Nükleer Manyetik Rezonans (NMR) Spektroskopisi</h4>
-<p>NMR, çözeltideki proteinlerin yapısını belirlemeye yarar. Atom çekirdekleri arasındaki manyetik etkileşimler ölçülür ve bunlardan uzaysal kısıtlamalar elde edilir.<br>
-- <strong>Avantajı:</strong> Kristalleşme gerektirmez, proteinin doğal ortamına daha yakındır.<br>
-- <strong>Dezavantajı:</strong> Genellikle 40 kDa altındaki proteinler için uygundur.</p>
-</section>
-<section id="kriyo-elektron-mikroskopisi-kriyo-em" class="level4" data-number="6.4.1.3">
-<h4 data-number="6.4.1.3" class="anchored" data-anchor-id="kriyo-elektron-mikroskopisi-kriyo-em"><span class="header-section-number">6.4.1.3</span> Kriyo-Elektron Mikroskopisi (Kriyo-EM)</h4>
-<p>Son yıllarda büyük bir atılım yapan Kriyo-EM, özellikle büyük makromoleküler komplekslerin yapısını belirlemede öne çıkmaktadır. Proteinler hızlıca dondurulur ve elektron mikroskobu ile görüntülenir.<br>
-- <strong>Avantajı:</strong> Kristalleşme gerekmez, büyük komplekslerde başarılıdır.<br>
-- <strong>Dezavantajı:</strong> Küçük proteinlerde çözünürlük sınırlı olabilir.</p>
-</section>
-</section>
-<section id="teorik-yöntemler" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="teorik-yöntemler"><span class="header-section-number">6.4.2</span> Teorik Yöntemler</h3>
-<section id="homoloji-modellemesi" class="level4" data-number="6.4.2.1">
-<h4 data-number="6.4.2.1" class="anchored" data-anchor-id="homoloji-modellemesi"><span class="header-section-number">6.4.2.1</span> Homoloji Modellemesi</h4>
-<p>Eğer hedef proteine benzer bir proteinin yapısı biliniyorsa, bu yapı şablon olarak kullanılarak hedef proteinin olası yapısı tahmin edilir.<br>
-- <strong>Avantajı:</strong> Güvenilir şablon olduğunda iyi sonuç verir.<br>
-- <strong>Dezavantajı:</strong> Şablon bulunmadığında sınırlıdır.</p>
-</section>
-<section id="ab-initio-de-novo-modelleme" class="level4" data-number="6.4.2.2">
-<h4 data-number="6.4.2.2" class="anchored" data-anchor-id="ab-initio-de-novo-modelleme"><span class="header-section-number">6.4.2.2</span> Ab initio (de novo) Modelleme</h4>
-<p>Protein yapısı tamamen diziden yola çıkarak tahmin edilmeye çalışılır. Fiziksel prensipler veya istatistiksel yaklaşımlar kullanılır.<br>
-- <strong>Avantajı:</strong> Şablon gerektirmez.<br>
-- <strong>Dezavantajı:</strong> Özellikle büyük proteinlerde halen zorluklar vardır.</p>
-</section>
-<section id="yapay-zekâ-tabanlı-yöntemler" class="level4" data-number="6.4.2.3">
-<h4 data-number="6.4.2.3" class="anchored" data-anchor-id="yapay-zekâ-tabanlı-yöntemler"><span class="header-section-number">6.4.2.3</span> Yapay Zekâ Tabanlı Yöntemler</h4>
-<p>Son dönemde <strong>AlphaFold</strong> ve benzeri yapay zekâ tabanlı yöntemler, protein yapısı tahmininde çığır açmıştır. Bu sistemler, devasa protein veri tabanlarından öğrenilen bilgileri kullanarak oldukça doğru tahminler yapabilmektedir.</p>
-<p>Sonuç olarak, protein yapısını belirleme çalışmaları, biyoinformatik ile yapısal biyolojinin kesişiminde yer almaktadır. Deneysel yöntemler atomik ayrıntıyı verirken, teorik yöntemler hız ve esneklik sağlar. Bu iki yaklaşımın birlikteliği, günümüzde protein biliminin en güçlü araçlarından birini oluşturmaktadır.</p>
-</section>
-</section>
-</section>
-<section id="protein-veri-tabanları" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="protein-veri-tabanları"><span class="header-section-number">6.5</span> Protein Veri Tabanları</h2>
-<p>Proteinler için en temel deneysel veri kaynağı <a href="https://www.rcsb.org/">Protein Databank</a>’tir. Ancak, milyonlarca protein içeren <a href="https://alphafold.ebi.ac.uk/">AlphaFold</a> veritabanı da deneysel yapısı bilinmeyen proteinler için oldukça iyi bir başlangıç noktasıdır.</p>
-</section>
-<section id="özet" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="özet"><span class="header-section-number">6.6</span> Özet</h2>
-<ul>
-<li>Amino asitler ortak bir omurga üzerinde farklı <strong>R grupları</strong> ile kimyasal çeşitlilik sunar.<br>
-</li>
-<li><strong>Birincil yapı</strong> sekansı, <strong>ikincil yapı</strong> yerel motifleri, <strong>tersiyer yapı</strong> tek zincirin 3B katlanmasını ve <strong>kuaterner yapı</strong> çoklu alt birimlerin montajını ifade eder.<br>
-</li>
-<li>Bu hiyerarşi; katlanma, stabilite ve işlev arasındaki ilişkiyi anlamanın anahtarıdır.</li>
-</ul>
+<section id="sonuç" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="sonuç"><span class="header-section-number">8.10</span> Sonuç</h2>
+<p>Bu komutlar, günlük kullanımda en çok ihtiyaç duyulan Bash araçlarıdır. Moleküler dinamik simülasyonlarının kurulumu ve analizi sırasında bu komutların bilinmesi, iş akışlarını büyük ölçüde hızlandırır.</p>
 
 
 </section>
@@ -732,13 +858,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/04-md-analyses.html" class="pagination-link" aria-label="MD Simülasyon Analizleri">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">MD Simülasyon Analizleri</span></span>
+      <a href="../../chapters/appendices/02-md-forcefields.html" class="pagination-link" aria-label="Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/appendices/02-md-forcefields.html" class="pagination-link" aria-label="Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Ek 2: Protein Moleküler Dinamik Simülasyonlarında Kuvvet Alanları</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../references.html" class="pagination-link" aria-label="Kaynaklar">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Kaynaklar</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

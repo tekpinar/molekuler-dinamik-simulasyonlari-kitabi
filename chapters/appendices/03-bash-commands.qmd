@@ -1,0 +1,106 @@
+---
+title: "Ek 1: Bash Komut Satırı"
+---
+
+## Giriş
+
+Moleküler dinamik simülasyonları gibi hesaplamalı çalışmalar yapılırken
+komut satırı kullanımı vazgeçilmezdir. Linux/Unix tabanlı sistemlerde
+**Bash** (Bourne Again Shell), en yaygın kullanılan kabuk (shell) ortamıdır.
+Ubuntu ve Mac OS'ta komut satırını kullanabilmek için Terminal adındaki uygulamaya başlatmak zorundasınız.
+Terminal komutlarını çalıştırmak ilk başta size zor gelse de uzun vadede işlerinizi inanılmaz kolaylaştıracaktır.
+Aşağıda günlük işlerde sıkça kullanılan temel Bash komutları özetlenmiştir.
+
+---
+
+## Dosya ve Dizin İşlemleri
+
+| Komut | Açıklama | Örnek |
+|-------|----------|-------|
+| `pwd` | Bulunduğunuz dizini gösterir | `pwd` |
+| `ls`  | Dizin içeriğini listeler | `ls -l` |
+| `cd`  | Dizin değiştirir | `cd simulations/` |
+| `mkdir` | Yeni dizin oluşturur | `mkdir data` |
+| `rm` | Dosya veya dizin siler | `rm file.txt`, `rm -r old_dir` |
+
+---
+
+## Dosya Görüntüleme
+
+| Komut | Açıklama | Örnek |
+|-------|----------|-------|
+| `cat` | Dosya içeriğini görüntüler | `cat notes.txt` |
+| `less` | Uzun dosyaları sayfa sayfa gösterir | `less results.log` |
+| `head` | İlk satırları görüntüler | `head -n 20 data.txt` |
+| `tail` | Son satırları görüntüler | `tail -f log.txt` |
+
+---
+
+## Kopyalama ve Taşıma
+
+| Komut | Açıklama | Örnek |
+|-------|----------|-------|
+| `cp` | Dosya veya dizin kopyalar | `cp file1.txt backup.txt` |
+| `mv` | Dosya veya dizin taşır/yeniden adlandırır | `mv old.txt new.txt` |
+
+---
+
+## Arama ve Filtreleme
+
+| Komut | Açıklama | Örnek |
+|-------|----------|-------|
+| `grep` | Dosyada metin arar | `grep "ERROR" log.txt` |
+| `find` | Dosya/dizin arar | `find . -name "*.pdb"` |
+| `wc` | Satır, kelime, karakter sayar | `wc -l data.txt` |
+
+---
+
+## Süreç ve Kaynak Yönetimi
+
+| Komut | Açıklama | Örnek |
+|-------|----------|-------|
+| `ps` | Çalışan süreçleri listeler | `ps aux` |
+| `top` | Gerçek zamanlı süreç takibi | `top` |
+| `kill` | Belirtilen süreci sonlandırır | `kill 12345` |
+
+---
+
+## Dosya Aktarımı
+
+| Komut | Açıklama | Örnek |
+|-------|----------|-------|
+| `scp` | Dosyayı uzak makineye kopyalar | `scp file.txt user@server:/home/user/` |
+| `rsync` | Senkronize kopyalama yapar | `rsync -av data/ backup/` |
+
+---
+
+## Program Kurma
+
+Ubuntu ve türevi işletim sistemlerin program kurmanın en kolay yolu program adının önüne `sudo apt install` yazmaktır. 
+Örneğin Gromacs programını kurmak için `sudo apt install gromacs` yazmak yeterli olur. Burada Gromacs kelimesinin ve komuttaki öteki harflerin küçük olduğuna dikkat etmek gerekir. Program, Ubuntu veri tabanlarında mevcutsa işletim sistemi sizden yönetici şifresini soracak ve sonra programı kuracaktır. 
+
+
+## Alıştırmalar
+
+::: callout-note
+1. Bulunduğunuz dizinin tam yolunu yazdırın.  
+   💡 İpucu: `pwd`  
+2. Bir dizindeki `.pdb` uzantılı dosyaların sayısını bulun.  
+   💡 İpucu: `ls *.pdb | wc -l`  
+3. `simulation.log` adlı dosyanın son 20 satırını ekranda gösterin.  
+   💡 İpucu: `tail -n 20 simulation.log`  
+4. `data/` klasörünü `backup/` klasörüne kopyalayın.  
+   💡 İpucu: `cp -r data backup`  
+5. `log.txt` dosyasında "ERROR" geçen satırların sayısını bulun.  
+   💡 İpucu: `grep -c "ERROR" log.txt` 
+6. pdb2pqr programını kurun.  
+   💡 İpucu: `sudo apt .........`  
+:::
+
+---
+
+## Sonuç
+
+Bu komutlar, günlük kullanımda en çok ihtiyaç duyulan Bash araçlarıdır.
+Moleküler dinamik simülasyonlarının kurulumu ve analizi sırasında
+bu komutların bilinmesi, iş akışlarını büyük ölçüde hızlandırır.
