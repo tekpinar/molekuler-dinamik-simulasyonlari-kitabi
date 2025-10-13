@@ -8,29 +8,8 @@ Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart
 
 
 ## Yapısal Analizler
-Yapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir. 
-
-### RMSD (Root Mean Squared Distance):
----
-title: "Moleküler Dinamik Simülasyonlarında RMSD Analizi"
-author: "MT"
-date: today
-format:
-  html:
-    toc: true
-    theme: cosmo
-  pdf:
-    toc: true
-    number-sections: true
----
-
-## Giriş
-
 Moleküler dinamik (MD) simülasyonları, atomik düzeyde bir sistemin zaman içindeki davranışını incelememizi sağlar.  
-Bu tür simülasyonlarda elde edilen sonuçların anlamlı şekilde yorumlanabilmesi için çeşitli **yapısal analiz yöntemleri** kullanılır.  
-Bu yöntemlerden biri de, en yaygın kullanılan **RMSD (Root Mean Square Deviation)** analizidir.
-
----
+Bu tür simülasyonlarda elde edilen sonuçların anlamlı şekilde yorumlanabilmesi için çeşitli **yapısal analiz yöntemleri** kullanılır. Yapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir. 
 
 ## RMSD (Root Mean Square Deviation)
 
@@ -46,11 +25,10 @@ $$
 
 Burada:
 
-- \( N \): Karşılaştırılan atom sayısıdır.  
-- \( $ \mathbf{r}_i(t) $ \): Zaman \( t \)’deki i. atomun koordinatıdır.  
-- \( $ \mathbf{r}_i^{ref} $ \): Referans yapıdaki i. atomun koordinatıdır.  
+- $N$: Karşılaştırılan atom sayısıdır.  
+- $\mathbf{r}_i(t)$: Zaman $t$’deki *i*. atomun koordinatıdır.  
+- $\mathbf{r}_i^{\text{ref}}$: Referans yapıdaki *i*. atomun koordinatıdır.
 
----
 
 ### RMSD'nin Anlamı
 
@@ -77,36 +55,18 @@ Genellikle aşağıdaki seçeneklerden biri tercih edilir:
 3. **Kristal yapı veya deneysel referans**
 
 Her durumda, RMSD hesaplanmadan önce **hizalama (alignment)** yapılmalıdır.  
-Bu hizalama genellikle **Cα (alfa karbon)** atomları üzerinden gerçekleştirilir.
+Bu hizalama genellikle **Cα (alfa karbon)** veya **backbone** atomları üzerinden gerçekleştirilir.
 
 ---
 
-### Örnek RMSD-Zaman Grafiği
 
-Aşağıdaki tipik bir RMSD-zaman grafiği örneğidir (örnek verilerle gösterilmiştir):
+## RMSF (Root Mean Squared Fluctuations):
 
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-#| fig-cap: "RMSD'nin zaman içindeki değişimi (örnek veri)."
-#| label: fig-rmsd
+## Rg (Radius of gyration):
 
-rmsd <- data.frame(
-  time = seq(0, 100, by=1),
-  value = 1 + 0.3 * sin(seq(0, 10, length.out = 101)) + 0.05 * rnorm(101)
-)
+## SASA (Solvent Accessible Surface Area):
 
-plot(rmsd$time, rmsd$value, type="l", xlab="Zaman (ns)", ylab="RMSD (Å)", main="RMSD Zaman Grafiği")
-
-
-### RMSF (Root Mean Squared Fluctuations):
-
-### Rg (Radius of gyration):
-
-### SASA (Solvent Accessible Surface Area):
-
-### İkincil Yapı
+## İkincil Yapı
 
 ## Enerji Analizleri
 

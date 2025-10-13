@@ -206,7 +206,7 @@
     "section": "",
     "text": "5.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart teknikler anlatılacaktır. Bu analiz teknikleri yapısal ve enerji analizleri olarak ikiye ayrılabilir. Ele alacağımız yapısal analiz teknikleri şunlardır: RMSD, RMSF, Rg,SASA, ikincil yapı, PCA.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonlarında RMSD Analizi</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
   },
   {
@@ -214,59 +214,79 @@
     "href": "chapters/04-md-analyses.html#yapısal-analizler",
     "title": "5  MD Simülasyon Analizleri",
     "section": "5.2 Yapısal Analizler",
-    "text": "5.2 Yapısal Analizler\nYapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir.",
+    "text": "5.2 Yapısal Analizler\nMoleküler dinamik (MD) simülasyonları, atomik düzeyde bir sistemin zaman içindeki davranışını incelememizi sağlar.\nBu tür simülasyonlarda elde edilen sonuçların anlamlı şekilde yorumlanabilmesi için çeşitli yapısal analiz yöntemleri kullanılır. Yapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonlarında RMSD Analizi</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-md-analyses.html#rmsd-root-mean-squared-distance",
-    "href": "chapters/04-md-analyses.html#rmsd-root-mean-squared-distance",
-    "title": "5  MD Simülasyon Analizleri",
-    "section": "5.3 ### RMSD (Root Mean Squared Distance):",
-    "text": "5.3 ### RMSD (Root Mean Squared Distance):\ntitle: “Moleküler Dinamik Simülasyonlarında RMSD Analizi” author: “MT” date: today format: html: toc: true theme: cosmo pdf: toc: true number-sections: true —",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonlarında RMSD Analizi</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-md-analyses.html#giriş",
-    "href": "chapters/04-md-analyses.html#giriş",
-    "title": "5  MD Simülasyon Analizleri",
-    "section": "5.4 Giriş",
-    "text": "5.4 Giriş\nMoleküler dinamik (MD) simülasyonları, atomik düzeyde bir sistemin zaman içindeki davranışını incelememizi sağlar.\nBu tür simülasyonlarda elde edilen sonuçların anlamlı şekilde yorumlanabilmesi için çeşitli yapısal analiz yöntemleri kullanılır.\nBu yöntemlerden biri de, en yaygın kullanılan RMSD (Root Mean Square Deviation) analizidir.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonlarında RMSD Analizi</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
   },
   {
     "objectID": "chapters/04-md-analyses.html#rmsd-root-mean-square-deviation",
     "href": "chapters/04-md-analyses.html#rmsd-root-mean-square-deviation",
     "title": "5  MD Simülasyon Analizleri",
-    "section": "5.5 RMSD (Root Mean Square Deviation)",
-    "text": "5.5 RMSD (Root Mean Square Deviation)\nRMSD (Root Mean Square Deviation), bir molekülün belirli bir referans yapısına göre ortalama konum değişimini nicel olarak ölçen bir metriktir.\nBasitçe ifade etmek gerekirse, RMSD zaman içinde yapının ne kadar değiştiğini gösterir.\nMatematiksel olarak RMSD şöyle tanımlanır:\n\\[\nRMSD = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^{N} (\\mathbf{r}_i(t) - \\mathbf{r}_i^{ref})^2 }\n\\]\nBurada: - ( N ): Karşılaştırılan atom sayısıdır.\n- ( \\[ \\mathbf{r}_i(t) \\] ): Zaman ( t )’deki i. atomun koordinatıdır.\n- ( \\[ \\mathbf{r}_i^{ref} \\] ): Referans yapıdaki i. atomun koordinatıdır.\n\n\n5.5.1 RMSD’nin Anlamı\nRMSD değeri bize sistemin yapısal kararlılığı hakkında bilgi verir:\n\n\n\nRMSD Değeri\nYorum\n\n\n\n\n0 – 1 Å\nYapı referansa çok benzer; yüksek kararlılık\n\n\n1 – 3 Å\nKüçük yapısal değişiklikler; olası uyum veya gevşeme\n\n\n&gt; 3 Å\nBelirgin yapısal değişim veya konformasyonel geçiş\n\n\n\n\n💡 RMSD’nin tek başına bir ölçüt olmadığı unutulmamalıdır.\nYüksek RMSD değeri her zaman sistemin dengesiz olduğu anlamına gelmez; yapının farklı ama kararlı bir konformasyona geçmesi de mümkündür.\n\n\n\n\n5.5.2 Referans Yapı Seçimi\nRMSD analizinde kullanılacak referans yapı son derece önemlidir.\nGenellikle aşağıdaki seçeneklerden biri tercih edilir:\n\nBaşlangıç yapısı (örneğin enerji minimizasyon sonrası yapı)\n\nZaman ortalaması alınmış yapı\n\nKristal yapı veya deneysel referans\n\nHer durumda, RMSD hesaplanmadan önce hizalama (alignment) yapılmalıdır.\nBu hizalama genellikle Cα (alfa karbon) atomları üzerinden gerçekleştirilir.\n\n\n\n5.5.3 Örnek RMSD-Zaman Grafiği\nAşağıdaki tipik bir RMSD-zaman grafiği örneğidir (örnek verilerle gösterilmiştir):\n#| echo: false #| message: false #| warning: false #| fig-cap: “RMSD’nin zaman içindeki değişimi (örnek veri).” #| label: fig-rmsd\nrmsd &lt;- data.frame( time = seq(0, 100, by=1), value = 1 + 0.3 * sin(seq(0, 10, length.out = 101)) + 0.05 * rnorm(101) )\nplot(rmsd\\(time, rmsd\\)value, type=“l”, xlab=“Zaman (ns)”, ylab=“RMSD (Å)”, main=“RMSD Zaman Grafiği”)\n\n\n5.5.4 RMSF (Root Mean Squared Fluctuations):\n\n\n5.5.5 Rg (Radius of gyration):\n\n\n5.5.6 SASA (Solvent Accessible Surface Area):\n\n\n5.5.7 İkincil Yapı",
+    "section": "5.3 RMSD (Root Mean Square Deviation)",
+    "text": "5.3 RMSD (Root Mean Square Deviation)\nRMSD (Root Mean Square Deviation), bir molekülün belirli bir referans yapısına göre ortalama konum değişimini nicel olarak ölçen bir metriktir.\nBasitçe ifade etmek gerekirse, RMSD zaman içinde yapının ne kadar değiştiğini gösterir.\nMatematiksel olarak RMSD şöyle tanımlanır:\n\\[\nRMSD = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^{N} (\\mathbf{r}_i(t) - \\mathbf{r}_i^{ref})^2 }\n\\]\nBurada:\n\n\\(N\\): Karşılaştırılan atom sayısıdır.\n\n\\(\\mathbf{r}_i(t)\\): Zaman \\(t\\)’deki i. atomun koordinatıdır.\n\n\\(\\mathbf{r}_i^{\\text{ref}}\\): Referans yapıdaki i. atomun koordinatıdır.\n\n\n5.3.1 RMSD’nin Anlamı\nRMSD değeri bize sistemin yapısal kararlılığı hakkında bilgi verir:\n\n\n\nRMSD Değeri\nYorum\n\n\n\n\n0 – 1 Å\nYapı referansa çok benzer; yüksek kararlılık\n\n\n1 – 3 Å\nKüçük yapısal değişiklikler; olası uyum veya gevşeme\n\n\n&gt; 3 Å\nBelirgin yapısal değişim veya konformasyonel geçiş\n\n\n\n\n💡 RMSD’nin tek başına bir ölçüt olmadığı unutulmamalıdır.\nYüksek RMSD değeri her zaman sistemin dengesiz olduğu anlamına gelmez; yapının farklı ama kararlı bir konformasyona geçmesi de mümkündür.\n\n\n\n\n5.3.2 Referans Yapı Seçimi\nRMSD analizinde kullanılacak referans yapı son derece önemlidir.\nGenellikle aşağıdaki seçeneklerden biri tercih edilir:\n\nBaşlangıç yapısı (örneğin enerji minimizasyon sonrası yapı)\n\nZaman ortalaması alınmış yapı\n\nKristal yapı veya deneysel referans\n\nHer durumda, RMSD hesaplanmadan önce hizalama (alignment) yapılmalıdır.\nBu hizalama genellikle Cα (alfa karbon) veya backbone atomları üzerinden gerçekleştirilir.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonlarında RMSD Analizi</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#rmsf-root-mean-squared-fluctuations",
+    "href": "chapters/04-md-analyses.html#rmsf-root-mean-squared-fluctuations",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.4 RMSF (Root Mean Squared Fluctuations):",
+    "text": "5.4 RMSF (Root Mean Squared Fluctuations):",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#rg-radius-of-gyration",
+    "href": "chapters/04-md-analyses.html#rg-radius-of-gyration",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.5 Rg (Radius of gyration):",
+    "text": "5.5 Rg (Radius of gyration):",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#sasa-solvent-accessible-surface-area",
+    "href": "chapters/04-md-analyses.html#sasa-solvent-accessible-surface-area",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.6 SASA (Solvent Accessible Surface Area):",
+    "text": "5.6 SASA (Solvent Accessible Surface Area):",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#ikincil-yapı",
+    "href": "chapters/04-md-analyses.html#ikincil-yapı",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.7 İkincil Yapı",
+    "text": "5.7 İkincil Yapı",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
   },
   {
     "objectID": "chapters/04-md-analyses.html#enerji-analizleri",
     "href": "chapters/04-md-analyses.html#enerji-analizleri",
     "title": "5  MD Simülasyon Analizleri",
-    "section": "5.6 Enerji Analizleri",
-    "text": "5.6 Enerji Analizleri",
+    "section": "5.8 Enerji Analizleri",
+    "text": "5.8 Enerji Analizleri",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonlarında RMSD Analizi</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
   },
   {
     "objectID": "chapters/04-md-analyses.html#bölüm-özeti",
     "href": "chapters/04-md-analyses.html#bölüm-özeti",
     "title": "5  MD Simülasyon Analizleri",
-    "section": "5.7 Bölüm Özeti",
-    "text": "5.7 Bölüm Özeti",
+    "section": "5.9 Bölüm Özeti",
+    "text": "5.9 Bölüm Özeti",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Moleküler Dinamik Simülasyonlarında RMSD Analizi</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
   },
   {
