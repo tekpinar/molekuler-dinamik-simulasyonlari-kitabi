@@ -44,7 +44,7 @@
     "href": "chapters/01-intro.html#temel-mantık",
     "title": "2  Teorik Temeller",
     "section": "2.4 Temel Mantık",
-    "text": "2.4 Temel Mantık\nBir MD simülasyonu, kabaca üç aşamadan oluşur:\n\nBaşlangıç Modelinin Hazırlanması\nÇalışılmak istenen sistemin atomik koordinatları tanımlanır. Bu bir proteinin yapısı, bir polimer zinciri ya da basit bir sıvı karışımı olabilir.\nSistemin Enerjisinin Belirlenmesi\nAtomlar arası etkileşimleri tanımlayan “kuvvet alanı” seçilir. Kuvvet alanı atomlar arası etkileşmelerin hesaplanabilmesi için ihtiyaç duyacağımız parametreler setidir. Bu parametre seti kullanılarak, öncelikle sistemin toplam enerjisi jesaplanır.\nEtki Eden Kuvvetlerin Belirlenmesi\nKorunumlu kuvvetlerin olduğu bir sistemde enerji bilinirse her atom üzerine etki eden kuvvetler hesaplanabilir.\nEtki Eden İvmelerin Belirlenmesi\nEğer bir atoma etkiyen net kuvvet bilinirse F=ma denklemi ile ona etkiye ivme hesaplanabilir.\nZamanın Çok Küçük Adımlarlar İlerletilmesi\nİvme bilinirse hızı hesaplamak sadece temel fizik denklemlerinin uygulanmasıdır. Hız kullanılarak küçük bir zaman dilimi sonrasındaki (dt: genellikle bir kaç femtosaniye) konumlar hesaplanabilir. Konumlar güncellendiği için sistemin enerjisi artık değişmiştir. Bu durumda tekrar 2. adıma gidip bu döngüyü tekrarlamak gerekir.\n\nBu adımların yinelenmesiyle sistemin dinamikleri elde edilir. Ortaya çıkan veriler, sonrasında analiz edilerek anlamlı bilimsel sonuçlara dönüştürülür.",
+    "text": "2.4 Temel Mantık\nBir MD simülasyonu, kabaca üç aşamadan oluşur:\n\nBaşlangıç Modelinin Hazırlanması\nÇalışılmak istenen sistemin atomik koordinatları tanımlanır. Bu bir proteinin yapısı, bir polimer zinciri ya da basit bir sıvı karışımı olabilir.\nSistemin Enerjisinin Belirlenmesi\nAtomlar arası etkileşimleri tanımlayan “kuvvet alanı” seçilir. Kuvvet alanı atomlar arası etkileşmelerin hesaplanabilmesi için ihtiyaç duyacağımız parametreler setidir. Bu parametre seti kullanılarak, öncelikle sistemin toplam enerjisi jesaplanır.\nEtki Eden Kuvvetlerin Belirlenmesi\nKorunumlu kuvvetlerin olduğu bir sistemde enerji bilinirse her atom üzerine etki eden kuvvetler hesaplanabilir.\nEtki Eden İvmelerin Belirlenmesi\nEğer bir atoma etkiyen net kuvvet bilinirse F=ma denklemi ile ona etkiye ivme hesaplanabilir.\nZamanın Çok Küçük Adımlarlar İlerletilmesi\nİvme bilinirse hızı hesaplamak sadece temel fizik denklemlerinin uygulanmasıdır. Hız kullanılarak küçük bir zaman dilimi sonrasındaki (dt: genellikle bir kaç femtosaniye) konumlar hesaplanabilir. Konumlar güncellendiği için sistemin enerjisi artık değişmiştir. Bu durumda tekrar 2. adıma gidip bu döngüyü tekrarlamak gerekir. Gündelik hayatta SI birim sistemine göre en küçük zaman birimi saniyedir. Ancak MD simülasyonlarında femtosaniye zaman birimi yaygın olarak kullanılır. Femtosaniye, pikosaniye, nanosaniye, mikrosaniye, milisaniye ve saniye zaman birimleri arasındaki ilişki aşağıdaki tabloda gösterilmiştir.\nAşağıdaki tablo, saniyenin alt katmanlarındaki birimlerin birbirine ve saniyeye göre büyüklüklerini göstermektedir.\n\n\n\n\n\n\n\n\n\n\nBirim Adı\nSembol\n1 Birimin Saniye Cinsinden Değeri\n1 Saniyede Kaç Tane\nAçıklama\n\n\n\n\nFemtosaniye\nfs\n10⁻¹⁵ s\n1 000 000 000 000 000\n1 saniyenin katrilyonda biri\n\n\nPikosaniye\nps\n10⁻¹² s\n1 000 000 000 000\n1 saniyenin trilyonda biri\n\n\nNanosaniye\nns\n10⁻⁹ s\n1 000 000 000\n1 saniyenin milyarda biri\n\n\nMikrosaniye\nµs\n10⁻⁶ s\n1 000 000\n1 saniyenin milyonda biri\n\n\nMilisaniye\nms\n10⁻³ s\n1 000\n1 saniyenin binde biri\n\n\nSaniye\ns\n1 s\n1\nSI temel zaman birimi\n\n\n\n\nDönüşüm Örnekleri\n\n1 ns = 1000 ps\n\n1 µs = 1000 ns\n\n1 ms = 1000 µs\n\n1 s = 1000 ms\n\n\n\nps[“Pikosaniye (10⁻¹²)”] ps –&gt; ns[“Nanosaniye (10⁻⁹)”] ns –&gt; µs[“Mikrosaniye (10⁻⁶)”] µs –&gt; ms[“Milisaniye (10⁻³)”] ms –&gt; s[“Saniye (1)”]\n— –&gt;\n\nBu adımların yinelenmesiyle sistemin dinamikleri elde edilir. Ortaya çıkan veriler, sonrasında analiz edilerek anlamlı bilimsel sonuçlara dönüştürülür.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Teorik Temeller</span>"
     ]
@@ -214,7 +214,57 @@
     "href": "chapters/04-md-analyses.html#yapısal-analizler",
     "title": "5  MD Simülasyon Analizleri",
     "section": "5.2 Yapısal Analizler",
-    "text": "5.2 Yapısal Analizler\nYapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir.\n\n5.2.1 RMSD (Root Mean Squared Distance):\n\n\n5.2.2 RMSF (Root Mean Squared Fluctuations):\n\n\n5.2.3 Rg (Radius of gyration):\n\n\n5.2.4 SASA (Solvent Accessible Surface Area):\n\n\n5.2.5 İkincil Yapı",
+    "text": "5.2 Yapısal Analizler\nMoleküler dinamik (MD) simülasyonları, atomik düzeyde bir sistemin zaman içindeki davranışını incelememizi sağlar.\nBu tür simülasyonlarda elde edilen sonuçların anlamlı şekilde yorumlanabilmesi için çeşitli yapısal analiz yöntemleri kullanılır. Yapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#rmsd-root-mean-square-deviation",
+    "href": "chapters/04-md-analyses.html#rmsd-root-mean-square-deviation",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.3 RMSD (Root Mean Square Deviation)",
+    "text": "5.3 RMSD (Root Mean Square Deviation)\nRMSD (Root Mean Square Deviation), bir molekülün belirli bir referans yapısına göre ortalama konum değişimini nicel olarak ölçen bir metriktir.\nBasitçe ifade etmek gerekirse, RMSD zaman içinde yapının ne kadar değiştiğini gösterir.\nMatematiksel olarak RMSD şöyle tanımlanır:\n\\[\nRMSD = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^{N} (\\mathbf{r}_i(t) - \\mathbf{r}_i^{ref})^2 }\n\\]\nBurada:\n\n\\(N\\): Karşılaştırılan atom sayısıdır.\n\n\\(\\mathbf{r}_i(t)\\): Zaman \\(t\\)’deki i. atomun koordinatıdır.\n\n\\(\\mathbf{r}_i^{\\text{ref}}\\): Referans yapıdaki i. atomun koordinatıdır.\n\n\n5.3.1 RMSD’nin Anlamı\nRMSD değeri bize sistemin yapısal kararlılığı hakkında bilgi verir:\n\n\n\nRMSD Değeri\nYorum\n\n\n\n\n0 – 1 Å\nYapı referansa çok benzer; yüksek kararlılık\n\n\n1 – 3 Å\nKüçük yapısal değişiklikler; olası uyum veya gevşeme\n\n\n&gt; 3 Å\nBelirgin yapısal değişim veya konformasyonel geçiş\n\n\n\n\n💡 RMSD’nin tek başına bir ölçüt olmadığı unutulmamalıdır.\nYüksek RMSD değeri her zaman sistemin dengesiz olduğu anlamına gelmez; yapının farklı ama kararlı bir konformasyona geçmesi de mümkündür.\n\n\n\n\n5.3.2 Referans Yapı Seçimi\nRMSD analizinde kullanılacak referans yapı son derece önemlidir.\nGenellikle aşağıdaki seçeneklerden biri tercih edilir:\n\nBaşlangıç yapısı (örneğin enerji minimizasyon sonrası yapı)\n\nZaman ortalaması alınmış yapı\n\nKristal yapı veya deneysel referans\n\nHer durumda, RMSD hesaplanmadan önce hizalama (alignment) yapılmalıdır.\nBu hizalama genellikle Cα (alfa karbon) veya backbone atomları üzerinden gerçekleştirilir.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#rmsf-root-mean-squared-fluctuations",
+    "href": "chapters/04-md-analyses.html#rmsf-root-mean-squared-fluctuations",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.4 RMSF (Root Mean Squared Fluctuations):",
+    "text": "5.4 RMSF (Root Mean Squared Fluctuations):",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#rg-radius-of-gyration",
+    "href": "chapters/04-md-analyses.html#rg-radius-of-gyration",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.5 Rg (Radius of gyration):",
+    "text": "5.5 Rg (Radius of gyration):",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#sasa-solvent-accessible-surface-area",
+    "href": "chapters/04-md-analyses.html#sasa-solvent-accessible-surface-area",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.6 SASA (Solvent Accessible Surface Area):",
+    "text": "5.6 SASA (Solvent Accessible Surface Area):",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-md-analyses.html#ikincil-yapı",
+    "href": "chapters/04-md-analyses.html#ikincil-yapı",
+    "title": "5  MD Simülasyon Analizleri",
+    "section": "5.7 İkincil Yapı",
+    "text": "5.7 İkincil Yapı",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
@@ -223,8 +273,8 @@
     "objectID": "chapters/04-md-analyses.html#enerji-analizleri",
     "href": "chapters/04-md-analyses.html#enerji-analizleri",
     "title": "5  MD Simülasyon Analizleri",
-    "section": "5.3 Enerji Analizleri",
-    "text": "5.3 Enerji Analizleri",
+    "section": "5.8 Enerji Analizleri",
+    "text": "5.8 Enerji Analizleri",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
@@ -233,8 +283,8 @@
     "objectID": "chapters/04-md-analyses.html#bölüm-özeti",
     "href": "chapters/04-md-analyses.html#bölüm-özeti",
     "title": "5  MD Simülasyon Analizleri",
-    "section": "5.4 Bölüm Özeti",
-    "text": "5.4 Bölüm Özeti",
+    "section": "5.9 Bölüm Özeti",
+    "text": "5.9 Bölüm Özeti",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
