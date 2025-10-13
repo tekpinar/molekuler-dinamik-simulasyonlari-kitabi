@@ -22,6 +22,7 @@ format:
   html:
     lang: tr
     theme: cerulean
+
   pdf:
     lang: tr
     pdf-engine: lualatex

@@ -137,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-md-analyses.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">MD Simülasyon Analizleri</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Moleküler Dinamik Simülasyonlarında RMSD Analizi</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -236,7 +236,89 @@ Korunumlu kuvvetlerin olduğu bir sistemde enerji bilinirse her atom üzerine et
 <li><p><strong>Etki Eden İvmelerin Belirlenmesi</strong><br>
 Eğer bir atoma etkiyen net kuvvet bilinirse F=ma denklemi ile ona etkiye ivme hesaplanabilir.</p></li>
 <li><p><strong>Zamanın Çok Küçük Adımlarlar İlerletilmesi</strong><br>
-İvme bilinirse hızı hesaplamak sadece temel fizik denklemlerinin uygulanmasıdır. Hız kullanılarak küçük bir zaman dilimi sonrasındaki (dt: genellikle bir kaç femtosaniye) konumlar hesaplanabilir. Konumlar güncellendiği için sistemin enerjisi artık değişmiştir. Bu durumda tekrar 2. adıma gidip bu döngüyü tekrarlamak gerekir.</p></li>
+İvme bilinirse hızı hesaplamak sadece temel fizik denklemlerinin uygulanmasıdır. Hız kullanılarak küçük bir zaman dilimi sonrasındaki (dt: genellikle bir kaç femtosaniye) konumlar hesaplanabilir. Konumlar güncellendiği için sistemin enerjisi artık değişmiştir. Bu durumda tekrar 2. adıma gidip bu döngüyü tekrarlamak gerekir. Gündelik hayatta SI birim sistemine göre en küçük zaman birimi saniyedir. Ancak MD simülasyonlarında femtosaniye zaman birimi yaygın olarak kullanılır. Femtosaniye, pikosaniye, nanosaniye, mikrosaniye, milisaniye ve saniye zaman birimleri arasındaki ilişki aşağıdaki tabloda gösterilmiştir.</p>
+<p>Aşağıdaki tablo, saniyenin alt katmanlarındaki birimlerin birbirine ve saniyeye göre büyüklüklerini göstermektedir.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 9%">
+<col style="width: 38%">
+<col style="width: 22%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Birim Adı</th>
+<th style="text-align: center;">Sembol</th>
+<th style="text-align: right;">1 Birimin Saniye Cinsinden Değeri</th>
+<th style="text-align: right;">1 Saniyede Kaç Tane</th>
+<th>Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Femtosaniye</td>
+<td style="text-align: center;">fs</td>
+<td style="text-align: right;">10⁻¹⁵ s</td>
+<td style="text-align: right;">1 000 000 000 000 000</td>
+<td>1 saniyenin katrilyonda biri</td>
+</tr>
+<tr class="even">
+<td>Pikosaniye</td>
+<td style="text-align: center;">ps</td>
+<td style="text-align: right;">10⁻¹² s</td>
+<td style="text-align: right;">1 000 000 000 000</td>
+<td>1 saniyenin trilyonda biri</td>
+</tr>
+<tr class="odd">
+<td>Nanosaniye</td>
+<td style="text-align: center;">ns</td>
+<td style="text-align: right;">10⁻⁹ s</td>
+<td style="text-align: right;">1 000 000 000</td>
+<td>1 saniyenin milyarda biri</td>
+</tr>
+<tr class="even">
+<td>Mikrosaniye</td>
+<td style="text-align: center;">µs</td>
+<td style="text-align: right;">10⁻⁶ s</td>
+<td style="text-align: right;">1 000 000</td>
+<td>1 saniyenin milyonda biri</td>
+</tr>
+<tr class="odd">
+<td>Milisaniye</td>
+<td style="text-align: center;">ms</td>
+<td style="text-align: right;">10⁻³ s</td>
+<td style="text-align: right;">1 000</td>
+<td>1 saniyenin binde biri</td>
+</tr>
+<tr class="even">
+<td>Saniye</td>
+<td style="text-align: center;">s</td>
+<td style="text-align: right;">1 s</td>
+<td style="text-align: right;">1</td>
+<td>SI temel zaman birimi</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Dönüşüm Örnekleri</p>
+<ul>
+<li>1 ns = 1000 ps<br>
+</li>
+<li>1 µs = 1000 ns<br>
+</li>
+<li>1 ms = 1000 µs<br>
+</li>
+<li>1 s = 1000 ms</li>
+</ul>
+<hr>
+<!-- 
+Grafiksel Görünüm (İsteğe Bağlı)
+
+graph LR
+fs["Femtosaniye (10⁻¹⁵)"] -->
+<p>ps[“Pikosaniye (10⁻¹²)”] ps –&gt; ns[“Nanosaniye (10⁻⁹)”] ns –&gt; µs[“Mikrosaniye (10⁻⁶)”] µs –&gt; ms[“Milisaniye (10⁻³)”] ms –&gt; s[“Saniye (1)”]</p>
+<p>— –&gt;</p></li>
 </ol>
 <p>Bu adımların yinelenmesiyle sistemin dinamikleri elde edilir. Ortaya çıkan veriler, sonrasında analiz edilerek anlamlı bilimsel sonuçlara dönüştürülür.</p>
 <hr>

@@ -11,6 +11,94 @@ Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart
 Yapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir. 
 
 ### RMSD (Root Mean Squared Distance):
+---
+title: "Moleküler Dinamik Simülasyonlarında RMSD Analizi"
+author: "MT"
+date: today
+format:
+  html:
+    toc: true
+    theme: cosmo
+  pdf:
+    toc: true
+    number-sections: true
+---
+
+## Giriş
+
+Moleküler dinamik (MD) simülasyonları, atomik düzeyde bir sistemin zaman içindeki davranışını incelememizi sağlar.  
+Bu tür simülasyonlarda elde edilen sonuçların anlamlı şekilde yorumlanabilmesi için çeşitli **yapısal analiz yöntemleri** kullanılır.  
+Bu yöntemlerden biri de, en yaygın kullanılan **RMSD (Root Mean Square Deviation)** analizidir.
+
+---
+
+## RMSD (Root Mean Square Deviation)
+
+**RMSD (Root Mean Square Deviation)**, bir molekülün belirli bir referans yapısına göre ortalama konum değişimini nicel olarak ölçen bir metriktir.  
+Basitçe ifade etmek gerekirse, RMSD zaman içinde yapının **ne kadar değiştiğini** gösterir.
+
+Matematiksel olarak RMSD şöyle tanımlanır:
+
+$$
+RMSD = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (\mathbf{r}_i(t) - \mathbf{r}_i^{ref})^2 }
+$$
+
+
+Burada:
+
+- \( N \): Karşılaştırılan atom sayısıdır.  
+- \( $ \mathbf{r}_i(t) $ \): Zaman \( t \)’deki i. atomun koordinatıdır.  
+- \( $ \mathbf{r}_i^{ref} $ \): Referans yapıdaki i. atomun koordinatıdır.  
+
+---
+
+### RMSD'nin Anlamı
+
+RMSD değeri bize sistemin **yapısal kararlılığı** hakkında bilgi verir:
+
+| RMSD Değeri | Yorum |
+|--------------|--------|
+| 0 – 1 Å | Yapı referansa çok benzer; yüksek kararlılık |
+| 1 – 3 Å | Küçük yapısal değişiklikler; olası uyum veya gevşeme |
+| > 3 Å | Belirgin yapısal değişim veya konformasyonel geçiş |
+
+> 💡 RMSD’nin tek başına bir ölçüt olmadığı unutulmamalıdır.  
+> Yüksek RMSD değeri her zaman sistemin dengesiz olduğu anlamına gelmez; yapının farklı ama kararlı bir konformasyona geçmesi de mümkündür.
+
+---
+
+### Referans Yapı Seçimi
+
+RMSD analizinde kullanılacak **referans yapı** son derece önemlidir.  
+Genellikle aşağıdaki seçeneklerden biri tercih edilir:
+
+1. **Başlangıç yapısı** (örneğin enerji minimizasyon sonrası yapı)  
+2. **Zaman ortalaması alınmış yapı**  
+3. **Kristal yapı veya deneysel referans**
+
+Her durumda, RMSD hesaplanmadan önce **hizalama (alignment)** yapılmalıdır.  
+Bu hizalama genellikle **Cα (alfa karbon)** atomları üzerinden gerçekleştirilir.
+
+---
+
+### Örnek RMSD-Zaman Grafiği
+
+Aşağıdaki tipik bir RMSD-zaman grafiği örneğidir (örnek verilerle gösterilmiştir):
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "RMSD'nin zaman içindeki değişimi (örnek veri)."
+#| label: fig-rmsd
+
+rmsd <- data.frame(
+  time = seq(0, 100, by=1),
+  value = 1 + 0.3 * sin(seq(0, 10, length.out = 101)) + 0.05 * rnorm(101)
+)
+
+plot(rmsd$time, rmsd$value, type="l", xlab="Zaman (ns)", ylab="RMSD (Å)", main="RMSD Zaman Grafiği")
+
 
 ### RMSF (Root Mean Squared Fluctuations):
 

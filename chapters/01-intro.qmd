@@ -48,6 +48,41 @@ Bir MD simülasyonu, kabaca üç aşamadan oluşur:
 
 5. **Zamanın Çok Küçük Adımlarlar İlerletilmesi**  
    İvme bilinirse hızı hesaplamak sadece temel fizik denklemlerinin uygulanmasıdır. Hız kullanılarak küçük bir zaman dilimi sonrasındaki (dt: genellikle bir kaç femtosaniye) konumlar hesaplanabilir. Konumlar güncellendiği için sistemin enerjisi artık değişmiştir. Bu durumda tekrar 2. adıma gidip bu döngüyü tekrarlamak gerekir. 
+   Gündelik hayatta SI birim sistemine göre en küçük zaman birimi saniyedir. Ancak MD simülasyonlarında femtosaniye zaman birimi yaygın olarak kullanılır. Femtosaniye, pikosaniye, nanosaniye, mikrosaniye, milisaniye ve saniye zaman birimleri arasındaki ilişki aşağıdaki tabloda gösterilmiştir. 
+
+   Aşağıdaki tablo, saniyenin alt katmanlarındaki birimlerin birbirine ve saniyeye göre büyüklüklerini göstermektedir.
+
+   | Birim Adı     | Sembol | 1 Birimin Saniye Cinsinden Değeri | 1 Saniyede Kaç Tane | Açıklama |
+   |----------------|:-------:|----------------------------------:|--------------------:|-----------|
+   | Femtosaniye    | fs      | 10⁻¹⁵ s                         | 1 000 000 000 000 000 | 1 saniyenin katrilyonda biri |
+   | Pikosaniye     | ps      | 10⁻¹² s                         | 1 000 000 000 000   | 1 saniyenin trilyonda biri |
+   | Nanosaniye     | ns      | 10⁻⁹ s                          | 1 000 000 000       | 1 saniyenin milyarda biri |
+   | Mikrosaniye    | µs      | 10⁻⁶ s                          | 1 000 000           | 1 saniyenin milyonda biri |
+   | Milisaniye     | ms      | 10⁻³ s                          | 1 000               | 1 saniyenin binde biri |
+   | Saniye         | s       | 1 s                              | 1                   | SI temel zaman birimi |
+
+   ---
+
+   Dönüşüm Örnekleri
+
+   - 1 ns = 1000 ps  
+   - 1 µs = 1000 ns  
+   - 1 ms = 1000 µs  
+   - 1 s = 1000 ms  
+
+   ---
+<!-- 
+   Grafiksel Görünüm (İsteğe Bağlı)
+
+   ```{mermaid}
+   graph LR
+   fs["Femtosaniye (10⁻¹⁵)"] --> ps["Pikosaniye (10⁻¹²)"]
+   ps --> ns["Nanosaniye (10⁻⁹)"]
+   ns --> µs["Mikrosaniye (10⁻⁶)"]
+   µs --> ms["Milisaniye (10⁻³)"]
+   ms --> s["Saniye (1)"]
+
+   --- -->
 
 Bu adımların yinelenmesiyle sistemin dinamikleri elde edilir. Ortaya çıkan veriler,
 sonrasında analiz edilerek anlamlı bilimsel sonuçlara dönüştürülür.
