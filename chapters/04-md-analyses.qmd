@@ -57,12 +57,72 @@ Genellikle aşağıdaki seçeneklerden biri tercih edilir:
 Her durumda, RMSD hesaplanmadan önce **hizalama (alignment)** yapılmalıdır.  
 Bu hizalama genellikle **Cα (alfa karbon)** veya **backbone** atomları üzerinden gerçekleştirilir.
 
----
-
+### Gromacs ile RMSD hesaplama
+`echo 3 3 | gmx rms -s pdb_filename -f traj_filename -o rmsd.xvg -tu ns` 
 
 ## RMSF (Root Mean Squared Fluctuations):
 
-## Rg (Radius of gyration):
+**RMSF (Root Mean Square Fluctuation)**, moleküler dinamik (MD) simülasyonlarında her bir atomun veya rezidünün zaman içindeki ortalama konum dalgalanmasını ölçen bir metriktir. Bu analiz, yapının hangi bölgelerinin **esnek**, hangi bölgelerinin **daha rijit** olduğunu anlamak için kullanılır.
+
+---
+
+### RMSF Tanımı
+
+Her bir atom veya rezidü için RMSF değeri şu şekilde hesaplanır:
+
+$$
+\text{RMSF}_i = \sqrt{ \left\langle \left( \mathbf{r}_i(t) - \langle \mathbf{r}_i \rangle \right)^2 \right\rangle_t }
+$$
+
+Burada:  
+- $\mathbf{r}_i(t)$: Zaman $t$’deki *i*. atomun koordinatıdır.  
+- $\langle \mathbf{r}_i \rangle$: Tüm simülasyon süresince *i*. atomun ortalama konumudur.  
+- $\langle \cdots \rangle_t$: Zaman ortalamasını ifade eder.
+
+---
+
+### RMSF’nin Yorumu
+
+- **Düşük RMSF değerleri (0–1 Å)**: Bölge katıdır, genellikle protein çekirdeği veya ikincil yapı elementleri (örneğin α-heliks, β-tabaka).  
+- **Yüksek RMSF değerleri (2–5 Å ve üzeri)**: Bölge esnektir, genellikle loop, uç kısımlar veya bağlanma bölgeleri.
+
+---
+
+### Gromacs ile RMSF Hesaplama
+
+`echo 3 3 | gmx rmsf -s pdb_filename -f traj_filename -res -oq rmsf.pdb`
+
+---
+
+## Radius of Gyration (Rg) Analizi
+**Radius of Gyration (Rg)**, bir molekülün kütle merkezine göre atomlarının ne kadar dağılmış olduğunu ölçen bir metriktir. Proteinlerde Rg genellikle **kompaktlık**, **katlanma durumu** ve **kararlılık** hakkında bilgi verir. Radius of gyration şu şekilde tanımlanır:
+
+$$
+R_g = \sqrt{ \frac{ \sum_{i=1}^{N} m_i \left| \mathbf{r}_i - \mathbf{r}_{\text{km}} \right|^2 }{ \sum_{i=1}^{N} m_i } }
+$$
+
+Burada:  
+
+- $m_i$: *i*. atomun kütlesi,  
+- $\mathbf{r}_i$: *i*. atomun koordinatı,  
+- $\mathbf{r}_{\text{km}}$: sistemin kütle merkezidir,  
+- $N$: toplam atom sayısıdır.
+
+
+| Rg Değeri | Yorum |
+|------------|--------|
+| Düşük Rg (örneğin 15 Å) | Protein kompakt, katlanmış durumda |
+| Yüksek Rg (örneğin 25 Å) | Protein genişlemiş veya kısmen açılmış durumda |
+
+> 💡 Zaman içinde Rg’nin sabit kalması sistemin **katlanma kararlılığını**,  
+> düzenli artması ise **açılmayı (unfolding)** gösterebilir.
+
+---
+
+### Gromacs ile Rg Hesaplama
+
+`echo 3 3| gmx gyrate -s pdb_filename -f traj_filename -o gyrate.xvg`
+
 
 ## SASA (Solvent Accessible Surface Area):
 

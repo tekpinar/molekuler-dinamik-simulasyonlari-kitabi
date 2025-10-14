@@ -209,9 +209,18 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#rmsdnin-anlamı" id="toc-rmsdnin-anlamı" class="nav-link" data-scroll-target="#rmsdnin-anlamı"><span class="header-section-number">5.3.1</span> RMSD’nin Anlamı</a></li>
   <li><a href="#referans-yapı-seçimi" id="toc-referans-yapı-seçimi" class="nav-link" data-scroll-target="#referans-yapı-seçimi"><span class="header-section-number">5.3.2</span> Referans Yapı Seçimi</a></li>
+  <li><a href="#gromacs-ile-rmsd-hesaplama" id="toc-gromacs-ile-rmsd-hesaplama" class="nav-link" data-scroll-target="#gromacs-ile-rmsd-hesaplama"><span class="header-section-number">5.3.3</span> Gromacs ile RMSD hesaplama</a></li>
   </ul></li>
-  <li><a href="#rmsf-root-mean-squared-fluctuations" id="toc-rmsf-root-mean-squared-fluctuations" class="nav-link" data-scroll-target="#rmsf-root-mean-squared-fluctuations"><span class="header-section-number">5.4</span> RMSF (Root Mean Squared Fluctuations):</a></li>
-  <li><a href="#rg-radius-of-gyration" id="toc-rg-radius-of-gyration" class="nav-link" data-scroll-target="#rg-radius-of-gyration"><span class="header-section-number">5.5</span> Rg (Radius of gyration):</a></li>
+  <li><a href="#rmsf-root-mean-squared-fluctuations" id="toc-rmsf-root-mean-squared-fluctuations" class="nav-link" data-scroll-target="#rmsf-root-mean-squared-fluctuations"><span class="header-section-number">5.4</span> RMSF (Root Mean Squared Fluctuations):</a>
+  <ul class="collapse">
+  <li><a href="#rmsf-tanımı" id="toc-rmsf-tanımı" class="nav-link" data-scroll-target="#rmsf-tanımı"><span class="header-section-number">5.4.1</span> RMSF Tanımı</a></li>
+  <li><a href="#rmsfnin-yorumu" id="toc-rmsfnin-yorumu" class="nav-link" data-scroll-target="#rmsfnin-yorumu"><span class="header-section-number">5.4.2</span> RMSF’nin Yorumu</a></li>
+  <li><a href="#gromacs-ile-rmsf-hesaplama" id="toc-gromacs-ile-rmsf-hesaplama" class="nav-link" data-scroll-target="#gromacs-ile-rmsf-hesaplama"><span class="header-section-number">5.4.3</span> Gromacs ile RMSF Hesaplama</a></li>
+  </ul></li>
+  <li><a href="#radius-of-gyration-rg-analizi" id="toc-radius-of-gyration-rg-analizi" class="nav-link" data-scroll-target="#radius-of-gyration-rg-analizi"><span class="header-section-number">5.5</span> Radius of Gyration (Rg) Analizi</a>
+  <ul class="collapse">
+  <li><a href="#gromacs-ile-rg-hesaplama" id="toc-gromacs-ile-rg-hesaplama" class="nav-link" data-scroll-target="#gromacs-ile-rg-hesaplama"><span class="header-section-number">5.5.1</span> Gromacs ile Rg Hesaplama</a></li>
+  </ul></li>
   <li><a href="#sasa-solvent-accessible-surface-area" id="toc-sasa-solvent-accessible-surface-area" class="nav-link" data-scroll-target="#sasa-solvent-accessible-surface-area"><span class="header-section-number">5.6</span> SASA (Solvent Accessible Surface Area):</a></li>
   <li><a href="#ikincil-yapı" id="toc-ikincil-yapı" class="nav-link" data-scroll-target="#ikincil-yapı"><span class="header-section-number">5.7</span> İkincil Yapı</a></li>
   <li><a href="#enerji-analizleri" id="toc-enerji-analizleri" class="nav-link" data-scroll-target="#enerji-analizleri"><span class="header-section-number">5.8</span> Enerji Analizleri</a></li>
@@ -310,14 +319,90 @@ Genellikle aşağıdaki seçeneklerden biri tercih edilir:</p>
 </ol>
 <p>Her durumda, RMSD hesaplanmadan önce <strong>hizalama (alignment)</strong> yapılmalıdır.<br>
 Bu hizalama genellikle <strong>Cα (alfa karbon)</strong> veya <strong>backbone</strong> atomları üzerinden gerçekleştirilir.</p>
-<hr>
+</section>
+<section id="gromacs-ile-rmsd-hesaplama" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="gromacs-ile-rmsd-hesaplama"><span class="header-section-number">5.3.3</span> Gromacs ile RMSD hesaplama</h3>
+<p><code>echo 3 3 | gmx rms -s pdb_filename -f traj_filename -o rmsd.xvg -tu ns</code></p>
 </section>
 </section>
 <section id="rmsf-root-mean-squared-fluctuations" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="rmsf-root-mean-squared-fluctuations"><span class="header-section-number">5.4</span> RMSF (Root Mean Squared Fluctuations):</h2>
+<p><strong>RMSF (Root Mean Square Fluctuation)</strong>, moleküler dinamik (MD) simülasyonlarında her bir atomun veya rezidünün zaman içindeki ortalama konum dalgalanmasını ölçen bir metriktir. Bu analiz, yapının hangi bölgelerinin <strong>esnek</strong>, hangi bölgelerinin <strong>daha rijit</strong> olduğunu anlamak için kullanılır.</p>
+<hr>
+<section id="rmsf-tanımı" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="rmsf-tanımı"><span class="header-section-number">5.4.1</span> RMSF Tanımı</h3>
+<p>Her bir atom veya rezidü için RMSF değeri şu şekilde hesaplanır:</p>
+<p><span class="math display">\[
+\text{RMSF}_i = \sqrt{ \left\langle \left( \mathbf{r}_i(t) - \langle \mathbf{r}_i \rangle \right)^2 \right\rangle_t }
+\]</span></p>
+<p>Burada:<br>
+- <span class="math inline">\(\mathbf{r}_i(t)\)</span>: Zaman <span class="math inline">\(t\)</span>’deki <em>i</em>. atomun koordinatıdır.<br>
+- <span class="math inline">\(\langle \mathbf{r}_i \rangle\)</span>: Tüm simülasyon süresince <em>i</em>. atomun ortalama konumudur.<br>
+- <span class="math inline">\(\langle \cdots \rangle_t\)</span>: Zaman ortalamasını ifade eder.</p>
+<hr>
 </section>
-<section id="rg-radius-of-gyration" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="rg-radius-of-gyration"><span class="header-section-number">5.5</span> Rg (Radius of gyration):</h2>
+<section id="rmsfnin-yorumu" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="rmsfnin-yorumu"><span class="header-section-number">5.4.2</span> RMSF’nin Yorumu</h3>
+<ul>
+<li><strong>Düşük RMSF değerleri (0–1 Å)</strong>: Bölge katıdır, genellikle protein çekirdeği veya ikincil yapı elementleri (örneğin α-heliks, β-tabaka).<br>
+</li>
+<li><strong>Yüksek RMSF değerleri (2–5 Å ve üzeri)</strong>: Bölge esnektir, genellikle loop, uç kısımlar veya bağlanma bölgeleri.</li>
+</ul>
+<hr>
+</section>
+<section id="gromacs-ile-rmsf-hesaplama" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="gromacs-ile-rmsf-hesaplama"><span class="header-section-number">5.4.3</span> Gromacs ile RMSF Hesaplama</h3>
+<p><code>echo 3 3 | gmx rmsf -s pdb_filename -f traj_filename -res -oq rmsf.pdb</code></p>
+<hr>
+</section>
+</section>
+<section id="radius-of-gyration-rg-analizi" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="radius-of-gyration-rg-analizi"><span class="header-section-number">5.5</span> Radius of Gyration (Rg) Analizi</h2>
+<p><strong>Radius of Gyration (Rg)</strong>, bir molekülün kütle merkezine göre atomlarının ne kadar dağılmış olduğunu ölçen bir metriktir. Proteinlerde Rg genellikle <strong>kompaktlık</strong>, <strong>katlanma durumu</strong> ve <strong>kararlılık</strong> hakkında bilgi verir. Radius of gyration şu şekilde tanımlanır:</p>
+<p><span class="math display">\[
+R_g = \sqrt{ \frac{ \sum_{i=1}^{N} m_i \left| \mathbf{r}_i - \mathbf{r}_{\text{km}} \right|^2 }{ \sum_{i=1}^{N} m_i } }
+\]</span></p>
+<p>Burada:</p>
+<ul>
+<li><span class="math inline">\(m_i\)</span>: <em>i</em>. atomun kütlesi,<br>
+</li>
+<li><span class="math inline">\(\mathbf{r}_i\)</span>: <em>i</em>. atomun koordinatı,<br>
+</li>
+<li><span class="math inline">\(\mathbf{r}_{\text{km}}\)</span>: sistemin kütle merkezidir,<br>
+</li>
+<li><span class="math inline">\(N\)</span>: toplam atom sayısıdır.</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 60%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rg Değeri</th>
+<th>Yorum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Düşük Rg (örneğin 15 Å)</td>
+<td>Protein kompakt, katlanmış durumda</td>
+</tr>
+<tr class="even">
+<td>Yüksek Rg (örneğin 25 Å)</td>
+<td>Protein genişlemiş veya kısmen açılmış durumda</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>💡 Zaman içinde Rg’nin sabit kalması sistemin <strong>katlanma kararlılığını</strong>,<br>
+düzenli artması ise <strong>açılmayı (unfolding)</strong> gösterebilir.</p>
+</blockquote>
+<hr>
+<section id="gromacs-ile-rg-hesaplama" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="gromacs-ile-rg-hesaplama"><span class="header-section-number">5.5.1</span> Gromacs ile Rg Hesaplama</h3>
+<p><code>echo 3 3| gmx gyrate -s pdb_filename -f traj_filename -o gyrate.xvg</code></p>
+</section>
 </section>
 <section id="sasa-solvent-accessible-surface-area" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="sasa-solvent-accessible-surface-area"><span class="header-section-number">5.6</span> SASA (Solvent Accessible Surface Area):</h2>
