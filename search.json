@@ -94,7 +94,7 @@
     "href": "chapters/02-md-preparations.html",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
     "section": "",
-    "text": "3.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız. Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdaki basamakları içerir:\nBu basamakları teker teker ele alalım.",
+    "text": "3.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız. Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdaki basamakları içerir:\nBu basamakları teker teker ele alalım. Ancak herşeyden önce en temel yazılımlarla, yani protein görselleştirme yazılımları ile başlayalım.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -110,11 +110,21 @@
     ]
   },
   {
+    "objectID": "chapters/02-md-preparations.html#protein-görselleştirme-programları",
+    "href": "chapters/02-md-preparations.html#protein-görselleştirme-programları",
+    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "section": "3.2 Protein Görselleştirme Programları",
+    "text": "3.2 Protein Görselleştirme Programları\nProtein yapılarının kullanıldığı bütün araştırmalarda en temel ihtiyaçlardan bir tanesi protein yapısının görselleştirilmesidir. Bu nedenle yaygın olarak kullanılan çeşitli programlar geliştirilmiştir. Moleküler dinamik simülasyonları için de bu yazılımlar olmazsa olmazdır. Bu kitabın yazarı Pymol ve ChimeraXprotein görselleştirme yazılımlarını kullanmakta ve okuyucularına tavsiye etmektedir. Bu iki yazılımın dışında, özellikle moleküler dinamik simülasyon yörünge dosyalarının görüntülenmesi için VMD yazılımı da kurulmalıdır.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+    ]
+  },
+  {
     "objectID": "chapters/02-md-preparations.html#gromacs-programının-kurulması",
     "href": "chapters/02-md-preparations.html#gromacs-programının-kurulması",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
-    "section": "3.2 Gromacs programının kurulması",
-    "text": "3.2 Gromacs programının kurulması\nGromacs açık kaynak kodlu bir yazılımdır ve şu adresten indirilebilir: https://manual.gromacs.org/current/download.html\nEğer Ubuntu Linux kullanıyorsanız aşağıdaki komut Gromacs’ı sizin için kuracaktır:\nsudo apt install gromacs",
+    "section": "3.3 Gromacs programının kurulması",
+    "text": "3.3 Gromacs programının kurulması\nGromacs açık kaynak kodlu bir yazılımdır ve şu adresten indirilebilir: https://manual.gromacs.org/current/download.html\nEğer Ubuntu Linux kullanıyorsanız aşağıdaki komut Gromacs’ı sizin için kuracaktır:\nsudo apt install gromacs",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -123,8 +133,8 @@
     "objectID": "chapters/02-md-preparations.html#sistemin-inşa-edilmesi",
     "href": "chapters/02-md-preparations.html#sistemin-inşa-edilmesi",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
-    "section": "3.3 Sistemin inşa edilmesi",
-    "text": "3.3 Sistemin inşa edilmesi\nSistemin doğru bir biçimde inşa edilmesi için adım adım ilerlemek gerekir: 1. Proteinin hazırlanması 3. Sisteme solvent eklenmesi 4. Sisteme doğal ortam iyonlarının eklenmesi\n\n3.3.1 Proteinin hazırlanması\nHedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi ve doğru protonasyon durumlarının belirlenmesi için aşağıdaki adımlar uygulanır:\n\ninitial_pdb=AF-P22303-F1-model_v4\n\nfile_prefix=aces_human_monomer_wt\n\nforce_field=amber99sb-ildn\n\n#Call pdb2pqr to determine protonation states of the residues\n#according to pH 7.4\npdb2pqr30 --ff PARSE --ffout AMBER  --titration-state-method\\\n    propka --with-ph 7.4 ${initial_pdb}.pdb \\\n    ${initial_pdb-pwb2pqr30.pqr \\\n    --pdb-output ${initial_pdb}-pwb2pqr30.pdb\n\n#Add hydrogens if absent, select water model and force field\ngmx pdb2gmx -f ${initial_pdb}-pwb2pqr30.pdb \\\n    -o ${file_prefix}_processed.pdb \\\n    -water ${solvent_model} -ff ${force_field} -ignh\n\n\n\n3.3.2 Sisteme solvent eklenmesi\nProteinler genellikle su ortamında işlevlerini yerine getirir. Bu nedenle bir simülasyon yaparken sisteme mutlaka su eklenmesi gerekir. Aşağıdaki bash komutları ile sisteme su ekleyebiliriz.\n\nbuffer=1.1\n\n#Define box properties\ngmx editconf -f ${file_prefix}_processed.pdb \\\n    -o ${file_prefix}_newbox.pdb \\\n    -bt octahedron -c -d ${buffer} -princ\n\n#Note that if spc, spce, or tip3p model is used, solvent_model=spc216\nsolvent_model=tip3p\n\n#Produce box\nif [ \"$solvent_model\" == \"tip3p\" ] || \\\n    [ \"$solvent_model\" == \"spc\" ] || \\\n    [ \"$solvent_model\" == \"spce\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs spc216.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\nif [ \"$solvent_model\" == \"tip4p\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs tip4p.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\n\n3.3.3 Sisteme doğal ortam iyonlarının eklenmesi\nAşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır.\n#Prepare for ion addition\ngmx grompp -f ions2.mdp -c ${file_prefix}_solv.pdb -maxwarn 2 \\\n    -p topol.top -o ions.tpr\n\n#Produce and place ions\ngmx genion -s ions.tpr -o ${file_prefix}_solv_ions.pdb \\\n    -p topol.top -pname NA -nname CL -neutral -conc 0.15\n\n#Good news: Preparation is over!\n#Bad news : Trouble has just started!",
+    "section": "3.4 Sistemin inşa edilmesi",
+    "text": "3.4 Sistemin inşa edilmesi\nSistemin doğru bir biçimde inşa edilmesi için adım adım ilerlemek gerekir: 1. Proteinin hazırlanması 3. Sisteme solvent eklenmesi 4. Sisteme doğal ortam iyonlarının eklenmesi\n\n3.4.1 Proteinin hazırlanması\nHedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi ve doğru protonasyon durumlarının belirlenmesi için aşağıdaki adımlar uygulanır:\n\ninitial_pdb=AF-P22303-F1-model_v4\n\nfile_prefix=aces_human_monomer_wt\n\nforce_field=amber99sb-ildn\n\n#Call pdb2pqr to determine protonation states of the residues\n#according to pH 7.4\npdb2pqr30 --ff PARSE --ffout AMBER  --titration-state-method\\\n    propka --with-ph 7.4 ${initial_pdb}.pdb \\\n    ${initial_pdb-pwb2pqr30.pqr \\\n    --pdb-output ${initial_pdb}-pwb2pqr30.pdb\n\n#Add hydrogens if absent, select water model and force field\ngmx pdb2gmx -f ${initial_pdb}-pwb2pqr30.pdb \\\n    -o ${file_prefix}_processed.pdb \\\n    -water ${solvent_model} -ff ${force_field} -ignh\n\n\n\n3.4.2 Sisteme solvent eklenmesi\nProteinler genellikle su ortamında işlevlerini yerine getirir. Bu nedenle bir simülasyon yaparken sisteme mutlaka su eklenmesi gerekir. Aşağıdaki bash komutları ile sisteme su ekleyebiliriz.\n\nbuffer=1.1\n\n#Define box properties\ngmx editconf -f ${file_prefix}_processed.pdb \\\n    -o ${file_prefix}_newbox.pdb \\\n    -bt octahedron -c -d ${buffer} -princ\n\n#Note that if spc, spce, or tip3p model is used, solvent_model=spc216\nsolvent_model=tip3p\n\n#Produce box\nif [ \"$solvent_model\" == \"tip3p\" ] || \\\n    [ \"$solvent_model\" == \"spc\" ] || \\\n    [ \"$solvent_model\" == \"spce\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs spc216.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\nif [ \"$solvent_model\" == \"tip4p\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs tip4p.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\n\n3.4.3 Sisteme doğal ortam iyonlarının eklenmesi\nAşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır.\n#Prepare for ion addition\ngmx grompp -f ions2.mdp -c ${file_prefix}_solv.pdb -maxwarn 2 \\\n    -p topol.top -o ions.tpr\n\n#Produce and place ions\ngmx genion -s ions.tpr -o ${file_prefix}_solv_ions.pdb \\\n    -p topol.top -pname NA -nname CL -neutral -conc 0.15\n\n#Good news: Preparation is over!\n#Bad news : Trouble has just started!",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -133,8 +143,8 @@
     "objectID": "chapters/02-md-preparations.html#bölüm-özeti",
     "href": "chapters/02-md-preparations.html#bölüm-özeti",
     "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
-    "section": "3.4 Bölüm Özeti",
-    "text": "3.4 Bölüm Özeti",
+    "section": "3.5 Bölüm Özeti",
+    "text": "3.5 Bölüm Özeti",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
     ]
@@ -214,57 +224,7 @@
     "href": "chapters/04-md-analyses.html#yapısal-analizler",
     "title": "5  MD Simülasyon Analizleri",
     "section": "5.2 Yapısal Analizler",
-    "text": "5.2 Yapısal Analizler\nMoleküler dinamik (MD) simülasyonları, atomik düzeyde bir sistemin zaman içindeki davranışını incelememizi sağlar.\nBu tür simülasyonlarda elde edilen sonuçların anlamlı şekilde yorumlanabilmesi için çeşitli yapısal analiz yöntemleri kullanılır. Yapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-md-analyses.html#rmsd-root-mean-square-deviation",
-    "href": "chapters/04-md-analyses.html#rmsd-root-mean-square-deviation",
-    "title": "5  MD Simülasyon Analizleri",
-    "section": "5.3 RMSD (Root Mean Square Deviation)",
-    "text": "5.3 RMSD (Root Mean Square Deviation)\nRMSD (Root Mean Square Deviation), bir molekülün belirli bir referans yapısına göre ortalama konum değişimini nicel olarak ölçen bir metriktir.\nBasitçe ifade etmek gerekirse, RMSD zaman içinde yapının ne kadar değiştiğini gösterir.\nMatematiksel olarak RMSD şöyle tanımlanır:\n\\[\nRMSD = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^{N} (\\mathbf{r}_i(t) - \\mathbf{r}_i^{ref})^2 }\n\\]\nBurada:\n\n\\(N\\): Karşılaştırılan atom sayısıdır.\n\n\\(\\mathbf{r}_i(t)\\): Zaman \\(t\\)’deki i. atomun koordinatıdır.\n\n\\(\\mathbf{r}_i^{\\text{ref}}\\): Referans yapıdaki i. atomun koordinatıdır.\n\n\n5.3.1 RMSD’nin Anlamı\nRMSD değeri bize sistemin yapısal kararlılığı hakkında bilgi verir:\n\n\n\nRMSD Değeri\nYorum\n\n\n\n\n0 – 1 Å\nYapı referansa çok benzer; yüksek kararlılık\n\n\n1 – 3 Å\nKüçük yapısal değişiklikler; olası uyum veya gevşeme\n\n\n&gt; 3 Å\nBelirgin yapısal değişim veya konformasyonel geçiş\n\n\n\n\n💡 RMSD’nin tek başına bir ölçüt olmadığı unutulmamalıdır.\nYüksek RMSD değeri her zaman sistemin dengesiz olduğu anlamına gelmez; yapının farklı ama kararlı bir konformasyona geçmesi de mümkündür.\n\n\n\n\n5.3.2 Referans Yapı Seçimi\nRMSD analizinde kullanılacak referans yapı son derece önemlidir.\nGenellikle aşağıdaki seçeneklerden biri tercih edilir:\n\nBaşlangıç yapısı (örneğin enerji minimizasyon sonrası yapı)\n\nZaman ortalaması alınmış yapı\n\nKristal yapı veya deneysel referans\n\nHer durumda, RMSD hesaplanmadan önce hizalama (alignment) yapılmalıdır.\nBu hizalama genellikle Cα (alfa karbon) veya backbone atomları üzerinden gerçekleştirilir.\n\n\n5.3.3 Gromacs ile RMSD hesaplama\necho 3 3 | gmx rms -s pdb_filename -f traj_filename -o rmsd.xvg -tu ns",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-md-analyses.html#rmsf-root-mean-squared-fluctuations",
-    "href": "chapters/04-md-analyses.html#rmsf-root-mean-squared-fluctuations",
-    "title": "5  MD Simülasyon Analizleri",
-    "section": "5.4 RMSF (Root Mean Squared Fluctuations):",
-    "text": "5.4 RMSF (Root Mean Squared Fluctuations):\nRMSF (Root Mean Square Fluctuation), moleküler dinamik (MD) simülasyonlarında her bir atomun veya rezidünün zaman içindeki ortalama konum dalgalanmasını ölçen bir metriktir. Bu analiz, yapının hangi bölgelerinin esnek, hangi bölgelerinin daha rijit olduğunu anlamak için kullanılır.\n\n\n5.4.1 RMSF Tanımı\nHer bir atom veya rezidü için RMSF değeri şu şekilde hesaplanır:\n\\[\n\\text{RMSF}_i = \\sqrt{ \\left\\langle \\left( \\mathbf{r}_i(t) - \\langle \\mathbf{r}_i \\rangle \\right)^2 \\right\\rangle_t }\n\\]\nBurada:\n- \\(\\mathbf{r}_i(t)\\): Zaman \\(t\\)’deki i. atomun koordinatıdır.\n- \\(\\langle \\mathbf{r}_i \\rangle\\): Tüm simülasyon süresince i. atomun ortalama konumudur.\n- \\(\\langle \\cdots \\rangle_t\\): Zaman ortalamasını ifade eder.\n\n\n\n5.4.2 RMSF’nin Yorumu\n\nDüşük RMSF değerleri (0–1 Å): Bölge katıdır, genellikle protein çekirdeği veya ikincil yapı elementleri (örneğin α-heliks, β-tabaka).\n\nYüksek RMSF değerleri (2–5 Å ve üzeri): Bölge esnektir, genellikle loop, uç kısımlar veya bağlanma bölgeleri.\n\n\n\n\n5.4.3 Gromacs ile RMSF Hesaplama\necho 3 3 | gmx rmsf -s pdb_filename -f traj_filename -res -oq rmsf.pdb",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-md-analyses.html#radius-of-gyration-rg-analizi",
-    "href": "chapters/04-md-analyses.html#radius-of-gyration-rg-analizi",
-    "title": "5  MD Simülasyon Analizleri",
-    "section": "5.5 Radius of Gyration (Rg) Analizi",
-    "text": "5.5 Radius of Gyration (Rg) Analizi\nRadius of Gyration (Rg), bir molekülün kütle merkezine göre atomlarının ne kadar dağılmış olduğunu ölçen bir metriktir. Proteinlerde Rg genellikle kompaktlık, katlanma durumu ve kararlılık hakkında bilgi verir. Radius of gyration şu şekilde tanımlanır:\n\\[\nR_g = \\sqrt{ \\frac{ \\sum_{i=1}^{N} m_i \\left| \\mathbf{r}_i - \\mathbf{r}_{\\text{km}} \\right|^2 }{ \\sum_{i=1}^{N} m_i } }\n\\]\nBurada:\n\n\\(m_i\\): i. atomun kütlesi,\n\n\\(\\mathbf{r}_i\\): i. atomun koordinatı,\n\n\\(\\mathbf{r}_{\\text{km}}\\): sistemin kütle merkezidir,\n\n\\(N\\): toplam atom sayısıdır.\n\n\n\n\n\n\n\n\nRg Değeri\nYorum\n\n\n\n\nDüşük Rg (örneğin 15 Å)\nProtein kompakt, katlanmış durumda\n\n\nYüksek Rg (örneğin 25 Å)\nProtein genişlemiş veya kısmen açılmış durumda\n\n\n\n\n💡 Zaman içinde Rg’nin sabit kalması sistemin katlanma kararlılığını,\ndüzenli artması ise açılmayı (unfolding) gösterebilir.\n\n\n\n5.5.1 Gromacs ile Rg Hesaplama\necho 3 3| gmx gyrate -s pdb_filename -f traj_filename -o gyrate.xvg",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-md-analyses.html#sasa-solvent-accessible-surface-area",
-    "href": "chapters/04-md-analyses.html#sasa-solvent-accessible-surface-area",
-    "title": "5  MD Simülasyon Analizleri",
-    "section": "5.6 SASA (Solvent Accessible Surface Area):",
-    "text": "5.6 SASA (Solvent Accessible Surface Area):",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-md-analyses.html#ikincil-yapı",
-    "href": "chapters/04-md-analyses.html#ikincil-yapı",
-    "title": "5  MD Simülasyon Analizleri",
-    "section": "5.7 İkincil Yapı",
-    "text": "5.7 İkincil Yapı",
+    "text": "5.2 Yapısal Analizler\nMoleküler dinamik (MD) simülasyonları, atomik düzeyde bir sistemin zaman içindeki davranışını incelememizi sağlar.\nBu tür simülasyonlarda elde edilen sonuçların anlamlı şekilde yorumlanabilmesi için çeşitli yapısal analiz yöntemleri kullanılır. Yapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir.\n\n5.2.1 RMSD (Root Mean Square Deviation)\nRMSD (Root Mean Square Deviation), bir molekülün belirli bir referans yapısına göre ortalama konum değişimini nicel olarak ölçen bir metriktir.\nBasitçe ifade etmek gerekirse, RMSD zaman içinde yapının ne kadar değiştiğini gösterir.\nMatematiksel olarak RMSD şöyle tanımlanır:\n\\[\nRMSD = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^{N} (\\mathbf{r}_i(t) - \\mathbf{r}_i^{ref})^2 }\n\\]\nBurada:\n\n\\(N\\): Karşılaştırılan atom sayısıdır.\n\n\\(\\mathbf{r}_i(t)\\): Zaman \\(t\\)’deki i. atomun koordinatıdır.\n\n\\(\\mathbf{r}_i^{\\text{ref}}\\): Referans yapıdaki i. atomun koordinatıdır.\n\n\n5.2.1.1 RMSD’nin Anlamı\nRMSD değeri bize sistemin yapısal kararlılığı hakkında bilgi verir:\n\n\n\nRMSD Değeri\nYorum\n\n\n\n\n0 – 1 Å\nYapı referansa çok benzer; yüksek kararlılık\n\n\n1 – 3 Å\nKüçük yapısal değişiklikler; olası uyum veya gevşeme\n\n\n&gt; 3 Å\nBelirgin yapısal değişim veya konformasyonel geçiş\n\n\n\n\n💡 RMSD’nin tek başına bir ölçüt olmadığı unutulmamalıdır.\nYüksek RMSD değeri her zaman sistemin dengesiz olduğu anlamına gelmez; yapının farklı ama kararlı bir konformasyona geçmesi de mümkündür.\n\n\n\n\n5.2.1.2 Referans Yapı Seçimi\nRMSD analizinde kullanılacak referans yapı son derece önemlidir.\nGenellikle aşağıdaki seçeneklerden biri tercih edilir:\n\nBaşlangıç yapısı (örneğin enerji minimizasyon sonrası yapı)\n\nZaman ortalaması alınmış yapı\n\nKristal yapı veya deneysel referans\n\nHer durumda, RMSD hesaplanmadan önce hizalama (alignment) yapılmalıdır.\nBu hizalama genellikle Cα (alfa karbon) veya backbone atomları üzerinden gerçekleştirilir.\n\n\n5.2.1.3 Gromacs ile RMSD hesaplama\necho 3 3 | gmx rms -s pdb_filename -f traj_filename -o rmsd.xvg -tu ns\n\n\n\n5.2.2 RMSF (Root Mean Squared Fluctuations):\nRMSF (Root Mean Square Fluctuation), moleküler dinamik (MD) simülasyonlarında her bir atomun veya rezidünün zaman içindeki ortalama konum dalgalanmasını ölçen bir metriktir. Bu analiz, yapının hangi bölgelerinin esnek, hangi bölgelerinin daha rijit olduğunu anlamak için kullanılır.\n\n\n5.2.2.1 RMSF Tanımı\nHer bir atom veya rezidü için RMSF değeri şu şekilde hesaplanır:\n\\[\n\\text{RMSF}_i = \\sqrt{ \\left\\langle \\left( \\mathbf{r}_i(t) - \\langle \\mathbf{r}_i \\rangle \\right)^2 \\right\\rangle_t }\n\\]\nBurada:\n- \\(\\mathbf{r}_i(t)\\): Zaman \\(t\\)’deki i. atomun koordinatıdır.\n- \\(\\langle \\mathbf{r}_i \\rangle\\): Tüm simülasyon süresince i. atomun ortalama konumudur.\n- \\(\\langle \\cdots \\rangle_t\\): Zaman ortalamasını ifade eder.\n\n\n\n5.2.2.2 RMSF’nin Yorumu\n\nDüşük RMSF değerleri (0–1 Å): Bölge katıdır, genellikle protein çekirdeği veya ikincil yapı elementleri (örneğin α-heliks, β-tabaka).\n\nYüksek RMSF değerleri (2–5 Å ve üzeri): Bölge esnektir, genellikle loop, uç kısımlar veya bağlanma bölgeleri.\n\n\n\n\n5.2.2.3 Gromacs ile RMSF Hesaplama\necho 3 3 | gmx rmsf -s pdb_filename -f traj_filename -res -oq rmsf.pdb\n\n\n\n\n5.2.3 Radius of Gyration (Rg) Analizi\nRadius of Gyration (Rg), bir molekülün kütle merkezine göre atomlarının ne kadar dağılmış olduğunu ölçen bir metriktir. Proteinlerde Rg genellikle kompaktlık, katlanma durumu ve kararlılık hakkında bilgi verir. Radius of gyration şu şekilde tanımlanır:\n\\[\nR_g = \\sqrt{ \\frac{ \\sum_{i=1}^{N} m_i \\left| \\mathbf{r}_i - \\mathbf{r}_{\\text{km}} \\right|^2 }{ \\sum_{i=1}^{N} m_i } }\n\\]\nBurada:\n\n\\(m_i\\): i. atomun kütlesi,\n\n\\(\\mathbf{r}_i\\): i. atomun koordinatı,\n\n\\(\\mathbf{r}_{\\text{km}}\\): sistemin kütle merkezidir,\n\n\\(N\\): toplam atom sayısıdır.\n\n\n\n\n\n\n\n\nRg Değeri\nYorum\n\n\n\n\nDüşük Rg (örneğin 15 Å)\nProtein kompakt, katlanmış durumda\n\n\nYüksek Rg (örneğin 25 Å)\nProtein genişlemiş veya kısmen açılmış durumda\n\n\n\n\n💡 Zaman içinde Rg’nin sabit kalması sistemin katlanma kararlılığını,\ndüzenli artması ise açılmayı (unfolding) gösterebilir.\n\n\n\n5.2.3.1 Gromacs ile Rg Hesaplama\necho 3 3| gmx gyrate -s pdb_filename -f traj_filename -o gyrate.xvg\n\n\n\n5.2.4 SASA (Solvent Accessible Surface Area):\nSASA (Solvent Accessible Surface Area), bir molekülün çözücü (genellikle su) tarafından erişilebilir yüzey alanını ifade eder.\nBu kavram, proteinlerin hidrofobik ve hidrofilik yüzey özelliklerini, katlanma davranışlarını ve ligand bağlanma bölgelerinin analizini anlamada önemli bir ölçüttür.\nBir molekülün SASA’sı, hayali bir çözücü küresi (örneğin su molekülü için yarıçapı yaklaşık 1.4 Å) kullanılarak hesaplanır. Bu küre, molekülün atomları etrafında “yuvarlanır” ve çözücünün temas edebileceği yüzey alanı ölçülür.\nSASA değeri, genellikle şu iki katkının toplamıdır:\n\\[\nSASA_{\\text{total}} = SASA_{\\text{polar}} + SASA_{\\text{apolar}}\n\\]\n\n\\(SASA_{\\text{polar}}\\): Hidrofilik (kutupsal) atomların oluşturduğu yüzey alanı,\n\n\\(SASA_{\\text{apolar}}\\): Hidrofobik (apolar) atomların oluşturduğu yüzey alanı.\n\n\n\n5.2.4.1 SASA Hesaplama Yöntemi\nSASA tipik olarak Lee–Richards algoritması (1971) veya Shrake–Rupley yöntemi (1973) kullanılarak hesaplanır.\nBu yöntemlerde atomlar Van der Waals yarıçapına sahip küreler olarak temsil edilir.\nBir çözücü küresi bu yüzeyde gezdirilerek toplam erişilebilir alan sayısal olarak bulunur.\n\n💡 Basitleştirilmiş fikir:\nSu molekülü, proteinin etrafında “kayarken” hangi atomlara temas edebiliyorsa, o atomlar SASA’ya katkı yapar.\n\n\n\n\n5.2.4.2 SASA ve Yapısal Özellikler\nSASA değeri proteinlerin katlanma durumu ve kararlılığı hakkında güçlü ipuçları verir:\n\n\n\n\n\n\n\n\nGözlenen Durum\nSASA Davranışı\nYorum\n\n\n\n\nKatlanmış protein\nSASA düşük\nHidrofobik bölgeler iç kısımda, çözücüden korunmuş\n\n\nAçılmış protein\nSASA yüksek\nHidrofobik bölgeler açığa çıkmış\n\n\nLigand bağlanması\nSASA azalır\nBağlanma bölgesinde çözücü erişimi kısıtlanır\n\n\n\n\n\n5.2.4.3 Gromacs ile SASA Analizi\necho 1|gmx sasa -s pdb_filename -f traj_filename -o sasa.xvg -tu ns\n\n\n\n5.2.5 İkincil Yapı",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
@@ -273,8 +233,8 @@
     "objectID": "chapters/04-md-analyses.html#enerji-analizleri",
     "href": "chapters/04-md-analyses.html#enerji-analizleri",
     "title": "5  MD Simülasyon Analizleri",
-    "section": "5.8 Enerji Analizleri",
-    "text": "5.8 Enerji Analizleri",
+    "section": "5.3 Enerji Analizleri",
+    "text": "5.3 Enerji Analizleri",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
@@ -283,8 +243,8 @@
     "objectID": "chapters/04-md-analyses.html#bölüm-özeti",
     "href": "chapters/04-md-analyses.html#bölüm-özeti",
     "title": "5  MD Simülasyon Analizleri",
-    "section": "5.9 Bölüm Özeti",
-    "text": "5.9 Bölüm Özeti",
+    "section": "5.4 Bölüm Özeti",
+    "text": "5.4 Bölüm Özeti",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>MD Simülasyon Analizleri</span>"
     ]
