@@ -11,7 +11,7 @@ Bu bölümde MD simülasyonlarının analizleri için kullanılan bazı standart
 Moleküler dinamik (MD) simülasyonları, atomik düzeyde bir sistemin zaman içindeki davranışını incelememizi sağlar.  
 Bu tür simülasyonlarda elde edilen sonuçların anlamlı şekilde yorumlanabilmesi için çeşitli **yapısal analiz yöntemleri** kullanılır. Yapısal analizleri gerçekleştirebilmeniz için elimizde bir topoloji dosyası (genellikle gro, pdb veya tpr formatında) ve bir yörünge dosyası (xtc veya trr formatında) bulunması gerekir. 
 
-## RMSD (Root Mean Square Deviation)
+### RMSD (Root Mean Square Deviation)
 
 **RMSD (Root Mean Square Deviation)**, bir molekülün belirli bir referans yapısına göre ortalama konum değişimini nicel olarak ölçen bir metriktir.  
 Basitçe ifade etmek gerekirse, RMSD zaman içinde yapının **ne kadar değiştiğini** gösterir.
@@ -30,7 +30,7 @@ Burada:
 - $\mathbf{r}_i^{\text{ref}}$: Referans yapıdaki *i*. atomun koordinatıdır.
 
 
-### RMSD'nin Anlamı
+#### RMSD'nin Anlamı
 
 RMSD değeri bize sistemin **yapısal kararlılığı** hakkında bilgi verir:
 
@@ -45,7 +45,7 @@ RMSD değeri bize sistemin **yapısal kararlılığı** hakkında bilgi verir:
 
 ---
 
-### Referans Yapı Seçimi
+#### Referans Yapı Seçimi
 
 RMSD analizinde kullanılacak **referans yapı** son derece önemlidir.  
 Genellikle aşağıdaki seçeneklerden biri tercih edilir:
@@ -57,16 +57,16 @@ Genellikle aşağıdaki seçeneklerden biri tercih edilir:
 Her durumda, RMSD hesaplanmadan önce **hizalama (alignment)** yapılmalıdır.  
 Bu hizalama genellikle **Cα (alfa karbon)** veya **backbone** atomları üzerinden gerçekleştirilir.
 
-### Gromacs ile RMSD hesaplama
+#### Gromacs ile RMSD hesaplama
 `echo 3 3 | gmx rms -s pdb_filename -f traj_filename -o rmsd.xvg -tu ns` 
 
-## RMSF (Root Mean Squared Fluctuations):
+### RMSF (Root Mean Squared Fluctuations):
 
 **RMSF (Root Mean Square Fluctuation)**, moleküler dinamik (MD) simülasyonlarında her bir atomun veya rezidünün zaman içindeki ortalama konum dalgalanmasını ölçen bir metriktir. Bu analiz, yapının hangi bölgelerinin **esnek**, hangi bölgelerinin **daha rijit** olduğunu anlamak için kullanılır.
 
 ---
 
-### RMSF Tanımı
+#### RMSF Tanımı
 
 Her bir atom veya rezidü için RMSF değeri şu şekilde hesaplanır:
 
@@ -81,20 +81,20 @@ Burada:
 
 ---
 
-### RMSF’nin Yorumu
+#### RMSF’nin Yorumu
 
 - **Düşük RMSF değerleri (0–1 Å)**: Bölge katıdır, genellikle protein çekirdeği veya ikincil yapı elementleri (örneğin α-heliks, β-tabaka).  
 - **Yüksek RMSF değerleri (2–5 Å ve üzeri)**: Bölge esnektir, genellikle loop, uç kısımlar veya bağlanma bölgeleri.
 
 ---
 
-### Gromacs ile RMSF Hesaplama
+#### Gromacs ile RMSF Hesaplama
 
 `echo 3 3 | gmx rmsf -s pdb_filename -f traj_filename -res -oq rmsf.pdb`
 
 ---
 
-## Radius of Gyration (Rg) Analizi
+### Radius of Gyration (Rg) Analizi
 **Radius of Gyration (Rg)**, bir molekülün kütle merkezine göre atomlarının ne kadar dağılmış olduğunu ölçen bir metriktir. Proteinlerde Rg genellikle **kompaktlık**, **katlanma durumu** ve **kararlılık** hakkında bilgi verir. Radius of gyration şu şekilde tanımlanır:
 
 $$
@@ -119,14 +119,57 @@ Burada:
 
 ---
 
-### Gromacs ile Rg Hesaplama
+#### Gromacs ile Rg Hesaplama
 
 `echo 3 3| gmx gyrate -s pdb_filename -f traj_filename -o gyrate.xvg`
 
 
-## SASA (Solvent Accessible Surface Area):
+### SASA (Solvent Accessible Surface Area):
 
-## İkincil Yapı
+**SASA (Solvent Accessible Surface Area)**, bir molekülün çözücü (genellikle su) tarafından erişilebilir yüzey alanını ifade eder.  
+Bu kavram, proteinlerin **hidrofobik ve hidrofilik yüzey özelliklerini**, **katlanma davranışlarını** ve **ligand bağlanma bölgelerinin** analizini anlamada önemli bir ölçüttür.
+
+Bir molekülün SASA’sı, hayali bir **çözücü küresi** (örneğin su molekülü için yarıçapı yaklaşık 1.4 Å) kullanılarak hesaplanır. Bu küre, molekülün atomları etrafında “yuvarlanır” ve çözücünün temas edebileceği yüzey alanı ölçülür.
+
+**SASA değeri**, genellikle şu iki katkının toplamıdır:
+
+$$
+SASA_{\text{total}} = SASA_{\text{polar}} + SASA_{\text{apolar}}
+$$
+
+- $SASA_{\text{polar}}$: Hidrofilik (kutupsal) atomların oluşturduğu yüzey alanı,  
+- $SASA_{\text{apolar}}$: Hidrofobik (apolar) atomların oluşturduğu yüzey alanı.
+
+---
+
+#### SASA Hesaplama Yöntemi
+
+SASA tipik olarak **Lee–Richards algoritması** (1971) veya **Shrake–Rupley yöntemi** (1973) kullanılarak hesaplanır.  
+Bu yöntemlerde atomlar **Van der Waals yarıçapına** sahip küreler olarak temsil edilir.  
+Bir çözücü küresi bu yüzeyde gezdirilerek toplam erişilebilir alan sayısal olarak bulunur.
+
+> 💡 **Basitleştirilmiş fikir:**  
+> Su molekülü, proteinin etrafında “kayarken” hangi atomlara temas edebiliyorsa, o atomlar SASA’ya katkı yapar.
+
+---
+
+#### SASA ve Yapısal Özellikler
+
+SASA değeri proteinlerin **katlanma durumu** ve **kararlılığı** hakkında güçlü ipuçları verir:
+
+| Gözlenen Durum | SASA Davranışı | Yorum |
+|----------------|----------------|--------|
+| Katlanmış protein | SASA düşük | Hidrofobik bölgeler iç kısımda, çözücüden korunmuş |
+| Açılmış protein | SASA yüksek | Hidrofobik bölgeler açığa çıkmış |
+| Ligand bağlanması | SASA azalır | Bağlanma bölgesinde çözücü erişimi kısıtlanır |
+
+
+
+#### Gromacs ile SASA Analizi
+`echo 1|gmx sasa -s pdb_filename -f traj_filename -o sasa.xvg -tu ns`
+
+
+### İkincil Yapı
 
 ## Enerji Analizleri
 

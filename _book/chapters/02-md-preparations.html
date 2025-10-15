@@ -175,14 +175,15 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#bu-bölümde-neler-öğreneceğiz" id="toc-bu-bölümde-neler-öğreneceğiz" class="nav-link active" data-scroll-target="#bu-bölümde-neler-öğreneceğiz"><span class="header-section-number">3.1</span> Bu Bölümde Neler Öğreneceğiz?</a></li>
-  <li><a href="#gromacs-programının-kurulması" id="toc-gromacs-programının-kurulması" class="nav-link" data-scroll-target="#gromacs-programının-kurulması"><span class="header-section-number">3.2</span> Gromacs programının kurulması</a></li>
-  <li><a href="#sistemin-inşa-edilmesi" id="toc-sistemin-inşa-edilmesi" class="nav-link" data-scroll-target="#sistemin-inşa-edilmesi"><span class="header-section-number">3.3</span> Sistemin inşa edilmesi</a>
+  <li><a href="#protein-görselleştirme-programları" id="toc-protein-görselleştirme-programları" class="nav-link" data-scroll-target="#protein-görselleştirme-programları"><span class="header-section-number">3.2</span> Protein Görselleştirme Programları</a></li>
+  <li><a href="#gromacs-programının-kurulması" id="toc-gromacs-programının-kurulması" class="nav-link" data-scroll-target="#gromacs-programının-kurulması"><span class="header-section-number">3.3</span> Gromacs programının kurulması</a></li>
+  <li><a href="#sistemin-inşa-edilmesi" id="toc-sistemin-inşa-edilmesi" class="nav-link" data-scroll-target="#sistemin-inşa-edilmesi"><span class="header-section-number">3.4</span> Sistemin inşa edilmesi</a>
   <ul class="collapse">
-  <li><a href="#proteinin-hazırlanması" id="toc-proteinin-hazırlanması" class="nav-link" data-scroll-target="#proteinin-hazırlanması"><span class="header-section-number">3.3.1</span> Proteinin hazırlanması</a></li>
-  <li><a href="#sisteme-solvent-eklenmesi" id="toc-sisteme-solvent-eklenmesi" class="nav-link" data-scroll-target="#sisteme-solvent-eklenmesi"><span class="header-section-number">3.3.2</span> Sisteme solvent eklenmesi</a></li>
-  <li><a href="#sisteme-doğal-ortam-iyonlarının-eklenmesi" id="toc-sisteme-doğal-ortam-iyonlarının-eklenmesi" class="nav-link" data-scroll-target="#sisteme-doğal-ortam-iyonlarının-eklenmesi"><span class="header-section-number">3.3.3</span> Sisteme doğal ortam iyonlarının eklenmesi</a></li>
+  <li><a href="#proteinin-hazırlanması" id="toc-proteinin-hazırlanması" class="nav-link" data-scroll-target="#proteinin-hazırlanması"><span class="header-section-number">3.4.1</span> Proteinin hazırlanması</a></li>
+  <li><a href="#sisteme-solvent-eklenmesi" id="toc-sisteme-solvent-eklenmesi" class="nav-link" data-scroll-target="#sisteme-solvent-eklenmesi"><span class="header-section-number">3.4.2</span> Sisteme solvent eklenmesi</a></li>
+  <li><a href="#sisteme-doğal-ortam-iyonlarının-eklenmesi" id="toc-sisteme-doğal-ortam-iyonlarının-eklenmesi" class="nav-link" data-scroll-target="#sisteme-doğal-ortam-iyonlarının-eklenmesi"><span class="header-section-number">3.4.3</span> Sisteme doğal ortam iyonlarının eklenmesi</a></li>
   </ul></li>
-  <li><a href="#bölüm-özeti" id="toc-bölüm-özeti" class="nav-link" data-scroll-target="#bölüm-özeti"><span class="header-section-number">3.4</span> Bölüm Özeti</a></li>
+  <li><a href="#bölüm-özeti" id="toc-bölüm-özeti" class="nav-link" data-scroll-target="#bölüm-özeti"><span class="header-section-number">3.5</span> Bölüm Özeti</a></li>
   </ul>
 </nav>
     </div>
@@ -217,19 +218,23 @@ ul.task-list li input[type="checkbox"] {
 <li>Sistemin dengelenmesi (equilibration)</li>
 <li>Üretim aşaması</li>
 </ol>
-<p>Bu basamakları teker teker ele alalım.</p>
+<p>Bu basamakları teker teker ele alalım. Ancak herşeyden önce en temel yazılımlarla, yani protein görselleştirme yazılımları ile başlayalım.</p>
 </section>
-<section id="gromacs-programının-kurulması" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="gromacs-programının-kurulması"><span class="header-section-number">3.2</span> Gromacs programının kurulması</h2>
+<section id="protein-görselleştirme-programları" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="protein-görselleştirme-programları"><span class="header-section-number">3.2</span> Protein Görselleştirme Programları</h2>
+<p>Protein yapılarının kullanıldığı bütün araştırmalarda en temel ihtiyaçlardan bir tanesi protein yapısının görselleştirilmesidir. Bu nedenle yaygın olarak kullanılan çeşitli programlar geliştirilmiştir. Moleküler dinamik simülasyonları için de bu yazılımlar olmazsa olmazdır. Bu kitabın yazarı <a href="https://www.pymol.org/">Pymol</a> ve <a href="https://www.rbvi.ucsf.edu/chimerax/">ChimeraX</a>protein görselleştirme yazılımlarını kullanmakta ve okuyucularına tavsiye etmektedir. Bu iki yazılımın dışında, özellikle moleküler dinamik simülasyon yörünge dosyalarının görüntülenmesi için <a href="https://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD">VMD</a> yazılımı da kurulmalıdır.</p>
+</section>
+<section id="gromacs-programının-kurulması" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="gromacs-programının-kurulması"><span class="header-section-number">3.3</span> Gromacs programının kurulması</h2>
 <p>Gromacs açık kaynak kodlu bir yazılımdır ve şu adresten indirilebilir: https://manual.gromacs.org/current/download.html</p>
 <p>Eğer Ubuntu Linux kullanıyorsanız aşağıdaki komut Gromacs’ı sizin için kuracaktır:</p>
 <pre class="{bash}"><code>sudo apt install gromacs</code></pre>
 </section>
-<section id="sistemin-inşa-edilmesi" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="sistemin-inşa-edilmesi"><span class="header-section-number">3.3</span> Sistemin inşa edilmesi</h2>
+<section id="sistemin-inşa-edilmesi" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sistemin-inşa-edilmesi"><span class="header-section-number">3.4</span> Sistemin inşa edilmesi</h2>
 <p>Sistemin doğru bir biçimde inşa edilmesi için adım adım ilerlemek gerekir: 1. Proteinin hazırlanması 3. Sisteme solvent eklenmesi 4. Sisteme doğal ortam iyonlarının eklenmesi</p>
-<section id="proteinin-hazırlanması" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="proteinin-hazırlanması"><span class="header-section-number">3.3.1</span> Proteinin hazırlanması</h3>
+<section id="proteinin-hazırlanması" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="proteinin-hazırlanması"><span class="header-section-number">3.4.1</span> Proteinin hazırlanması</h3>
 <p>Hedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi ve doğru protonasyon durumlarının belirlenmesi için aşağıdaki adımlar uygulanır:</p>
 <pre class="{bash}"><code>
 initial_pdb=AF-P22303-F1-model_v4
@@ -251,8 +256,8 @@ gmx pdb2gmx -f ${initial_pdb}-pwb2pqr30.pdb \
     -water ${solvent_model} -ff ${force_field} -ignh
 </code></pre>
 </section>
-<section id="sisteme-solvent-eklenmesi" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="sisteme-solvent-eklenmesi"><span class="header-section-number">3.3.2</span> Sisteme solvent eklenmesi</h3>
+<section id="sisteme-solvent-eklenmesi" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="sisteme-solvent-eklenmesi"><span class="header-section-number">3.4.2</span> Sisteme solvent eklenmesi</h3>
 <p>Proteinler genellikle su ortamında işlevlerini yerine getirir. Bu nedenle bir simülasyon yaparken sisteme mutlaka su eklenmesi gerekir. Aşağıdaki bash komutları ile sisteme su ekleyebiliriz.</p>
 <pre class="{bash}"><code>
 buffer=1.1
@@ -280,8 +285,8 @@ then
         -o ${file_prefix}_solv.pdb -p topol.top
 fi</code></pre>
 </section>
-<section id="sisteme-doğal-ortam-iyonlarının-eklenmesi" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="sisteme-doğal-ortam-iyonlarının-eklenmesi"><span class="header-section-number">3.3.3</span> Sisteme doğal ortam iyonlarının eklenmesi</h3>
+<section id="sisteme-doğal-ortam-iyonlarının-eklenmesi" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="sisteme-doğal-ortam-iyonlarının-eklenmesi"><span class="header-section-number">3.4.3</span> Sisteme doğal ortam iyonlarının eklenmesi</h3>
 <p>Aşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır.</p>
 <pre class="{bash}"><code>#Prepare for ion addition
 gmx grompp -f ions2.mdp -c ${file_prefix}_solv.pdb -maxwarn 2 \
@@ -296,8 +301,8 @@ gmx genion -s ions.tpr -o ${file_prefix}_solv_ions.pdb \
 </code></pre>
 </section>
 </section>
-<section id="bölüm-özeti" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="bölüm-özeti"><span class="header-section-number">3.4</span> Bölüm Özeti</h2>
+<section id="bölüm-özeti" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="bölüm-özeti"><span class="header-section-number">3.5</span> Bölüm Özeti</h2>
 
 
 </section>

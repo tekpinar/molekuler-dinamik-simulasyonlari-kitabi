@@ -12,7 +12,10 @@ Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdak
 3. Sistemin dengelenmesi (equilibration)
 4. Üretim aşaması
 
-Bu basamakları teker teker ele alalım.
+Bu basamakları teker teker ele alalım. Ancak herşeyden önce en temel yazılımlarla, yani protein görselleştirme yazılımları ile başlayalım. 
+
+## Protein Görselleştirme Programları
+Protein yapılarının kullanıldığı bütün araştırmalarda en temel ihtiyaçlardan bir tanesi protein yapısının görselleştirilmesidir. Bu nedenle yaygın olarak kullanılan çeşitli programlar geliştirilmiştir. Moleküler dinamik simülasyonları için de bu yazılımlar olmazsa olmazdır. Bu kitabın yazarı [Pymol](https://www.pymol.org/) ve [ChimeraX](https://www.rbvi.ucsf.edu/chimerax/)protein görselleştirme yazılımlarını kullanmakta ve okuyucularına tavsiye etmektedir. Bu iki yazılımın dışında, özellikle moleküler dinamik simülasyon yörünge dosyalarının görüntülenmesi için  [VMD](https://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD) yazılımı da kurulmalıdır. 
 
 ## Gromacs programının kurulması
 Gromacs açık kaynak kodlu bir yazılımdır ve şu adresten indirilebilir: https://manual.gromacs.org/current/download.html
@@ -22,7 +25,6 @@ Eğer Ubuntu Linux kullanıyorsanız aşağıdaki komut Gromacs'ı sizin için k
 ```{bash}
 sudo apt install gromacs
 ```
-
 
 ## Sistemin inşa edilmesi
 Sistemin doğru bir biçimde inşa edilmesi için adım adım ilerlemek gerekir:
