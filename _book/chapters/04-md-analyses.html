@@ -184,7 +184,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/appendices/03-bash-commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ek 1: Bash Komut Satırı</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ek 3: Bash Komut Satırı</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -211,6 +211,9 @@ window.Quarto = {
   <li><a href="#radius-of-gyration-rg-analizi" id="toc-radius-of-gyration-rg-analizi" class="nav-link" data-scroll-target="#radius-of-gyration-rg-analizi"><span class="header-section-number">5.2.3</span> Radius of Gyration (Rg) Analizi</a></li>
   <li><a href="#sasa-solvent-accessible-surface-area" id="toc-sasa-solvent-accessible-surface-area" class="nav-link" data-scroll-target="#sasa-solvent-accessible-surface-area"><span class="header-section-number">5.2.4</span> SASA (Solvent Accessible Surface Area):</a></li>
   <li><a href="#ikincil-yapı" id="toc-ikincil-yapı" class="nav-link" data-scroll-target="#ikincil-yapı"><span class="header-section-number">5.2.5</span> İkincil Yapı</a></li>
+  <li><a href="#ikincil-yapıların-tanımlanması" id="toc-ikincil-yapıların-tanımlanması" class="nav-link" data-scroll-target="#ikincil-yapıların-tanımlanması"><span class="header-section-number">5.2.6</span> İkincil Yapıların Tanımlanması</a></li>
+  <li><a href="#zaman-içinde-ikincil-yapı-değişimi" id="toc-zaman-içinde-ikincil-yapı-değişimi" class="nav-link" data-scroll-target="#zaman-içinde-ikincil-yapı-değişimi"><span class="header-section-number">5.2.7</span> Zaman İçinde İkincil Yapı Değişimi</a></li>
+  <li><a href="#nicel-analiz-yöntemleri" id="toc-nicel-analiz-yöntemleri" class="nav-link" data-scroll-target="#nicel-analiz-yöntemleri"><span class="header-section-number">5.2.8</span> Nicel Analiz Yöntemleri</a></li>
   </ul></li>
   <li><a href="#enerji-analizleri" id="toc-enerji-analizleri" class="nav-link" data-scroll-target="#enerji-analizleri"><span class="header-section-number">5.3</span> Enerji Analizleri</a></li>
   <li><a href="#bölüm-özeti" id="toc-bölüm-özeti" class="nav-link" data-scroll-target="#bölüm-özeti"><span class="header-section-number">5.4</span> Bölüm Özeti</a></li>
@@ -307,9 +310,7 @@ Genellikle aşağıdaki seçeneklerden biri tercih edilir:</p>
 </ol>
 <p>Her durumda, RMSD hesaplanmadan önce <strong>hizalama (alignment)</strong> yapılmalıdır.<br>
 Bu hizalama genellikle <strong>Cα (alfa karbon)</strong> veya <strong>backbone</strong> atomları üzerinden gerçekleştirilir.</p>
-</section>
-<section id="gromacs-ile-rmsd-hesaplama" class="level4" data-number="5.2.1.3">
-<h4 data-number="5.2.1.3" class="anchored" data-anchor-id="gromacs-ile-rmsd-hesaplama"><span class="header-section-number">5.2.1.3</span> Gromacs ile RMSD hesaplama</h4>
+<p>Gromacs ile RMSD hesaplamak için aşağıdaki komutu Terminal’de yazmak yeterli olacaktır:</p>
 <p><code>echo 3 3 | gmx rms -s pdb_filename -f traj_filename -o rmsd.xvg -tu ns</code></p>
 </section>
 </section>
@@ -337,9 +338,7 @@ Bu hizalama genellikle <strong>Cα (alfa karbon)</strong> veya <strong>backbone<
 <li><strong>Yüksek RMSF değerleri (2–5 Å ve üzeri)</strong>: Bölge esnektir, genellikle loop, uç kısımlar veya bağlanma bölgeleri.</li>
 </ul>
 <hr>
-</section>
-<section id="gromacs-ile-rmsf-hesaplama" class="level4" data-number="5.2.2.3">
-<h4 data-number="5.2.2.3" class="anchored" data-anchor-id="gromacs-ile-rmsf-hesaplama"><span class="header-section-number">5.2.2.3</span> Gromacs ile RMSF Hesaplama</h4>
+<p>Gromacs ile RMSF hesaplamak için aşağıdaki komutu Terminal’de yazmak yeterli olacaktır:</p>
 <p><code>echo 3 3 | gmx rmsf -s pdb_filename -f traj_filename -res -oq rmsf.pdb</code></p>
 <hr>
 </section>
@@ -387,10 +386,8 @@ R_g = \sqrt{ \frac{ \sum_{i=1}^{N} m_i \left| \mathbf{r}_i - \mathbf{r}_{\text{k
 düzenli artması ise <strong>açılmayı (unfolding)</strong> gösterebilir.</p>
 </blockquote>
 <hr>
-<section id="gromacs-ile-rg-hesaplama" class="level4" data-number="5.2.3.1">
-<h4 data-number="5.2.3.1" class="anchored" data-anchor-id="gromacs-ile-rg-hesaplama"><span class="header-section-number">5.2.3.1</span> Gromacs ile Rg Hesaplama</h4>
+<p>Gromacs ile Rg hesaplamak için aşağıdaki komutu Terminal’de yazmak yeterli olacaktır:</p>
 <p><code>echo 3 3| gmx gyrate -s pdb_filename -f traj_filename -o gyrate.xvg</code></p>
-</section>
 </section>
 <section id="sasa-solvent-accessible-surface-area" class="level3" data-number="5.2.4">
 <h3 data-number="5.2.4" class="anchored" data-anchor-id="sasa-solvent-accessible-surface-area"><span class="header-section-number">5.2.4</span> SASA (Solvent Accessible Surface Area):</h3>
@@ -452,14 +449,78 @@ Su molekülü, proteinin etrafında “kayarken” hangi atomlara temas edebiliy
 </tr>
 </tbody>
 </table>
-</section>
-<section id="gromacs-ile-sasa-analizi" class="level4" data-number="5.2.4.3">
-<h4 data-number="5.2.4.3" class="anchored" data-anchor-id="gromacs-ile-sasa-analizi"><span class="header-section-number">5.2.4.3</span> Gromacs ile SASA Analizi</h4>
-<p><code>echo 1|gmx sasa -s pdb_filename -f traj_filename -o sasa.xvg -tu ns</code></p>
+<p>Gromacs ile SASA hesaplamak için aşağıdaki komutu Terminal’de yazmak yeterli olacaktır: <code>echo 1|gmx sasa -s pdb_filename -f traj_filename -o sasa.xvg -tu ns</code></p>
 </section>
 </section>
 <section id="ikincil-yapı" class="level3" data-number="5.2.5">
 <h3 data-number="5.2.5" class="anchored" data-anchor-id="ikincil-yapı"><span class="header-section-number">5.2.5</span> İkincil Yapı</h3>
+<p>Proteinlerin <strong>ikincil yapıları</strong> (örneğin <span class="math inline">\(\alpha\)</span>-heliks ve <span class="math inline">\(\beta\)</span>-tabaka bölgeleri), üç boyutlu katlanmalarının temelini oluşturur. Moleküler dinamik (MD) simülasyonları, bu yapıların zaman içindeki <strong>kararlılığını</strong> ve <strong>dönüşüm süreçlerini</strong> incelemek için güçlü bir araçtır. İkincil yapı analizleri, simülasyon süresince protein zincirinin <strong>hangi bölgelerinde heliks, tabaka veya düzensiz yapı</strong> (coil, turn vb.) bulunduğunu izlemeye dayanır.</p>
+<hr>
+</section>
+<section id="ikincil-yapıların-tanımlanması" class="level3" data-number="5.2.6">
+<h3 data-number="5.2.6" class="anchored" data-anchor-id="ikincil-yapıların-tanımlanması"><span class="header-section-number">5.2.6</span> İkincil Yapıların Tanımlanması</h3>
+<p>MD simülasyonlarında ikincil yapı elemanları genellikle <strong>DSSP (Define Secondary Structure of Proteins)</strong> algoritmasıyla belirlenir. DSSP, hidrojen bağlarını ve geometriyi temel alarak her bir amino asidi sınıflandırır:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Sembol</th>
+<th>Yapı Türü</th>
+<th>Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">H</td>
+<td><span class="math inline">\(\alpha\)</span>-Heliks</td>
+<td>Düzenli helikal yapı</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">G</td>
+<td>3₁₀-Heliks</td>
+<td>Sıkı helikal yapı</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">E</td>
+<td><span class="math inline">\(\beta\)</span>-Tabaka</td>
+<td>Uzamış yapı</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T</td>
+<td>Turn</td>
+<td>Zincir yön değişimi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">C</td>
+<td>Coil</td>
+<td>Düzensiz bölge</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="zaman-içinde-ikincil-yapı-değişimi" class="level3" data-number="5.2.7">
+<h3 data-number="5.2.7" class="anchored" data-anchor-id="zaman-içinde-ikincil-yapı-değişimi"><span class="header-section-number">5.2.7</span> Zaman İçinde İkincil Yapı Değişimi</h3>
+<p>Simülasyon boyunca ikincil yapı değişimleri genellikle bir <strong>zaman–residue</strong> ısı haritası (heatmap) şeklinde gösterilir.<br>
+Bu tür analizler, <strong>kararlı bölgelerin</strong> (örneğin sürekli helikal kalan segmentler) ve <strong>esnek bölgelerin</strong> (heliks–coil dönüşümü yapan kısımlar) ayırt edilmesini sağlar.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Yorum:</strong><br>
+Eğer bir <span class="math inline">\(\alpha\)</span>-heliks bölgesi zamanla coil yapıya dönüşüyorsa, bu durum genellikle lokal kararlılığın azalması veya çevresel etkilerin (örneğin sıcaklık, ligand bağlanması) artmasıyla ilişkilidir.</p>
+</blockquote>
+</section>
+<section id="nicel-analiz-yöntemleri" class="level3" data-number="5.2.8">
+<h3 data-number="5.2.8" class="anchored" data-anchor-id="nicel-analiz-yöntemleri"><span class="header-section-number">5.2.8</span> Nicel Analiz Yöntemleri</h3>
+<p>Bazı metrikler ikincil yapı değişimini sayısal olarak özetler:</p>
+<ul>
+<li><strong>Heliks oranı (<span class="math inline">\(f_H\)</span>)</strong>: Zaman ortalaması olarak heliks karakterine sahip rezidülerin yüzdesi.<br>
+</li>
+<li><strong>Tabaka oranı (<span class="math inline">\(f_E\)</span>)</strong>: <span class="math inline">\(\beta\)</span>-yapı içeren rezidülerin oranı.<br>
+</li>
+<li><strong>DSSP zaman profili</strong>: Her bir rezidülerin için zaman içinde yapısal durumun izlenmesi.</li>
+</ul>
+<p>Gromacs ile ikincil yapı değişimlerini hesaplamak için aşağıdaki komutu Terminal’de yazmak yeterli olacaktır:</p>
+<p><code>gmx do_dssp -s pdb_filename -f traj_filename -sss summary.xvg</code></p>
+<p><code>do_dssp</code> programı arka planda dssp yazılımını kullanır (Burada atıf yaz.). Eğer Ubuntu işletim sistemini kullanıyorsanız bu programı aşağıdaki komut ile önceden kurmak gerekir:</p>
+<p><code>sudo apt install dssp</code></p>
 </section>
 </section>
 <section id="enerji-analizleri" class="level2" data-number="5.3">

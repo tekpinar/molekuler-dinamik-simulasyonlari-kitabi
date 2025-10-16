@@ -1,5 +1,5 @@
 ---
-title: "Ek 1: Bash Komut Satırı"
+title: "Ek 3: Bash Komut Satırı"
 ---
 
 ## Giriş
@@ -77,9 +77,9 @@ Aşağıda günlük işlerde sıkça kullanılan temel Bash komutları özetlenm
 ## Program Kurma
 
 Ubuntu ve türevi işletim sistemlerin program kurmanın en kolay yolu program adının önüne `sudo apt install` yazmaktır. 
-Örneğin Gromacs programını kurmak için `sudo apt install gromacs` yazmak yeterli olur. Burada Gromacs kelimesinin ve komuttaki öteki harflerin küçük olduğuna dikkat etmek gerekir. Program, Ubuntu veri tabanlarında mevcutsa işletim sistemi sizden yönetici şifresini soracak ve sonra programı kuracaktır. 
+Örneğin Gromacs programını kurmak için `sudo apt install gromacs` yazmak yeterli olur. Burada Gromacs kelimesinin ve komuttaki öteki harflerin küçük olduğuna dikkat etmek gerekir.  Program, Ubuntu veri tabanlarında mevcutsa işletim sistemi sizden yönetici şifresini soracak ve sonra programı kuracaktır. 
 
-
+Burada, Linux işletim sisteminde harflerin büyük veya küçük yazılması aynı sonucu vermeyeceğini ve bunlara dikkat edilmesi gerektiğini belirtmek gerekir. 
 ## Alıştırmalar
 
 ::: callout-note

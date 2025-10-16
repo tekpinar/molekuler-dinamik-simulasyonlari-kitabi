@@ -57,7 +57,8 @@ Genellikle aşağıdaki seçeneklerden biri tercih edilir:
 Her durumda, RMSD hesaplanmadan önce **hizalama (alignment)** yapılmalıdır.  
 Bu hizalama genellikle **Cα (alfa karbon)** veya **backbone** atomları üzerinden gerçekleştirilir.
 
-#### Gromacs ile RMSD hesaplama
+Gromacs ile RMSD hesaplamak için aşağıdaki komutu Terminal'de yazmak yeterli olacaktır:
+
 `echo 3 3 | gmx rms -s pdb_filename -f traj_filename -o rmsd.xvg -tu ns` 
 
 ### RMSF (Root Mean Squared Fluctuations):
@@ -88,7 +89,7 @@ Burada:
 
 ---
 
-#### Gromacs ile RMSF Hesaplama
+Gromacs ile RMSF hesaplamak için aşağıdaki komutu Terminal'de yazmak yeterli olacaktır:
 
 `echo 3 3 | gmx rmsf -s pdb_filename -f traj_filename -res -oq rmsf.pdb`
 
@@ -119,7 +120,7 @@ Burada:
 
 ---
 
-#### Gromacs ile Rg Hesaplama
+Gromacs ile Rg hesaplamak için aşağıdaki komutu Terminal'de yazmak yeterli olacaktır:
 
 `echo 3 3| gmx gyrate -s pdb_filename -f traj_filename -o gyrate.xvg`
 
@@ -164,12 +165,55 @@ SASA değeri proteinlerin **katlanma durumu** ve **kararlılığı** hakkında g
 | Ligand bağlanması | SASA azalır | Bağlanma bölgesinde çözücü erişimi kısıtlanır |
 
 
-
-#### Gromacs ile SASA Analizi
+Gromacs ile SASA hesaplamak için aşağıdaki komutu Terminal'de yazmak yeterli olacaktır:
 `echo 1|gmx sasa -s pdb_filename -f traj_filename -o sasa.xvg -tu ns`
 
 
 ### İkincil Yapı
+
+Proteinlerin **ikincil yapıları** (örneğin $\alpha$-heliks ve $\beta$-tabaka bölgeleri), üç boyutlu katlanmalarının temelini oluşturur. Moleküler dinamik (MD) simülasyonları, bu yapıların zaman içindeki **kararlılığını** ve **dönüşüm süreçlerini** incelemek için güçlü bir araçtır. İkincil yapı analizleri, simülasyon süresince protein zincirinin **hangi bölgelerinde heliks, tabaka veya düzensiz yapı** (coil, turn vb.) bulunduğunu izlemeye dayanır.
+
+---
+
+### İkincil Yapıların Tanımlanması
+
+MD simülasyonlarında ikincil yapı elemanları genellikle **DSSP (Define Secondary Structure of Proteins)** algoritmasıyla belirlenir. DSSP, hidrojen bağlarını ve geometriyi temel alarak her bir amino asidi sınıflandırır:
+
+| Sembol | Yapı Türü | Açıklama |
+|:-------:|------------|-----------|
+| H | $\alpha$-Heliks | Düzenli helikal yapı |
+| G | 3₁₀-Heliks | Sıkı helikal yapı |
+| E | $\beta$-Tabaka | Uzamış yapı |
+| T | Turn | Zincir yön değişimi |
+| C | Coil | Düzensiz bölge |
+
+---
+
+### Zaman İçinde İkincil Yapı Değişimi
+
+Simülasyon boyunca ikincil yapı değişimleri genellikle bir **zaman–residue** ısı haritası (heatmap) şeklinde gösterilir.  
+Bu tür analizler, **kararlı bölgelerin** (örneğin sürekli helikal kalan segmentler) ve **esnek bölgelerin** (heliks–coil dönüşümü yapan kısımlar) ayırt edilmesini sağlar.
+
+> 💡 **Yorum:**  
+> Eğer bir $\alpha$-heliks bölgesi zamanla coil yapıya dönüşüyorsa, bu durum genellikle lokal kararlılığın azalması veya çevresel etkilerin (örneğin sıcaklık, ligand bağlanması) artmasıyla ilişkilidir.
+
+
+
+### Nicel Analiz Yöntemleri
+
+Bazı metrikler ikincil yapı değişimini sayısal olarak özetler:
+
+- **Heliks oranı ($f_H$)**: Zaman ortalaması olarak heliks karakterine sahip rezidülerin yüzdesi.  
+- **Tabaka oranı ($f_E$)**: $\beta$-yapı içeren rezidülerin oranı.  
+- **DSSP zaman profili**: Her bir rezidülerin için zaman içinde yapısal durumun izlenmesi.
+
+Gromacs ile ikincil yapı değişimlerini hesaplamak için aşağıdaki komutu Terminal'de yazmak yeterli olacaktır:
+
+`gmx do_dssp -s pdb_filename -f traj_filename -sss summary.xvg`
+
+`do_dssp` programı arka planda dssp yazılımını kullanır (Burada atıf yaz.). Eğer Ubuntu işletim sistemini kullanıyorsanız bu programı aşağıdaki komut ile önceden kurmak gerekir:
+
+`sudo apt install dssp`
 
 ## Enerji Analizleri
 
