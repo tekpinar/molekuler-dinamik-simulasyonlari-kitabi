@@ -209,7 +209,7 @@ Bazı metrikler ikincil yapı değişimini sayısal olarak özetler:
 
 Gromacs ile ikincil yapı değişimlerini hesaplamak için aşağıdaki komutu Terminal'de yazmak yeterli olacaktır:
 
-`gmx do_dssp -s pdb_filename -f traj_filename -sss summary.xvg`
+`gmx do_dssp -s pdb_filename -f traj_filename -o dssp.xpm -sc residue_count.xvg`
 
 `do_dssp` programı arka planda dssp yazılımını kullanır (Burada atıf yaz.). Eğer Ubuntu işletim sistemini kullanıyorsanız bu programı aşağıdaki komut ile önceden kurmak gerekir:
 

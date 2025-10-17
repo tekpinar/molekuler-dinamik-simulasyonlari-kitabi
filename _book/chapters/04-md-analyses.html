@@ -518,7 +518,7 @@ Eğer bir <span class="math inline">\(\alpha\)</span>-heliks bölgesi zamanla co
 <li><strong>DSSP zaman profili</strong>: Her bir rezidülerin için zaman içinde yapısal durumun izlenmesi.</li>
 </ul>
 <p>Gromacs ile ikincil yapı değişimlerini hesaplamak için aşağıdaki komutu Terminal’de yazmak yeterli olacaktır:</p>
-<p><code>gmx do_dssp -s pdb_filename -f traj_filename -sss summary.xvg</code></p>
+<p><code>gmx do_dssp -s pdb_filename -f traj_filename -o dssp.xpm -sc residue_count.xvg</code></p>
 <p><code>do_dssp</code> programı arka planda dssp yazılımını kullanır (Burada atıf yaz.). Eğer Ubuntu işletim sistemini kullanıyorsanız bu programı aşağıdaki komut ile önceden kurmak gerekir:</p>
 <p><code>sudo apt install dssp</code></p>
 </section>
