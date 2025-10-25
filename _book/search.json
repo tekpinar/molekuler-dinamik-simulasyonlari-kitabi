@@ -92,61 +92,61 @@
   {
     "objectID": "chapters/02-md-preparations.html",
     "href": "chapters/02-md-preparations.html",
-    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "title": "3  MD Simülasyonlarına Hazırlık",
     "section": "",
-    "text": "3.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız. Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdaki basamakları içerir:\nBu basamakları teker teker ele alalım. Ancak herşeyden önce en temel yazılımlarla, yani protein görselleştirme yazılımları ile başlayalım.",
+    "text": "3.1 Bu Bölümde Neler Öğreneceğiz?\nBu bölümde öncelikle protein görselleştirme programlarını tanıtacağız. Ardından, moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız. Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdaki basamakları içerir:\nBu basamakları teker teker ele alalım. Ancak herşeyden önce en temel yazılımlarla, yani protein görselleştirme yazılımları ile başlayalım.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MD Simülasyonlarına Hazırlık</span>"
     ]
   },
   {
     "objectID": "chapters/02-md-preparations.html#bu-bölümde-neler-öğreneceğiz",
     "href": "chapters/02-md-preparations.html#bu-bölümde-neler-öğreneceğiz",
-    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "title": "3  MD Simülasyonlarına Hazırlık",
     "section": "",
     "text": "Sistemin inşa edilmesi\nSistemin enerjisinin minimize edilmesi\nSistemin dengelenmesi (equilibration)\nÜretim aşaması",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MD Simülasyonlarına Hazırlık</span>"
     ]
   },
   {
     "objectID": "chapters/02-md-preparations.html#protein-görselleştirme-programları",
     "href": "chapters/02-md-preparations.html#protein-görselleştirme-programları",
-    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "title": "3  MD Simülasyonlarına Hazırlık",
     "section": "3.2 Protein Görselleştirme Programları",
     "text": "3.2 Protein Görselleştirme Programları\nProtein yapılarının kullanıldığı bütün araştırmalarda en temel ihtiyaçlardan bir tanesi protein yapısının görselleştirilmesidir. Bu nedenle yaygın olarak kullanılan çeşitli programlar geliştirilmiştir. Moleküler dinamik simülasyonları için de bu yazılımlar olmazsa olmazdır. Bu kitabın yazarı Pymol ve ChimeraXprotein görselleştirme yazılımlarını kullanmakta ve okuyucularına tavsiye etmektedir. Bu iki yazılımın dışında, özellikle moleküler dinamik simülasyon yörünge dosyalarının görüntülenmesi için VMD yazılımı da kurulmalıdır.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MD Simülasyonlarına Hazırlık</span>"
     ]
   },
   {
     "objectID": "chapters/02-md-preparations.html#gromacs-programının-kurulması",
     "href": "chapters/02-md-preparations.html#gromacs-programının-kurulması",
-    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "title": "3  MD Simülasyonlarına Hazırlık",
     "section": "3.3 Gromacs programının kurulması",
     "text": "3.3 Gromacs programının kurulması\nGromacs açık kaynak kodlu bir yazılımdır ve şu adresten indirilebilir: https://manual.gromacs.org/current/download.html\nEğer Ubuntu Linux kullanıyorsanız aşağıdaki komut Gromacs’ı sizin için kuracaktır:\nsudo apt install gromacs",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MD Simülasyonlarına Hazırlık</span>"
     ]
   },
   {
     "objectID": "chapters/02-md-preparations.html#sistemin-inşa-edilmesi",
     "href": "chapters/02-md-preparations.html#sistemin-inşa-edilmesi",
-    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "title": "3  MD Simülasyonlarına Hazırlık",
     "section": "3.4 Sistemin inşa edilmesi",
-    "text": "3.4 Sistemin inşa edilmesi\nSistemin doğru bir biçimde inşa edilmesi için adım adım ilerlemek gerekir: 1. Proteinin hazırlanması 3. Sisteme solvent eklenmesi 4. Sisteme doğal ortam iyonlarının eklenmesi\n\n3.4.1 Proteinin hazırlanması\nHedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi ve doğru protonasyon durumlarının belirlenmesi için aşağıdaki adımlar uygulanır:\n\ninitial_pdb=AF-P22303-F1-model_v4\n\nfile_prefix=aces_human_monomer_wt\n\nforce_field=amber99sb-ildn\n\n#Call pdb2pqr to determine protonation states of the residues\n#according to pH 7.4\npdb2pqr30 --ff PARSE --ffout AMBER  --titration-state-method\\\n    propka --with-ph 7.4 ${initial_pdb}.pdb \\\n    ${initial_pdb-pwb2pqr30.pqr \\\n    --pdb-output ${initial_pdb}-pwb2pqr30.pdb\n\n#Add hydrogens if absent, select water model and force field\ngmx pdb2gmx -f ${initial_pdb}-pwb2pqr30.pdb \\\n    -o ${file_prefix}_processed.pdb \\\n    -water ${solvent_model} -ff ${force_field} -ignh\n\n\n\n3.4.2 Sisteme solvent eklenmesi\nProteinler genellikle su ortamında işlevlerini yerine getirir. Bu nedenle bir simülasyon yaparken sisteme mutlaka su eklenmesi gerekir. Aşağıdaki bash komutları ile sisteme su ekleyebiliriz.\n\nbuffer=1.1\n\n#Define box properties\ngmx editconf -f ${file_prefix}_processed.pdb \\\n    -o ${file_prefix}_newbox.pdb \\\n    -bt octahedron -c -d ${buffer} -princ\n\n#Note that if spc, spce, or tip3p model is used, solvent_model=spc216\nsolvent_model=tip3p\n\n#Produce box\nif [ \"$solvent_model\" == \"tip3p\" ] || \\\n    [ \"$solvent_model\" == \"spc\" ] || \\\n    [ \"$solvent_model\" == \"spce\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs spc216.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\nif [ \"$solvent_model\" == \"tip4p\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs tip4p.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\n\n3.4.3 Sisteme doğal ortam iyonlarının eklenmesi\nAşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır.\n#Prepare for ion addition\ngmx grompp -f ions2.mdp -c ${file_prefix}_solv.pdb -maxwarn 2 \\\n    -p topol.top -o ions.tpr\n\n#Produce and place ions\ngmx genion -s ions.tpr -o ${file_prefix}_solv_ions.pdb \\\n    -p topol.top -pname NA -nname CL -neutral -conc 0.15\n\n#Good news: Preparation is over!\n#Bad news : Trouble has just started!",
+    "text": "3.4 Sistemin inşa edilmesi\nSistemin doğru bir biçimde inşa edilmesi için adım adım ilerlemek gerekir: 1. Proteinin hazırlanması 3. Sisteme solvent eklenmesi 4. Sisteme doğal ortam iyonlarının eklenmesi\n\n3.4.1 Proteinin hazırlanması\nHedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin eklenmesi ve doğru protonasyon durumlarının belirlenmesi için aşağıdaki adımlar uygulanır:\n\ninitial_pdb=AF-P22303-F1-model_v4\nfile_prefix=aces_human_monomer_wt\nforce_field=amber99sb-ildn\n\n#Note that if spc, spce, or tip3p model is used, solvent_model=spc216\nsolvent_model=tip3p\n\n#Call pdb2pqr to determine protonation states of the residues at pH 7.4\npdb2pqr30 --ff PARSE --ffout AMBER  --titration-state-method\\\n    propka --with-ph 7.4 ${initial_pdb}.pdb \\\n    ${initial_pdb-pwb2pqr30.pqr \\\n    --pdb-output ${initial_pdb}-pwb2pqr30.pdb\n\n#Add hydrogens if absent, select water model and force field\ngmx pdb2gmx -f ${initial_pdb}-pwb2pqr30.pdb \\\n    -o ${file_prefix}_processed.pdb \\\n    -water tip3p -ff ${force_field}\n\ngmx pdb2gmx ile başlayan sonraki komuttaki -water parametresinden sonra ise su modelini tip3p olarak seçiyoruz. Bu su modeli en yaygın kullanılan su modellerinden biridir.\n\n\n3.4.2 Sisteme solvent eklenmesi\nProteinler genellikle su ortamında işlevlerini yerine getirir. Bu nedenle bir simülasyon yaparken sisteme mutlaka su eklenmesi gerekir. Aşağıdaki bash komutları ile sisteme su ekleyebiliriz.\n\n#Define box properties\ngmx editconf -f ${file_prefix}_processed.pdb \\\n    -o ${file_prefix}_newbox.pdb \\\n    -bt octahedron -c -d 1.1 -princ\n\n#Produce box\nif [ \"$solvent_model\" == \"tip3p\" ] || \\\n    [ \"$solvent_model\" == \"spc\" ] || \\\n    [ \"$solvent_model\" == \"spce\" ];\nthen\n    gmx solvate -cp ${file_prefix}_newbox.pdb -cs spc216.gro \\\n        -o ${file_prefix}_solv.pdb -p topol.top\nfi\n\nYukarıdaki komutları kısaca açıklayalım: Gromacs programında adet olduğu üzere, -f parametresinden sonra input dosyası eklenir, -o parametresinden sonrasında ise çıktı dosyasının adı yazılır. -bt parametresi “box type (kutu tipi)” seçmek için kullanılır. Burada kutu tipi olarak octahedron seçilmiştir. Octahedron kutu tipinin yapısı Şekil 3.1’de gösterilmektedir. -c parametresi proteini seçilen kutunun merkezine alması gerektiğini ifade eder. -d 1.1 parametresi ise proteinden kutunun kenarlarına en az 1.1 nm (11 Angstrom) mesafe olması gerektiğini belirtir.\n\n\n\n\n\n\nŞekil 3.1: Octahedron kutu. (Kaynak: Bu resim Wikipedia’dan alınmıştır.)\n\n\n\n\n\n3.4.3 Sisteme doğal ortam iyonlarının eklenmesi\nAşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır.\n#Prepare for ion addition\ngmx grompp -f ions2.mdp -c ${file_prefix}_solv.pdb -maxwarn 2 \\\n    -p topol.top -o ions.tpr\n\n#Produce and place ions\ngmx genion -s ions.tpr -o ${file_prefix}_solv_ions.pdb \\\n    -p topol.top -pname NA -nname CL -neutral -conc 0.15\n\n#Good news: Preparation is over!\n#Bad news : Trouble has just started!",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MD Simülasyonlarına Hazırlık</span>"
     ]
   },
   {
     "objectID": "chapters/02-md-preparations.html#bölüm-özeti",
     "href": "chapters/02-md-preparations.html#bölüm-özeti",
-    "title": "3  Gromacs ile MD Simülasyonlarına Hazırlık",
+    "title": "3  MD Simülasyonlarına Hazırlık",
     "section": "3.5 Bölüm Özeti",
     "text": "3.5 Bölüm Özeti",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gromacs ile MD Simülasyonlarına Hazırlık</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MD Simülasyonlarına Hazırlık</span>"
     ]
   },
   {

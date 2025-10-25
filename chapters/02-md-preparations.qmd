@@ -1,11 +1,10 @@
 ---
-title: "Gromacs ile MD Simülasyonlarına Hazırlık"
+title: "MD Simülasyonlarına Hazırlık"
 ---
 
 ## Bu Bölümde Neler Öğreneceğiz?
 
-Bu bölümde moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız.
-Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdaki basamakları içerir:
+Bu bölümde öncelikle protein görselleştirme programlarını tanıtacağız. Ardından, moleküler dinamik simülasyonlarının temel aşamalarını ele alacağız. Kabaca bir moleküler dinamik simülasyonunun hazırlık aşamaları aşağıdaki basamakları içerir:
 
 1. Sistemin inşa edilmesi
 2. Sistemin enerjisinin minimize edilmesi
@@ -39,13 +38,13 @@ Hedef protein yapısının bulunması, temizlenmesi ve eksik (ise) hidrojenlerin
 ```{bash}
 
 initial_pdb=AF-P22303-F1-model_v4
-
 file_prefix=aces_human_monomer_wt
-
 force_field=amber99sb-ildn
 
-#Call pdb2pqr to determine protonation states of the residues
-#according to pH 7.4
+#Note that if spc, spce, or tip3p model is used, solvent_model=spc216
+solvent_model=tip3p
+
+#Call pdb2pqr to determine protonation states of the residues at pH 7.4
 pdb2pqr30 --ff PARSE --ffout AMBER  --titration-state-method\
     propka --with-ph 7.4 ${initial_pdb}.pdb \
     ${initial_pdb-pwb2pqr30.pqr \
@@ -54,9 +53,11 @@ pdb2pqr30 --ff PARSE --ffout AMBER  --titration-state-method\
 #Add hydrogens if absent, select water model and force field
 gmx pdb2gmx -f ${initial_pdb}-pwb2pqr30.pdb \
     -o ${file_prefix}_processed.pdb \
-    -water ${solvent_model} -ff ${force_field} -ignh
+    -water tip3p -ff ${force_field}
 
 ```
+
+`gmx pdb2gmx` ile başlayan sonraki komuttaki `-water` parametresinden sonra ise su modelini tip3p olarak seçiyoruz. Bu su modeli en yaygın kullanılan su modellerinden biridir. 
 
 ### Sisteme solvent eklenmesi
 
@@ -64,15 +65,10 @@ Proteinler genellikle su ortamında işlevlerini yerine getirir. Bu nedenle bir 
 
 ```{bash}
 
-buffer=1.1
-
 #Define box properties
 gmx editconf -f ${file_prefix}_processed.pdb \
     -o ${file_prefix}_newbox.pdb \
-    -bt octahedron -c -d ${buffer} -princ
-
-#Note that if spc, spce, or tip3p model is used, solvent_model=spc216
-solvent_model=tip3p
+    -bt octahedron -c -d 1.1 -princ
 
 #Produce box
 if [ "$solvent_model" == "tip3p" ] || \
@@ -83,13 +79,12 @@ then
         -o ${file_prefix}_solv.pdb -p topol.top
 fi
 
-if [ "$solvent_model" == "tip4p" ];
-then
-    gmx solvate -cp ${file_prefix}_newbox.pdb -cs tip4p.gro \
-        -o ${file_prefix}_solv.pdb -p topol.top
-fi
 ```
 
+Yukarıdaki komutları kısaca açıklayalım: Gromacs programında adet olduğu üzere, `-f` parametresinden sonra input dosyası eklenir, `-o` parametresinden sonrasında ise çıktı dosyasının adı yazılır. `-bt` parametresi "box type (kutu tipi)" seçmek için kullanılır. Burada kutu tipi olarak `octahedron` seçilmiştir. Octahedron kutu tipinin yapısı @fig-octahedron'de gösterilmektedir. `-c` parametresi proteini seçilen kutunun merkezine alması gerektiğini ifade eder. `-d 1.1` parametresi ise proteinden kutunun kenarlarına en az 1.1 nm (11 Angstrom) mesafe olması gerektiğini belirtir. 
+
+
+![Octahedron kutu. (Kaynak: Bu resim [Wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Truncated_octahedron_%28green%29.png/960px-Truncated_octahedron_%28green%29.png?20250914164708)'dan alınmıştır.)](figures/Truncated_octahedron_green.png){#fig-octahedron fig-align="center" width="60%"}
 
 ### Sisteme doğal ortam iyonlarının eklenmesi
 Aşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır. 

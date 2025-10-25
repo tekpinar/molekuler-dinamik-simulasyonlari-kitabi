@@ -14,12 +14,12 @@ Bu bölümde önce amino asitlerin ortak mimarisini ve kimyasal çeşitliliğini
 
 Her amino asit, aynı omurgayı paylaşır: bir **amino grubu** (–NH~2~), bir **karboksil grubu** (–COOH), kiral bir **alfa karbonu** (Cα) ve değişken **yan zincir** (**R grubu**) (@fig-aa). 
 
-![Amino asidlerin genel yapısı. (Kaynak: Bu resim [Wikipedia](https://simple.wikipedia.org/wiki/Amino_acid#/media/File:AminoAcidball.svg)'dan alınmıştır.)](figures/AminoAcidball.png){#fig-aa fig-align="center" width="60%"}
+![Amino asidlerin genel yapısı. (Kaynak: Bu resim [Wikipedia](https://simple.wikipedia.org/wiki/Amino_acid#/media/File:AminoAcidball.svg)'dan alınmıştır.)](../figures/AminoAcidball.png){#fig-aa fig-align="center" width="60%"}
 
 R grubu; polar/apolar olma, yük taşıma, aromatiklik veya kükürt içeriği gibi özellikleriyle amino asitlerin kimyasal davranışını belirler. Canlılarda doğal olarak bulunan 20 çeşit amino asit vardır ve bu amino asitler çeşitli özelliklerine göre gruplandırılabilir (@fig-Amino_Acids_Groupings). Yan zincirlerin bu çeşitliliği, proteinlerin katlanma dinamiklerinden etkileşim ağlarına kadar her şeyi etkiler.
 
 
-![20 doğal amino asit ve bunların gruplandırılması. (Kaynak: Bu resim [Wikipedia](https://commons.wikimedia.org/wiki/File:Amino_Acids.svg)'dan alınmıştır.)](figures/Amino_Acids_Groupings.png){#fig-Amino_Acids_Groupings fig-align="center" width="100%"}
+![20 doğal amino asit ve bunların gruplandırılması. (Kaynak: Bu resim [Wikipedia](https://commons.wikimedia.org/wiki/File:Amino_Acids.svg)'dan alınmıştır.)](../figures/Amino_Acids_Groupings.png){#fig-Amino_Acids_Groupings fig-align="center" width="100%"}
 
 
 ## Proteinlerin Yapı Düzeyleri
@@ -35,7 +35,7 @@ Bu düzeyler hiyerarşiktir: Sekans, ikincil motif eğilimlerini belirler; yan z
 
 
 
-![Yapı düzeylerinin şematik gösterimi](figures/protein-yapilari.png){#fig-ps fig-align="center" width="80%"}
+![Yapı düzeylerinin şematik gösterimi](../figures/protein-yapilari.png){#fig-ps fig-align="center" width="80%"}
 
 TODO: @fig-ps'yi düzeltmeyi unutma. !!!
 
