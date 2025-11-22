@@ -215,6 +215,63 @@ Gromacs ile ikincil yapı değişimlerini hesaplamak için aşağıdaki komutu T
 
 `sudo apt install dssp`
 
+### Ana Bileşen Analizi (Principal Component Analysis, PCA)
+
+D simülasyonlarında sistem çok boyutlu bir uzayda hareket eder. Her atomun üç uzaysal koordinatı düşünüldüğünde, bir proteinin hareketi binlerce boyutlu olabilir. Ana bileşen analizi (Principal Component Analysis, PCA), moleküler dinamik simülasyonlarında büyük ölçekli ve kolektif hareketleri ortaya çıkarmak için kullanılan güçlü bir yöntemdir. Özellikle proteinlerin konformasyonel değişimlerini, fonksiyonel hareketlerini ve enerji yüzeyindeki baskın hareketleri anlamada yaygın olarak kullanılır. PCA, atomların zaman içindeki konum değişimlerinden korelasyon matrisi çıkararak, sistemdeki en baskın hareket modlarını tanımlar.
+
+PCA'nın amacı:
+
+- Bu yüksek boyutlu hareketi daha az sayıda "ana bileşene" indirgemek  
+- En fazla varyansı açıklayan hareket yönlerini bulmak  
+- Kompleks hareketleri daha anlaşılır hale getirmek  
+
+Bu analizde ilk birkaç ana bileşen (PC1, PC2, bazen PC3), sistemdeki toplam varyansın büyük bir kısmını temsil eder. Bu nedenle biyolojik olarak anlamlı hareketler genellikle bu eksenler üzerinde incelenir.
+
+#### GROMACS ile PCA Süreci
+
+GROMACS yazılımı PCA için kapsamlı araçlar sunar ve bu analiz genellikle simülasyon sonucunda elde edilen yörünge (örneğin traj.xtc) ve ortalama yapı dosyaları üzerinden yürütülür. GROMACS’ta PCA genellikle şu adımlar üzerinden gerçekleştirilir:
+
+1. Yörünge Dosyalarının Hizalanması
+
+İlk olarak yapıların dönme ve öteleme hareketlerinin etkisini ortadan kaldırmak için yörünge dosyası referans bir yapıya göre hizalanır:
+
+```bash
+gmx trjconv -s topol.tpr -f traj.xtc -o fit.xtc -fit rot+trans
+```
+
+2. Kovaryans Matrisinin Hesaplanması
+
+Hareket analizi için kovaryans matrisi çıkarılır. Bu işlem genellikle alfa karbonları (Cα) veya belirli atom grupları üzerinden yapılır:
+
+```bash
+gmx covar -s topol.tpr -f fit.xtc -o eigenval.xvg -v eigenvec.trr
+```
+
+3. Projeksiyon Hesabı
+
+Hesaplanan özvektörlere göre yörüngenin her karesindeki koordinatlar bu özvektörler üzerine projekte edilir:
+
+```bash
+gmx anaeig -v eigenvec.trr -f fit.xtc -proj proj.xvg -extr extreme.pdb
+```
+
+Bu komutlar aracılığıyla:
+
+- proj.xvg: Hareketin PC1 veya PC2 gibi belirli bileşenler üzerindeki izdüşümünü verir.  
+- extreme.pdb: Sistem için aşırı pozisyonları (maksimum ve minimum hareket) çıkarır.
+
+#### PCA Sonuçlarının Yorumlanması
+
+PCA çıktılarına bakarken tipik olarak:
+
+- **Eigenvalue (özdeğer) eğrileri**: Hangi ana bileşenin ne kadar varyans açıkladığını gösterir.  
+- **Projections (projeksiyon grafikleri)**: Konformasyonel durumların zaman boyunca veya PC1–PC2 düzleminde nasıl dağıldığını ortaya koyar.  
+- **Extreme conformations**: Sistemin en uç hareketlerini yapısal olarak analiz etmeye imkân sağlar.
+
+Bu analiz sayesinde proteinlerin açılma/kapanma hareketleri, döngü (loop) esnekliği, domain hareketleri ve fonksiyonel geçişleri gibi kritik dinamikleri net bir şekilde gözlemlenebilir.
+
+Sonuç olarak ana bileşen analizi, MD simülasyonlarının en değerli yapısal analizlerinden biridir. GROMACS'ın sunduğu araçlarla PCA süreci hem hızlı hem de oldukça esnektir. PCA, özellikle karmaşık biyomoleküler sistemlerde baskın hareketlerin ortaya çıkarılmasına ve biyolojik anlamın güçlendirilmesine katkı sağlar.
+
 ## Enerji Analizleri
 
 ## Bölüm Özeti

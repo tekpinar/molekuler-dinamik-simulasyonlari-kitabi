@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -214,6 +249,7 @@ window.Quarto = {
   <li><a href="#ikincil-yapıların-tanımlanması" id="toc-ikincil-yapıların-tanımlanması" class="nav-link" data-scroll-target="#ikincil-yapıların-tanımlanması"><span class="header-section-number">5.2.6</span> İkincil Yapıların Tanımlanması</a></li>
   <li><a href="#zaman-içinde-ikincil-yapı-değişimi" id="toc-zaman-içinde-ikincil-yapı-değişimi" class="nav-link" data-scroll-target="#zaman-içinde-ikincil-yapı-değişimi"><span class="header-section-number">5.2.7</span> Zaman İçinde İkincil Yapı Değişimi</a></li>
   <li><a href="#nicel-analiz-yöntemleri" id="toc-nicel-analiz-yöntemleri" class="nav-link" data-scroll-target="#nicel-analiz-yöntemleri"><span class="header-section-number">5.2.8</span> Nicel Analiz Yöntemleri</a></li>
+  <li><a href="#ana-bileşen-analizi-principal-component-analysis-pca" id="toc-ana-bileşen-analizi-principal-component-analysis-pca" class="nav-link" data-scroll-target="#ana-bileşen-analizi-principal-component-analysis-pca"><span class="header-section-number">5.2.9</span> Ana Bileşen Analizi (Principal Component Analysis, PCA)</a></li>
   </ul></li>
   <li><a href="#enerji-analizleri" id="toc-enerji-analizleri" class="nav-link" data-scroll-target="#enerji-analizleri"><span class="header-section-number">5.3</span> Enerji Analizleri</a></li>
   <li><a href="#bölüm-özeti" id="toc-bölüm-özeti" class="nav-link" data-scroll-target="#bölüm-özeti"><span class="header-section-number">5.4</span> Bölüm Özeti</a></li>
@@ -521,6 +557,57 @@ Eğer bir <span class="math inline">\(\alpha\)</span>-heliks bölgesi zamanla co
 <p><code>gmx do_dssp -s pdb_filename -f traj_filename -o dssp.xpm -sc residue_count.xvg</code></p>
 <p><code>do_dssp</code> programı arka planda dssp yazılımını kullanır (Burada atıf yaz.). Eğer Ubuntu işletim sistemini kullanıyorsanız bu programı aşağıdaki komut ile önceden kurmak gerekir:</p>
 <p><code>sudo apt install dssp</code></p>
+</section>
+<section id="ana-bileşen-analizi-principal-component-analysis-pca" class="level3" data-number="5.2.9">
+<h3 data-number="5.2.9" class="anchored" data-anchor-id="ana-bileşen-analizi-principal-component-analysis-pca"><span class="header-section-number">5.2.9</span> Ana Bileşen Analizi (Principal Component Analysis, PCA)</h3>
+<p>D simülasyonlarında sistem çok boyutlu bir uzayda hareket eder. Her atomun üç uzaysal koordinatı düşünüldüğünde, bir proteinin hareketi binlerce boyutlu olabilir. Ana bileşen analizi (Principal Component Analysis, PCA), moleküler dinamik simülasyonlarında büyük ölçekli ve kolektif hareketleri ortaya çıkarmak için kullanılan güçlü bir yöntemdir. Özellikle proteinlerin konformasyonel değişimlerini, fonksiyonel hareketlerini ve enerji yüzeyindeki baskın hareketleri anlamada yaygın olarak kullanılır. PCA, atomların zaman içindeki konum değişimlerinden korelasyon matrisi çıkararak, sistemdeki en baskın hareket modlarını tanımlar.</p>
+<p>PCA’nın amacı:</p>
+<ul>
+<li>Bu yüksek boyutlu hareketi daha az sayıda “ana bileşene” indirgemek<br>
+</li>
+<li>En fazla varyansı açıklayan hareket yönlerini bulmak<br>
+</li>
+<li>Kompleks hareketleri daha anlaşılır hale getirmek</li>
+</ul>
+<p>Bu analizde ilk birkaç ana bileşen (PC1, PC2, bazen PC3), sistemdeki toplam varyansın büyük bir kısmını temsil eder. Bu nedenle biyolojik olarak anlamlı hareketler genellikle bu eksenler üzerinde incelenir.</p>
+<section id="gromacs-ile-pca-süreci" class="level4" data-number="5.2.9.1">
+<h4 data-number="5.2.9.1" class="anchored" data-anchor-id="gromacs-ile-pca-süreci"><span class="header-section-number">5.2.9.1</span> GROMACS ile PCA Süreci</h4>
+<p>GROMACS yazılımı PCA için kapsamlı araçlar sunar ve bu analiz genellikle simülasyon sonucunda elde edilen yörünge (örneğin traj.xtc) ve ortalama yapı dosyaları üzerinden yürütülür. GROMACS’ta PCA genellikle şu adımlar üzerinden gerçekleştirilir:</p>
+<ol type="1">
+<li>Yörünge Dosyalarının Hizalanması</li>
+</ol>
+<p>İlk olarak yapıların dönme ve öteleme hareketlerinin etkisini ortadan kaldırmak için yörünge dosyası referans bir yapıya göre hizalanır:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-s</span> topol.tpr <span class="at">-f</span> traj.xtc <span class="at">-o</span> fit.xtc <span class="at">-fit</span> rot+trans</span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li>Kovaryans Matrisinin Hesaplanması</li>
+</ol>
+<p>Hareket analizi için kovaryans matrisi çıkarılır. Bu işlem genellikle alfa karbonları (Cα) veya belirli atom grupları üzerinden yapılır:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> covar <span class="at">-s</span> topol.tpr <span class="at">-f</span> fit.xtc <span class="at">-o</span> eigenval.xvg <span class="at">-v</span> eigenvec.trr</span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Projeksiyon Hesabı</li>
+</ol>
+<p>Hesaplanan özvektörlere göre yörüngenin her karesindeki koordinatlar bu özvektörler üzerine projekte edilir:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> anaeig <span class="at">-v</span> eigenvec.trr <span class="at">-f</span> fit.xtc <span class="at">-proj</span> proj.xvg <span class="at">-extr</span> extreme.pdb</span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Bu komutlar aracılığıyla:</p>
+<ul>
+<li>proj.xvg: Hareketin PC1 veya PC2 gibi belirli bileşenler üzerindeki izdüşümünü verir.<br>
+</li>
+<li>extreme.pdb: Sistem için aşırı pozisyonları (maksimum ve minimum hareket) çıkarır.</li>
+</ul>
+</section>
+<section id="pca-sonuçlarının-yorumlanması" class="level4" data-number="5.2.9.2">
+<h4 data-number="5.2.9.2" class="anchored" data-anchor-id="pca-sonuçlarının-yorumlanması"><span class="header-section-number">5.2.9.2</span> PCA Sonuçlarının Yorumlanması</h4>
+<p>PCA çıktılarına bakarken tipik olarak:</p>
+<ul>
+<li><strong>Eigenvalue (özdeğer) eğrileri</strong>: Hangi ana bileşenin ne kadar varyans açıkladığını gösterir.<br>
+</li>
+<li><strong>Projections (projeksiyon grafikleri)</strong>: Konformasyonel durumların zaman boyunca veya PC1–PC2 düzleminde nasıl dağıldığını ortaya koyar.<br>
+</li>
+<li><strong>Extreme conformations</strong>: Sistemin en uç hareketlerini yapısal olarak analiz etmeye imkân sağlar.</li>
+</ul>
+<p>Bu analiz sayesinde proteinlerin açılma/kapanma hareketleri, döngü (loop) esnekliği, domain hareketleri ve fonksiyonel geçişleri gibi kritik dinamikleri net bir şekilde gözlemlenebilir.</p>
+<p>Sonuç olarak ana bileşen analizi, MD simülasyonlarının en değerli yapısal analizlerinden biridir. GROMACS’ın sunduğu araçlarla PCA süreci hem hızlı hem de oldukça esnektir. PCA, özellikle karmaşık biyomoleküler sistemlerde baskın hareketlerin ortaya çıkarılmasına ve biyolojik anlamın güçlendirilmesine katkı sağlar.</p>
+</section>
 </section>
 </section>
 <section id="enerji-analizleri" class="level2" data-number="5.3">
