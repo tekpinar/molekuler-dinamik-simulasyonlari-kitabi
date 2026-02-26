@@ -84,7 +84,9 @@ fi
 Yukarıdaki komutları kısaca açıklayalım: Gromacs programında adet olduğu üzere, `-f` parametresinden sonra input dosyası eklenir, `-o` parametresinden sonrasında ise çıktı dosyasının adı yazılır. `-bt` parametresi "box type (kutu tipi)" seçmek için kullanılır. Burada kutu tipi olarak `octahedron` seçilmiştir. Octahedron kutu tipinin yapısı @fig-octahedron'de gösterilmektedir. `-c` parametresi proteini seçilen kutunun merkezine alması gerektiğini ifade eder. `-d 1.1` parametresi ise proteinden kutunun kenarlarına en az 1.1 nm (11 Angstrom) mesafe olması gerektiğini belirtir. 
 
 
-![Octahedron kutu. (Kaynak: Bu resim [Wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Truncated_octahedron_%28green%29.png/960px-Truncated_octahedron_%28green%29.png?20250914164708)'dan alınmıştır.)](figures/Truncated_octahedron_green.png){#fig-octahedron fig-align="center" width="60%"}
+![Octahedron kutu. (Kaynak: Bu resim Wikipedia'dan alınmıştır.)](figures/Truncated_octahedron_green.png){#fig-octahedron fig-align="center" width="60%"}
+
+
 
 ### Sisteme doğal ortam iyonlarının eklenmesi
 Aşağıdaki komut sisteme Na ve Cl iyonlarını ekleyip sistemin toplam yükünü sıfır yapacaktır. Sisteme iyonlar eklenirken 0.15 Molar konsantrasyon da sağlanmaya çalışılacaktır. 
